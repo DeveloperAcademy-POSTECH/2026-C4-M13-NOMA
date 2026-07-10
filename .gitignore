@@ -114,4 +114,18 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+### 각 사용자의 상태 관리 데이터 ###
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+### 추후 프로비저닝 관련 파일 추가할 때 대비 ###
+.env
+.env.*
+!.env.example
+.xcconfig
+*.p12
+*.mobileprovision
+*.provisionprofile
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,macos,xcode
