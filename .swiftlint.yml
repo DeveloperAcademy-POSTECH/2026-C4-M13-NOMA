@@ -1,0 +1,21 @@
+# 기본 룰 중 끄고 싶은 것
+disabled_rules:
+  - trailing_whitespace #후행 공백
+
+# 선택 룰 중 켜고 싶은 것
+opt_in_rules:
+  - indentation_width #들여쓰기 폭 일관성 검사
+  - shorthand_optional_binding #Shorthand syntax 사용
+  - multiline_parameters #함수 선언 파라미터를 모두 같은 줄에 두거나 줄당 하나씩
+  - vertical_whitespace_between_cases #switch case 사이에 빈 줄 하나
+  - unneeded_parentheses_in_closure_argument #클로저 인자의 불필요한 괄호 금지
+  - sorted_imports #import 구문을 알파벳 순으로 정렬
+
+indentation_width:
+  indentation_width: 2 #들여쓰기는 2 spaces
+
+multiline_parameters:
+  max_number_of_single_line_parameters: 2 #3개 이상이면 줄바꿈
+
+sorted_imports:
+  grouping: attributes #빈 줄 그룹별로 독립 검사
