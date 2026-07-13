@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1821BB63000DE7D00EE80A5 /* .gitignore */; };
+		C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C31DF2FC3003BC6700831981 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1821BB63000DE7D00EE80A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C31DF2FC3003BC6700831981 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +39,7 @@
 		ECF649192FFF661100DA36B7 = {
 			isa = PBXGroup;
 			children = (
+				C31DF2FC3003BC6700831981 /* .swiftlint.yml */,
 				A1821BB63000DE7D00EE80A5 /* .gitignore */,
 				ECF649242FFF661100DA36B7 /* NOMA */,
 				ECF649232FFF661100DA36B7 /* Products */,
@@ -58,6 +61,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECF6492D2FFF661100DA36B7 /* Build configuration list for PBXNativeTarget "NOMA" */;
 			buildPhases = (
+				C31DF2F93003BBBB00831981 /* SwiftLint Script */,
 				ECF6491E2FFF661100DA36B7 /* Sources */,
 				ECF6491F2FFF661100DA36B7 /* Frameworks */,
 				ECF649202FFF661100DA36B7 /* Resources */,
@@ -115,11 +119,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */,
 				A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C31DF2F93003BBBB00831981 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ECF6491E2FFF661100DA36B7 /* Sources */ = {
@@ -170,7 +196,7 @@
 				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -234,7 +260,7 @@
 				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
