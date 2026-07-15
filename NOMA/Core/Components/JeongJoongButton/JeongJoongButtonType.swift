@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum JeongJoongButtonType: CaseIterable, Codable {
+enum JeongJoongButtonType {
     case primary
     case secondary
     
