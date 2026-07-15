@@ -8,14 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // MARK: - Properties
+    
+    // private let userID: Int
+    
+    // MARK: - Initializer
+
+    // init(userID: Int) {
+    //    self.userID = userID
+    // }
+    
+    // MARK: - Body
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            title
+            content
         }
         .padding()
+    }
+}
+
+// MARK: - Subviews
+
+extension ContentView {
+    private var title: some View {
+        Text("Title")
+    }
+  
+    private var content: some View {
+        Text("Content")
     }
 }
 
