@@ -12,23 +12,20 @@ struct JeongJoongButton: View {
     // MARK: - Properties
     
     private let title: String
-    private let titleColor: Color
-    private let backgroundColor: Color
+    private let jeongJoongButtonType: JeongJoongButtonType
     private let radius: CGFloat
     private let action: (() -> Void)?
 
     // MARK: - Initializer
 
     init(
-        titleText: String,
-        titleColor: Color,
-        backgroundColor: Color,
+        title: String,
+        jeongJoongButtonType: JeongJoongButtonType,
         radius: CGFloat,
         action: (() -> Void)? = nil
     ) {
-        self.title = titleText
-        self.titleColor = titleColor
-        self.backgroundColor = backgroundColor
+        self.title = title
+        self.jeongJoongButtonType = jeongJoongButtonType
         self.radius = radius
         self.action = action
     }
@@ -51,13 +48,13 @@ extension JeongJoongButton {
     private var content: some View {
         Text(title)
             .font(.body)
-            .foregroundStyle(titleColor)
+            .foregroundStyle(jeongJoongButtonType.titleColor)
             .frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity
             )
             .background(
-                backgroundColor,
+                jeongJoongButtonType.backgroundColor,
                 in: RoundedRectangle(cornerRadius: radius)
             )
     }
@@ -65,9 +62,8 @@ extension JeongJoongButton {
 
 #Preview {
     JeongJoongButton(
-        titleText: "학습하기",
-        titleColor: .white,
-        backgroundColor: .accentColor,
-        radius: 3
+        title: "학습하기",
+        jeongJoongButtonType: .primary,
+        radius: 8
     )
 }
