@@ -44,7 +44,7 @@ struct JeongJoongButton: View {
 extension JeongJoongButton {
     private var content: some View {
         Text(title)
-            .font(.body)
+            .font(.system(size: 13, weight: .medium))
             .foregroundStyle(jeongJoongButtonType.titleColor)
             .frame(
                 maxWidth: .infinity,
