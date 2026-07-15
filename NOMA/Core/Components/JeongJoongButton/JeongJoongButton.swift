@@ -13,7 +13,6 @@ struct JeongJoongButton: View {
     
     private let title: String
     private let jeongJoongButtonType: JeongJoongButtonType
-    private let radius: CGFloat
     private let action: (() -> Void)?
 
     // MARK: - Initializer
@@ -21,12 +20,10 @@ struct JeongJoongButton: View {
     init(
         title: String,
         jeongJoongButtonType: JeongJoongButtonType,
-        radius: CGFloat,
         action: (() -> Void)? = nil
     ) {
         self.title = title
         self.jeongJoongButtonType = jeongJoongButtonType
-        self.radius = radius
         self.action = action
     }
     
@@ -55,7 +52,7 @@ extension JeongJoongButton {
             )
             .background(
                 jeongJoongButtonType.backgroundColor,
-                in: RoundedRectangle(cornerRadius: radius)
+                in: Capsule()
             )
     }
 }
@@ -63,7 +60,6 @@ extension JeongJoongButton {
 #Preview {
     JeongJoongButton(
         title: "학습하기",
-        jeongJoongButtonType: .primary,
-        radius: 8
+        jeongJoongButtonType: .primary
     )
 }
