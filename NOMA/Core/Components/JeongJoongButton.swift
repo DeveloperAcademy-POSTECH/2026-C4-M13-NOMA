@@ -39,19 +39,27 @@ struct JeongJoongButton: View {
         Button {
             action?()
         } label: {
-            Text(title)
-                .font(.body)
-                .foregroundStyle(titleColor)
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity
-                )
-                .background(
-                    backgroundColor,
-                    in: RoundedRectangle(cornerRadius: radius)
-                )
+            content
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Subviews
+
+extension JeongJoongButton {
+    private var content: some View {
+        Text(title)
+            .font(.body)
+            .foregroundStyle(titleColor)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity
+            )
+            .background(
+                backgroundColor,
+                in: RoundedRectangle(cornerRadius: radius)
+            )
     }
 }
 
