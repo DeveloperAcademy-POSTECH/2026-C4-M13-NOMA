@@ -26,7 +26,8 @@
 		EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */; };
 		EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */; };
 		EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */; };
-		EC4D4FEF300730CE00FB5735 /* ComponentsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEE300730CE00FB5735 /* ComponentsFile.swift */; };
+		ECC8570E3007BDF8007EC965 /* JeongJoongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */; };
+		ECC8570F3007BDF8007EC965 /* JeongJoongButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +50,8 @@
 		EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSummaryFile.swift; sourceTree = "<group>"; };
 		EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersFile.swift; sourceTree = "<group>"; };
 		EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesFile.swift; sourceTree = "<group>"; };
-		EC4D4FEE300730CE00FB5735 /* ComponentsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFile.swift; sourceTree = "<group>"; };
+		ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeongJoongButton.swift; sourceTree = "<group>"; };
+		ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeongJoongButtonType.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -226,7 +228,7 @@
 		EC4D4FE63007308F00FB5735 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FEE300730CE00FB5735 /* ComponentsFile.swift */,
+				ECC8570D3007BDF8007EC965 /* JeongJoongButton */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -255,6 +257,15 @@
 				EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ECC8570D3007BDF8007EC965 /* JeongJoongButton */ = {
+			isa = PBXGroup;
+			children = (
+				ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */,
+				ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */,
+			);
+			path = JeongJoongButton;
 			sourceTree = "<group>";
 		};
 		ECF649192FFF661100DA36B7 = {
@@ -377,12 +388,13 @@
 				EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
+				ECC8570E3007BDF8007EC965 /* JeongJoongButton.swift in Sources */,
+				ECC8570F3007BDF8007EC965 /* JeongJoongButtonType.swift in Sources */,
 				EC4D4FC13007298B00FB5735 /* QuestionSpeakingFile.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */,
 				EC4D4FB730071E7100FB5735 /* EnumsFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
-				EC4D4FEF300730CE00FB5735 /* ComponentsFile.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
