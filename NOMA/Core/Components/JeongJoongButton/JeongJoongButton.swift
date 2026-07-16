@@ -13,14 +13,14 @@ struct JeongJoongButton: View {
     
     private let title: String
     private let jeongJoongButtonType: JeongJoongButtonType
-    private let action: (() -> Void)?
+    private let action: (() -> Void)
 
     // MARK: - Initializer
 
     init(
         title: String,
         jeongJoongButtonType: JeongJoongButtonType,
-        action: (() -> Void)? = nil
+        action: @escaping (() -> Void)
     ) {
         self.title = title
         self.jeongJoongButtonType = jeongJoongButtonType
@@ -31,7 +31,7 @@ struct JeongJoongButton: View {
 
     var body: some View {
         Button {
-            action?()
+            action()
         } label: {
             content
         }
@@ -55,11 +55,4 @@ extension JeongJoongButton {
                 in: Capsule()
             )
     }
-}
-
-#Preview {
-    JeongJoongButton(
-        title: "학습하기",
-        jeongJoongButtonType: .primary
-    )
 }
