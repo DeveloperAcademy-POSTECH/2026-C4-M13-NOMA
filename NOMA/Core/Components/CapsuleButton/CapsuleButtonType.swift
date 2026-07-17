@@ -1,5 +1,5 @@
 //
-//  JeongJoongButtonType.swift
+//  CapsuleButtonType.swift
 //  NOMA
 //
 //  Created by 이은지 on 7/15/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum JeongJoongButtonType {
+enum CapsuleButtonType {
     case primary
     case secondary
     

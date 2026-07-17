@@ -1,5 +1,5 @@
 //
-//  JeongJoongButtonStyle.swift
+//  CapsuleButtonStyle.swift
 //  NOMA
 //
 //  Created by 이은지 on 7/17/26.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct JeongJoongButtonStyle: ButtonStyle {
+struct CapsuleButtonStyle: ButtonStyle {
     
     // MARK: - Properties
 
-    let type: JeongJoongButtonType
+    let type: CapsuleButtonType
 
     @Environment(\.isEnabled) private var isEnabled
     @State private var isHovering = false
