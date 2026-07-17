@@ -18,6 +18,13 @@ enum JeongJoongButtonType {
         }
     }
     
+    var disabledTitleColor: Color {
+        switch self {
+        case .primary: return .white
+        case .secondary: return Color(nsColor: .tertiaryLabelColor)
+        }
+    }
+    
     var backgroundColor: Color {
         switch self {
         case .primary: return .accentColor
@@ -29,6 +36,13 @@ enum JeongJoongButtonType {
         switch self {
         case .primary: return Color(hexCode: 0x14356D)
         case .secondary: return .labelPrimary
+        }
+    }
+
+    var disabledBackgroundColor: Color {
+        switch self {
+        case .primary: return .accentColor.opacity(0.35)
+        case .secondary: return Color(nsColor: .tertiarySystemFill)
         }
     }
 }

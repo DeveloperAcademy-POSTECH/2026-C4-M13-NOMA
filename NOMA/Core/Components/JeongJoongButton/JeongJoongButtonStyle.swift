@@ -20,7 +20,7 @@ struct JeongJoongButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(type.titleColor)
+            .foregroundStyle(currentTitleColor)
             .frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity
@@ -40,6 +40,12 @@ struct JeongJoongButtonStyle: ButtonStyle {
             }
     }
 
+    private var currentTitleColor: Color {
+        isEnabled
+        ? type.titleColor
+        : type.disabledTitleColor
+    }
+    
     private var currentBackgroundColor: Color {
         guard isEnabled else { return type.disabledBackgroundColor }
         
