@@ -5,7 +5,6 @@
 //  Created by 이은지 on 7/15/26.
 //
 
-import Foundation
 import SwiftUI
 
 enum JeongJoongButtonType {
@@ -23,6 +22,13 @@ enum JeongJoongButtonType {
         switch self {
         case .primary: return .accentColor
         case .secondary: return Color(nsColor: .secondarySystemFill)
+        }
+    }
+
+    var hoverBackgroundColor: Color {
+        switch self {
+        case .primary: return Color(hexCode: 0x14356D)
+        case .secondary: return .labelPrimary
         }
     }
 }
