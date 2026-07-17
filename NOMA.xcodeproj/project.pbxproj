@@ -32,6 +32,9 @@
 		ECC85719300A6228007EC965 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85717300A6228007EC965 /* Color+.swift */; };
 		ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */; };
 		ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */; };
+		ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571F300A6D55007EC965 /* PushButtonType.swift */; };
+		ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85721300A6D8D007EC965 /* PushButton.swift */; };
+		ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		ECC85717300A6228007EC965 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonSize.swift; sourceTree = "<group>"; };
 		ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStatus.swift; sourceTree = "<group>"; };
+		ECC8571F300A6D55007EC965 /* PushButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonType.swift; sourceTree = "<group>"; };
+		ECC85721300A6D8D007EC965 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
+		ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStyle.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -290,8 +296,11 @@
 		ECC8571A300A68CF007EC965 /* PushButton */ = {
 			isa = PBXGroup;
 			children = (
-				ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */,
+				ECC85721300A6D8D007EC965 /* PushButton.swift */,
+				ECC8571F300A6D55007EC965 /* PushButtonType.swift */,
+				ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */,
 				ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */,
+				ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */,
 			);
 			path = PushButton;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */,
 				EC4D4FC13007298B00FB5735 /* QuestionSpeakingFile.swift in Sources */,
+				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */,
 				EC4D4FB730071E7100FB5735 /* EnumsFile.swift in Sources */,
@@ -430,8 +440,10 @@
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
 				ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */,
+				ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */,
 				ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
+				ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
