@@ -16,6 +16,20 @@ struct CapsuleButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
     @State private var isHovering = false
     
+    private var currentTitleColor: Color {
+        isEnabled
+        ? type.titleColor
+        : type.disabledTitleColor
+    }
+    
+    private var currentBackgroundColor: Color {
+        guard isEnabled else { return type.disabledBackgroundColor }
+        
+        return isHovering
+        ? type.hoverBackgroundColor
+        : type.backgroundColor
+    }
+    
     // MARK: - Functions
     
     func makeBody(configuration: Configuration) -> some View {
@@ -38,19 +52,5 @@ struct CapsuleButtonStyle: ButtonStyle {
                     NSCursor.pop()
                 }
             }
-    }
-
-    private var currentTitleColor: Color {
-        isEnabled
-        ? type.titleColor
-        : type.disabledTitleColor
-    }
-    
-    private var currentBackgroundColor: Color {
-        guard isEnabled else { return type.disabledBackgroundColor }
-        
-        return isHovering
-        ? type.hoverBackgroundColor
-        : type.backgroundColor
     }
 }
