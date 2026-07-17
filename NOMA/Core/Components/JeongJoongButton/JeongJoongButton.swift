@@ -13,14 +13,14 @@ struct JeongJoongButton: View {
     
     private let title: String
     private let jeongJoongButtonType: JeongJoongButtonType
-    private let action: (() -> Void)
+    private let action: () -> Void
 
     // MARK: - Initializer
 
     init(
         title: String,
         jeongJoongButtonType: JeongJoongButtonType,
-        action: @escaping (() -> Void)
+        action: @escaping () -> Void
     ) {
         self.title = title
         self.jeongJoongButtonType = jeongJoongButtonType
@@ -30,29 +30,10 @@ struct JeongJoongButton: View {
     // MARK: - Body
 
     var body: some View {
-        Button {
-            action()
-        } label: {
-            content
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 13, weight: .medium))
         }
-        .buttonStyle(.plain)
-    }
-}
-
-// MARK: - Subviews
-
-extension JeongJoongButton {
-    private var content: some View {
-        Text(title)
-            .font(.system(size: 13, weight: .medium))
-            .foregroundStyle(jeongJoongButtonType.titleColor)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity
-            )
-            .background(
-                jeongJoongButtonType.backgroundColor,
-                in: Capsule()
-            )
+        .buttonStyle(JeongJoongButtonStyle(type: jeongJoongButtonType))
     }
 }
