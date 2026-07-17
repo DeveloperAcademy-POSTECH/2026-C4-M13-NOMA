@@ -28,6 +28,8 @@
 		EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */; };
 		ECC8570E3007BDF8007EC965 /* JeongJoongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* JeongJoongButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */; };
+		ECC85711300A5664007EC965 /* JeongJoongButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* JeongJoongButtonStyle.swift */; };
+		ECC85719300A6228007EC965 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85717300A6228007EC965 /* Color+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesFile.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeongJoongButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeongJoongButtonType.swift; sourceTree = "<group>"; };
+		ECC85710300A5664007EC965 /* JeongJoongButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeongJoongButtonStyle.swift; sourceTree = "<group>"; };
+		ECC85717300A6228007EC965 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,6 +240,7 @@
 		EC4D4FE73007308F00FB5735 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ECC85718300A6228007EC965 /* Extensions */,
 				EC4D4FE8300730A800FB5735 /* Modifiers */,
 				EC4D4FE9300730B900FB5735 /* Utilities */,
 				EC4D4FE63007308F00FB5735 /* Components */,
@@ -264,8 +269,17 @@
 			children = (
 				ECC8570B3007BDF8007EC965 /* JeongJoongButton.swift */,
 				ECC8570C3007BDF8007EC965 /* JeongJoongButtonType.swift */,
+				ECC85710300A5664007EC965 /* JeongJoongButtonStyle.swift */,
 			);
 			path = JeongJoongButton;
+			sourceTree = "<group>";
+		};
+		ECC85718300A6228007EC965 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ECC85717300A6228007EC965 /* Color+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		ECF649192FFF661100DA36B7 = {
@@ -383,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4D4FC33007299000FB5735 /* AudioRecordingFile.swift in Sources */,
+				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
 				EC4D4FC5300729A000FB5735 /* SpeechTranscribingFile.swift in Sources */,
 				EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */,
@@ -399,6 +414,7 @@
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
+				ECC85711300A5664007EC965 /* JeongJoongButtonStyle.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
