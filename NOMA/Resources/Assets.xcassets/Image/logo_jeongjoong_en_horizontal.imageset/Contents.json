@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "logo_jeongjoong_en_horizontal.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
