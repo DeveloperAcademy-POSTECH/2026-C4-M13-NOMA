@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+protocol InterviewFeedbackGenerating {
+    func generateFeedback(
+        question: InterviewQuestion,
+        transcript: String
+    ) async throws -> AnswerFeedback
+}
