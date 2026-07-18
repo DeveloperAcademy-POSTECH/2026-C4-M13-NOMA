@@ -13,8 +13,6 @@
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
 		EC4D4FB730071E7100FB5735 /* EnumsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FB630071E7100FB5735 /* EnumsFile.swift */; };
-		EC4D4FC33007299000FB5735 /* AudioRecordingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FC23007299000FB5735 /* AudioRecordingFile.swift */; };
-		EC4D4FC5300729A000FB5735 /* SpeechTranscribingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FC4300729A000FB5735 /* SpeechTranscribingFile.swift */; };
 		EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FC8300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift */; };
 		EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FCA300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift */; };
 		EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FD03007300900FB5735 /* OnboardingFile.swift */; };
@@ -30,6 +28,8 @@
 		ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85727300B4325007EC965 /* QuestionSpeaking.swift */; };
 		ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85729300B43E3007EC965 /* AudioRecording.swift */; };
 		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
+		ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */; };
+		ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,6 @@
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC4D4FB630071E7100FB5735 /* EnumsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumsFile.swift; sourceTree = "<group>"; };
-		EC4D4FC23007299000FB5735 /* AudioRecordingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingFile.swift; sourceTree = "<group>"; };
-		EC4D4FC4300729A000FB5735 /* SpeechTranscribingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribingFile.swift; sourceTree = "<group>"; };
 		EC4D4FC8300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGeneratingFile.swift; sourceTree = "<group>"; };
 		EC4D4FCA300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingFile.swift; sourceTree = "<group>"; };
 		EC4D4FD03007300900FB5735 /* OnboardingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFile.swift; sourceTree = "<group>"; };
@@ -56,6 +54,8 @@
 		ECC85727300B4325007EC965 /* QuestionSpeaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSpeaking.swift; sourceTree = "<group>"; };
 		ECC85729300B43E3007EC965 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
 		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
+		ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribing.swift; sourceTree = "<group>"; };
+		ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptUpdate.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +97,7 @@
 			children = (
 				EC4D4FB530071E5F00FB5735 /* Enums */,
 				ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */,
+				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -132,7 +133,6 @@
 		EC4D4FB830071EA400FB5735 /* AudioRecording */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FC23007299000FB5735 /* AudioRecordingFile.swift */,
 				ECC85729300B43E3007EC965 /* AudioRecording.swift */,
 			);
 			path = AudioRecording;
@@ -157,7 +157,7 @@
 		EC4D4FBC30071ED600FB5735 /* SpeechTranscribing */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FC4300729A000FB5735 /* SpeechTranscribingFile.swift */,
+				ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */,
 			);
 			path = SpeechTranscribing;
 			sourceTree = "<group>";
@@ -389,19 +389,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
-				EC4D4FC33007299000FB5735 /* AudioRecordingFile.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
-				EC4D4FC5300729A000FB5735 /* SpeechTranscribingFile.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
 				EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
+				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* JeongJoongButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* JeongJoongButtonType.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */,
 				EC4D4FB730071E7100FB5735 /* EnumsFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
+				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
