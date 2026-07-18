@@ -12,7 +12,6 @@
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
-		EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FC8300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift */; };
 		EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FCA300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift */; };
 		EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FD03007300900FB5735 /* OnboardingFile.swift */; };
 		EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FDA3007304300FB5735 /* HomeFile.swift */; };
@@ -32,6 +31,8 @@
 		ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */; };
 		ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85733300B4F45007EC965 /* FeedbackItem.swift */; };
 		ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */; };
+		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
+		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +41,6 @@
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EC4D4FC8300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGeneratingFile.swift; sourceTree = "<group>"; };
 		EC4D4FCA300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingFile.swift; sourceTree = "<group>"; };
 		EC4D4FD03007300900FB5735 /* OnboardingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFile.swift; sourceTree = "<group>"; };
 		EC4D4FDA3007304300FB5735 /* HomeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFile.swift; sourceTree = "<group>"; };
@@ -60,6 +60,8 @@
 		ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerFeedback.swift; sourceTree = "<group>"; };
 		ECC85733300B4F45007EC965 /* FeedbackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackItem.swift; sourceTree = "<group>"; };
 		ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectedSentence.swift; sourceTree = "<group>"; };
+		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
+		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 				ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */,
 				ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */,
+				ECC85739300B5131007EC965 /* InterviewQuestion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,7 +158,7 @@
 		EC4D4FBB30071EC900FB5735 /* InterviewFeedbackGenerating */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FC8300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift */,
+				ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */,
 			);
 			path = InterviewFeedbackGenerating;
 			sourceTree = "<group>";
@@ -397,12 +400,12 @@
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
-				EC4D4FC9300729B000FB5735 /* InterviewFeedbackGeneratingFile.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
 				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* JeongJoongButton.swift in Sources */,
+				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* JeongJoongButtonType.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FCB300729BE00FB5735 /* FollowUpQuestionGeneratingFile.swift in Sources */,
@@ -413,6 +416,7 @@
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
+				ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */,
 				ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
 				ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */,
