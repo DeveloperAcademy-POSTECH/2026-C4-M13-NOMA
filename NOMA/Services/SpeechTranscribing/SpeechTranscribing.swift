@@ -5,4 +5,9 @@
 //  Created by 이은지 on 7/18/26.
 //
 
-import Foundation
+import Speech
+
+protocol SpeechTranscribing {
+    func transcribe(bufferStream: AsyncStream<AVAudioPCMBuffer>)
+    -> AsyncThrowingStream<TranscriptUpdate, Error>
+}
