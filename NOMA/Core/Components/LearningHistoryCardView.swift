@@ -9,6 +9,10 @@ import SwiftUI
 
 struct LearningHistoryCardView: View {
     
+    // MARK: - Properties
+
+    @State private var isHovering: Bool = false
+    
     // MARK: - Body
     
     var body: some View {
@@ -83,18 +87,19 @@ extension LearningHistoryCardView {
             print("자세히 보기 클릭")
         } label: {
             Text("자세히 보기")
-                .font(
-                    .system(
-                        size: 13,
-                        weight: .medium
-                    )
-                )
+                .font(.system(size: 13, weight: .medium))
                 .foregroundStyle(Color.accentColor)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 7)
-                .background(Color.accentColorBackground)
+                .background(
+                    Color.accentColorBackground
+                        .opacity(isHovering ? 0.7 : 1)
+                )
                 .cornerRadius(6)
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            isHovering = hovering
+        }
     }
 }

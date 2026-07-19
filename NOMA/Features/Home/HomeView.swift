@@ -21,13 +21,12 @@ struct HomeView: View {
             
             learningHistoryTitle
                 .padding(.bottom, 40)
-
-            HStack {
+            
+            // FIXME: - 임시 구현
+            HStack(spacing: 20) {
                 LearningHistoryCardView()
-                    .padding(.trailing, 20)
                 
                 LearningHistoryCardView()
-                    .padding(.trailing, 20)
                 
                 LearningHistoryCardView()
             }
