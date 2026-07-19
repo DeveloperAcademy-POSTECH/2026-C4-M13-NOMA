@@ -20,6 +20,8 @@ struct PermissionView: View {
         
         microphonePermissionCard
         
+        actionButtons
+
         returnHomeButton
     }
 }
@@ -27,13 +29,22 @@ struct PermissionView: View {
 // MARK: - SubViews
 
 extension PermissionView {
-    
     private var titleView: some View {
         Text("마이크 접근 권한")
+            .font(
+                .system(
+                    size: 22,
+                    weight: .bold
+                )
+            )
+            .foregroundStyle(.primary)
     }
     
     private var subtitleView: some View {
         Text("원활한 학습을 위해 마이크 접근 권한 허용이 필요합니다.\n권한을 허용하지 않으실 경우, 격식체 학습 기능을 이용하실 수 없습니다.")
+            .font(.title2)
+            .foregroundStyle(.primary)
+            .multilineTextAlignment(.center)
     }
     
     private var microphonePermissionCard: some View {
@@ -45,32 +56,52 @@ extension PermissionView {
             microphoneDescriptionText
             
             permissionStatusText
-            
-            actionButtons
         }
+        .background(
+            RoundedRectangle(
+                cornerRadius: 8,
+                style: .continuous
+            )
+            .fill(.regularMaterial)
+        )
+        .frame(
+            width: 300,
+            height: 211
+        )
     }
     
     private var microphoneIconView: some View {
         Image(systemName: "microphone")
-            .font(.system(size: 40))
+            .font(.title2)
             .foregroundStyle(.primary)
-            .frame(width: 90, height: 90)
-            .background(
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(.regularMaterial)
-            )
     }
     
     private var microphoneNameText: some View {
         Text("마이크")
+            .font(.title2)
+            .foregroundStyle(.primary)
     }
     
     private var microphoneDescriptionText: some View {
         Text("음성 답변을 기록하고 발화를 분석하기 위해\n권한 허용이 필요합니다.")
+            .font(.body)
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
     }
     
     private var permissionStatusText: some View {
         Text("권한 허용되지 않음")
+            .font(.callout)
+            .foregroundStyle(.red)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 8)
+            .background(
+                RoundedRectangle(
+                    cornerRadius: 4,
+                    style: .continuous
+                )
+                .fill(.white)
+            )
     }
     
     private var actionButtons: some View {
@@ -101,7 +132,11 @@ extension PermissionView {
     }
     
     private var returnHomeButton: some View {
-        PushButton(title: "홈으로 돌아가기", type: .borderless, size: .small) {
+        PushButton(
+            title: "홈으로 돌아가기",
+            type: .borderless,
+            size: .small
+        ) {
             // FIXME: - 액션 주입
             print("홈으로 돌아가기")
         }
