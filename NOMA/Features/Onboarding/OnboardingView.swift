@@ -19,7 +19,6 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: 16) {
             iconBadgeView
-                .disabled(!appleIntelligenceStatus.isEnabled)
             
             headlineView
             
@@ -29,6 +28,9 @@ struct OnboardingView: View {
             actionButtons
             
             settingsHintView
+        }
+        .task {
+            appleIntelligenceStatus.refresh()
         }
         .onChange(of: controlActiveState) { _, newState in
             if newState != .inactive {
