@@ -14,9 +14,33 @@ struct HomeView: View {
     var body: some View {
         VStack(spacing: 0) {
             greetingHeadlineView
-                .padding(30)
+                .padding(.bottom, 30)
             
             startLearningButton
+                .padding(.bottom, 166)
+            
+            learningHistoryTitle
+                .padding(.bottom, 40)
+
+            HStack {
+                LearningHistoryCardView()
+                    .padding(.trailing, 20)
+                
+                LearningHistoryCardView()
+                    .padding(.trailing, 20)
+                
+                LearningHistoryCardView()
+            }
+            .padding(.bottom, 16)
+            
+            PushButton(
+                title: "더보기",
+                type: .borderless,
+                size: .small
+            ) {
+                // FIXME: - 액션 주입
+                print("더보기 버튼 클릭")
+            }
         }
     }
 }
@@ -44,4 +68,12 @@ extension HomeView {
             height: 50
         )
     }
+    
+    private var learningHistoryTitle: some View {
+        Text("학습 기록")
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundStyle(.primary)
+    }
+    
 }

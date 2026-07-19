@@ -31,6 +31,10 @@ struct LearningHistoryCardView: View {
                 lineWidth: 1
             )
         )
+        .frame(
+            width: 348,
+            height: 102
+        )
     }
 }
 
@@ -93,8 +97,4 @@ extension LearningHistoryCardView {
         }
         .buttonStyle(.plain)
     }
-}
-
-#Preview {
-    LearningHistoryCardView()
 }
