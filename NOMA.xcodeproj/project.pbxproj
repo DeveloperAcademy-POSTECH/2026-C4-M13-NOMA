@@ -41,6 +41,7 @@
 		ECE05935300D1C6100C0201E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05934300D1C6100C0201E /* HomeView.swift */; };
 		ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */; };
 		ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05938300D2F7D00C0201E /* PermissionView.swift */; };
+		ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */; };
 		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,7 @@
 		ECE05934300D1C6100C0201E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryCardView.swift; sourceTree = "<group>"; };
 		ECE05938300D2F7D00C0201E /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */,
+				ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,
 				EC4D4FBC30071ED600FB5735 /* SpeechTranscribing */,
@@ -329,6 +332,14 @@
 			path = PushButton;
 			sourceTree = "<group>";
 		};
+		ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */ = {
+			isa = PBXGroup;
+			children = (
+				ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */,
+			);
+			path = MicrophonePermissionStatus;
+			sourceTree = "<group>";
+		};
 		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +467,7 @@
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
+				ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */,
 				ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
 				ECE05935300D1C6100C0201E /* HomeView.swift in Sources */,
@@ -622,10 +634,21 @@
 				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 답변을 기록하고 발화를 분석하기 위해 마이크 접근 권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -654,10 +677,21 @@
 				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 답변을 기록하고 발화를 분석하기 위해 마이크 접근 권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
