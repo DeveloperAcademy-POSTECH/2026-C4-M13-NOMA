@@ -8,6 +8,6 @@
 import AVFoundation
 
 protocol AudioRecording {
-    func startRecording() throws -> AsyncStream<AVAudioPCMBuffer>
+    func startRecording() throws -> AsyncStream<SendableAudioBuffer>
     func stopRecording() async throws -> RecordedAudio
 }
