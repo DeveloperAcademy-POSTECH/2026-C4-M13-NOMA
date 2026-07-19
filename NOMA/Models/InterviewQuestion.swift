@@ -10,4 +10,5 @@ import Foundation
 struct InterviewQuestion {
     let questionID: String
     let content: String
+    let isFollowUp: Bool
 }
