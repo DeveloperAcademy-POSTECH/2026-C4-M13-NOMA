@@ -40,6 +40,8 @@
 		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
 		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
 		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
+		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
+		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
 		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
+		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
+		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +132,7 @@
 		EC4D4FB230071C1300FB5735 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,
 				EC4D4FBC30071ED600FB5735 /* SpeechTranscribing */,
@@ -304,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC85717300A6228007EC965 /* Color+.swift */,
+				ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -318,6 +324,14 @@
 				ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */,
 			);
 			path = PushButton;
+			sourceTree = "<group>";
+		};
+		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
+			isa = PBXGroup;
+			children = (
+				ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */,
+			);
+			path = AppleIntelligenceStatus;
 			sourceTree = "<group>";
 		};
 		ECF649192FFF661100DA36B7 = {
@@ -435,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
+				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
@@ -454,6 +469,7 @@
 				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
 				ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
+				ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
 				ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */,
