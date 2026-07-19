@@ -18,13 +18,6 @@ enum PushButtonSize {
         }
     }
     
-    var verticalPadding: CGFloat {
-        switch self {
-        case .small: return 4
-        case .medium: return 13
-        }
-    }
-    
     var horizontalPadding: CGFloat {
         switch self {
         case .small: return 16
