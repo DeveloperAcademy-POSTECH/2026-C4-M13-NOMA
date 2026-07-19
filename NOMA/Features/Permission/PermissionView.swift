@@ -8,24 +8,35 @@
 import SwiftUI
 
 struct PermissionView: View {
-    
+
     // MARK: - Properties
+
+    @State private var microphonePermissionStatus = MicrophonePermissionStatus()
+    @Environment(\.controlActiveState) private var controlActiveState
 
     // MARK: - Body
 
     var body: some View {
         VStack(spacing: 16) {
             titleView
-            
+
             subtitleView
                 .padding(.bottom, 44)
-            
+
             microphonePermissionCard
                 .padding(.bottom, 44)
-            
+
             actionButtons
 
             returnHomeButton
+        }
+        .task {
+            microphonePermissionStatus.refresh()
+        }
+        .onChange(of: controlActiveState) { _, newState in
+            if newState != .inactive {
+                microphonePermissionStatus.refresh()
+            }
         }
     }
 }
@@ -94,9 +105,13 @@ extension PermissionView {
     }
     
     private var permissionStatusText: some View {
-        Text("권한 허용되지 않음")
+        Text(microphonePermissionStatus.isGranted
+             ? "권한 허용됨"
+             : "권한 허용되지 않음")
             .font(.callout)
-            .foregroundStyle(.red)
+            .foregroundStyle(microphonePermissionStatus.isGranted
+                             ? .green
+                             : .red)
             .padding(.vertical, 6)
             .padding(.horizontal, 8)
             .background(
@@ -104,7 +119,12 @@ extension PermissionView {
                     cornerRadius: 4,
                     style: .continuous
                 )
-                .fill(Color(nsColor: .systemRed).opacity(0.1))
+                .fill(
+                    (microphonePermissionStatus.isGranted
+                     ? Color(nsColor: .systemGreen)
+                     : Color(nsColor: .systemRed))
+                    .opacity(0.1)
+                )
             )
     }
     
@@ -114,7 +134,7 @@ extension PermissionView {
                 title: "권한 허용하기",
                 capsuleButtonType: .secondary
             ) {
-                // 액션
+                microphonePermissionStatus.requestAccess()
             }
             .frame(
                 width: 200,
@@ -131,7 +151,7 @@ extension PermissionView {
                 width: 200,
                 height: 42
             )
-            // 액션
+            .disabled(!microphonePermissionStatus.isGranted)
         }
     }
     
