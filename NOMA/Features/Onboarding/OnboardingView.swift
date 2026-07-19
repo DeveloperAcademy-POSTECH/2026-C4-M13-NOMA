@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/19/26.
 //
 
+import AppKit
 import SwiftUI
 
 struct OnboardingView: View {
@@ -29,6 +30,15 @@ struct OnboardingView: View {
             
             settingsHintView
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func openAppleIntelligenceSettings() {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.Siri-Settings.extension") else {
+            return
+        }
+        NSWorkspace.shared.open(url)
     }
 }
 
@@ -79,7 +89,7 @@ extension OnboardingView {
                 title: "시스템 설정 열기",
                 capsuleButtonType: .secondary
             ) {
-                print("시스템 설정 열기")
+                openAppleIntelligenceSettings()
             }
             .frame(
                 width: 200,
