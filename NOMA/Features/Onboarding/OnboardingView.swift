@@ -9,11 +9,16 @@ import SwiftUI
 
 struct OnboardingView: View {
     
+    // MARK: - Properties
+
+    @State private var isAppleIntelligenceEnabled: Bool = true
+    
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 16) {
             iconBadgeView
+                .disabled(!isAppleIntelligenceEnabled)
             
             headlineView
             
@@ -33,18 +38,24 @@ extension OnboardingView {
     private var iconBadgeView: some View {
         Image(systemName: "apple.intelligence")
             .font(.system(size: 40))
-            .foregroundStyle(.primary)
-            .frame(
-                width: 90,
-                height: 90
-            )
+            .foregroundStyle(iconForegroundColor)
+            .frame(width: 90, height: 90)
             .background(
-                RoundedRectangle(
-                    cornerRadius: 12,
-                    style: .continuous
-                )
-                .fill(Color(nsColor: .tertiarySystemFill))
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(iconBackgroundColor)
             )
+    }
+
+    private var iconForegroundColor: Color {
+        isAppleIntelligenceEnabled
+            ? .accentColor
+            : Color(nsColor: .labelColor)
+    }
+
+    private var iconBackgroundColor: Color {
+        isAppleIntelligenceEnabled
+            ? .accentColorBackground
+            : Color(nsColor: .tertiarySystemFill)
     }
     
     private var headlineView: some View {
@@ -70,7 +81,10 @@ extension OnboardingView {
             ) {
                 print("시스템 설정 열기")
             }
-            .frame(width: 200, height: 42)
+            .frame(
+                width: 200,
+                height: 42
+            )
 
             CapsuleButton(
                 title: "시작하기",
@@ -78,7 +92,11 @@ extension OnboardingView {
             ) {
                 print("시작하기")
             }
-            .frame(width: 200, height: 42)
+            .frame(
+                width: 200,
+                height: 42
+            )
+            .disabled(!isAppleIntelligenceEnabled)
         }
     }
     
