@@ -5,21 +5,21 @@
 //  Created by 이은지 on 7/19/26.
 //
 
-import AppKit
 import SwiftUI
 
 struct OnboardingView: View {
     
     // MARK: - Properties
 
-    @State private var isAppleIntelligenceEnabled: Bool = true
-    
+    @State private var appleIntelligenceStatus = AppleIntelligenceStatus()
+    @Environment(\.controlActiveState) private var controlActiveState
+
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 16) {
             iconBadgeView
-                .disabled(!isAppleIntelligenceEnabled)
+                .disabled(!appleIntelligenceStatus.isEnabled)
             
             headlineView
             
@@ -29,6 +29,11 @@ struct OnboardingView: View {
             actionButtons
             
             settingsHintView
+        }
+        .onChange(of: controlActiveState) { _, newState in
+            if newState != .inactive {
+                appleIntelligenceStatus.refresh()
+            }
         }
     }
     
@@ -57,13 +62,13 @@ extension OnboardingView {
     }
 
     private var iconForegroundColor: Color {
-        isAppleIntelligenceEnabled
+        appleIntelligenceStatus.isEnabled
             ? .accentColor
             : Color(nsColor: .labelColor)
     }
 
     private var iconBackgroundColor: Color {
-        isAppleIntelligenceEnabled
+        appleIntelligenceStatus.isEnabled
             ? .accentColorBackground
             : Color(nsColor: .tertiarySystemFill)
     }
@@ -106,7 +111,7 @@ extension OnboardingView {
                 width: 200,
                 height: 42
             )
-            .disabled(!isAppleIntelligenceEnabled)
+            .disabled(!appleIntelligenceStatus.isEnabled)
         }
     }
     
