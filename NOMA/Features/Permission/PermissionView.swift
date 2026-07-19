@@ -14,15 +14,19 @@ struct PermissionView: View {
     // MARK: - Body
 
     var body: some View {
-        titleView
-        
-        subtitleView
-        
-        microphonePermissionCard
-        
-        actionButtons
+        VStack(spacing: 16) {
+            titleView
+            
+            subtitleView
+                .padding(.bottom, 44)
+            
+            microphonePermissionCard
+                .padding(.bottom, 44)
+            
+            actionButtons
 
-        returnHomeButton
+            returnHomeButton
+        }
     }
 }
 
@@ -48,25 +52,25 @@ extension PermissionView {
     }
     
     private var microphonePermissionCard: some View {
-        VStack {
+        VStack(spacing: 0) {
             microphoneIconView
+                .padding(.bottom, 8)
             
             microphoneNameText
+                .padding(.bottom, 20)
             
             microphoneDescriptionText
+                .padding(.bottom, 20)
             
             permissionStatusText
         }
+        .padding(30)
         .background(
             RoundedRectangle(
                 cornerRadius: 8,
                 style: .continuous
             )
-            .fill(.regularMaterial)
-        )
-        .frame(
-            width: 300,
-            height: 211
+            .fill(.regularMaterial.opacity(0.2))
         )
     }
     
@@ -100,7 +104,7 @@ extension PermissionView {
                     cornerRadius: 4,
                     style: .continuous
                 )
-                .fill(.white)
+                .fill(Color(nsColor: .systemRed).opacity(0.1))
             )
     }
     
