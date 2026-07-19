@@ -45,12 +45,7 @@ struct CapsuleButtonStyle: ButtonStyle {
             )
             .onHover { hovering in
                 isHovering = hovering
-                guard isEnabled else { return }
-                if hovering {
-                    NSCursor.pointingHand.push()
-                } else {
-                    NSCursor.pop()
-                }
             }
+            .pointerStyle(isEnabled ? .link : .default)
     }
 }
