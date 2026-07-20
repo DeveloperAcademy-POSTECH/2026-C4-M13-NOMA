@@ -36,7 +36,7 @@ struct LearningHistoryCardView: View {
             )
         )
         .frame(
-            width: 348,
+            width: 333.5,
             height: 102
         )
     }
@@ -50,19 +50,14 @@ extension LearningHistoryCardView {
             // FIXME: - 데이터 주입
             Text("1번째 학습")
                 .font(.title3)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
             
             Spacer()
             
             // FIXME: - 데이터 주입
             Text("2026.07.07")
-                .font(
-                    .system(
-                        size: 16,
-                        weight: .regular
-                    )
-                )
+                .font(.title3)
                 .foregroundStyle(.secondary)
         }
     }
