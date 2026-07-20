@@ -21,6 +21,7 @@
 		ECC33229300DFAD2006FD6EB /* OverallFeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33228300DFAD2006FD6EB /* OverallFeedbackCardView.swift */; };
 		ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322A300E029C006FD6EB /* CorrectionFeedbackCardView.swift */; };
 		ECC3322D300E0DF4006FD6EB /* AnswerSentenceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322C300E0DF4006FD6EB /* AnswerSentenceCardView.swift */; };
+		ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -67,6 +68,7 @@
 		ECC33228300DFAD2006FD6EB /* OverallFeedbackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallFeedbackCardView.swift; sourceTree = "<group>"; };
 		ECC3322A300E029C006FD6EB /* CorrectionFeedbackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionFeedbackCardView.swift; sourceTree = "<group>"; };
 		ECC3322C300E0DF4006FD6EB /* AnswerSentenceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSentenceCardView.swift; sourceTree = "<group>"; };
+		ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerSectionView.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				ECC33228300DFAD2006FD6EB /* OverallFeedbackCardView.swift */,
 				ECC3322A300E029C006FD6EB /* CorrectionFeedbackCardView.swift */,
 				ECC3322C300E0DF4006FD6EB /* AnswerSentenceCardView.swift */,
+				ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */,
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
