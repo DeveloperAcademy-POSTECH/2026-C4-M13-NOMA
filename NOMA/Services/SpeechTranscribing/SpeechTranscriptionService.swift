@@ -9,9 +9,14 @@ import AVFoundation
 import Speech
 
 struct SpeechTranscriptionService: SpeechTranscribing {
+    
+    // MARK: - Properties
+    
     let audioRecordingService = AudioRecordingService()
     
     let transcriber = SpeechTranscriber(locale: Locale(identifier: "ko-KR"), preset: .progressiveTranscription)
+    
+    // MARK: - Functions
     
     func requestAssetInstallation() async throws {
         if let installationRequest = try await AssetInventory.assetInstallationRequest(supporting: [transcriber]) {
@@ -40,27 +45,21 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
         
         Task {
-            do {
-                let recordingStream = try audioRecordingService.startRecording()
-                let sourceFormat = audioRecordingService.audioEngine.inputNode.outputFormat(forBus: 0)
-                
-                for await sendableBuffer in recordingStream {
-                    guard let convertedBuffer = convertFormat(inputBuffer: sendableBuffer, sourceFormat: sourceFormat, targetFormat: targetFormat) else {
-                        print("오디오 포맷 변환 실패")
-                        
-                        continue
-                    }
+            let recordingStream = bufferStream
+            let sourceFormat = audioRecordingService.audioEngine.inputNode.outputFormat(forBus: 0)
+            
+            for await sendableBuffer in recordingStream {
+                guard let convertedBuffer = convertFormat(inputBuffer: sendableBuffer, sourceFormat: sourceFormat, targetFormat: targetFormat) else {
+                    print("오디오 포맷 변환 실패")
                     
-                    let analyzerInput = AnalyzerInput(buffer: convertedBuffer)
-                    inputContinuation.yield(analyzerInput)
+                    continue
                 }
                 
-                inputContinuation.finish()
-            } catch {
-                print("audioRecordingService.startRecording() 실패: \(error)")
-                inputContinuation.finish()
-                outputContinuation.finish(throwing: error)
+                let analyzerInput = AnalyzerInput(buffer: convertedBuffer)
+                inputContinuation.yield(analyzerInput)
             }
+            
+            inputContinuation.finish()
         }
         
         Task {
@@ -113,7 +112,7 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
         
         audioConverter.convert(to: outputBuffer, error: &error, withInputFrom: inputBlock)
-
+        
         if let error = error {
             print("변환 실패: \(error)")
             
@@ -121,9 +120,5 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
         
         return outputBuffer
-    }
-    
-    enum AudioError: Error {
-        case formatNotFound
     }
 }
