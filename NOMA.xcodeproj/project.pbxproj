@@ -25,6 +25,9 @@
 		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
 		ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */; };
 		ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */; };
+		ECC85740300C0001007EC965 /* RecordedAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */; };
+		ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573E300C0001007EC965 /* AudioRecordingError.swift */; };
+		ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */; };
 		ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */; };
 		ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85733300B4F45007EC965 /* FeedbackItem.swift */; };
 		ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */; };
@@ -61,6 +64,9 @@
 		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribing.swift; sourceTree = "<group>"; };
 		ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptUpdate.swift; sourceTree = "<group>"; };
+		ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudioBuffer.swift; sourceTree = "<group>"; };
+		ECC8573E300C0001007EC965 /* AudioRecordingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingError.swift; sourceTree = "<group>"; };
+		ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioRecordingService.swift; sourceTree = "<group>"; };
 		ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerFeedback.swift; sourceTree = "<group>"; };
 		ECC85733300B4F45007EC965 /* FeedbackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackItem.swift; sourceTree = "<group>"; };
 		ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectedSentence.swift; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 			children = (
 				EC4D4FB530071E5F00FB5735 /* Enums */,
 				ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */,
+				ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */,
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 				ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */,
 				ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */,
@@ -157,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC85729300B43E3007EC965 /* AudioRecording.swift */,
+				ECC8573E300C0001007EC965 /* AudioRecordingError.swift */,
+				ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */,
 			);
 			path = AudioRecording;
 			sourceTree = "<group>";
@@ -441,7 +450,9 @@
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
+				ECC85740300C0001007EC965 /* RecordedAudioBuffer.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
+				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
 				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
@@ -452,6 +463,7 @@
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
 				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
+				ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */,
 				ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
