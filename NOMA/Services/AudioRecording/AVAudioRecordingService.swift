@@ -76,6 +76,7 @@ final class AVAudioRecordingService: AudioRecording {
             return stream
         } catch {
             inputNode.removeTap(onBus: inputBus)
+            bufferContinuation?.finish()
             resetRecordingState()
 
             throw AudioRecordingError.failedToStartEngine
