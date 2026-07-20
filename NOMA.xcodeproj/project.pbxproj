@@ -42,6 +42,7 @@
 		ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */; };
 		ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05938300D2F7D00C0201E /* PermissionView.swift */; };
 		ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */; };
+		ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */; };
 		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryCardView.swift; sourceTree = "<group>"; };
 		ECE05938300D2F7D00C0201E /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 		ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionStatus.swift; sourceTree = "<group>"; };
+		ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsURL.swift; sourceTree = "<group>"; };
 		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC85718300A6228007EC965 /* Extensions */,
+				ECE05945300DBFA300C0201E /* Constants */,
 				EC4D4FE8300730A800FB5735 /* Modifiers */,
 				EC4D4FE9300730B900FB5735 /* Utilities */,
 				EC4D4FE63007308F00FB5735 /* Components */,
@@ -338,6 +341,12 @@
 				ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */,
 			);
 			path = MicrophonePermissionStatus;
+		ECE05945300DBFA300C0201E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
@@ -463,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
+				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */,
