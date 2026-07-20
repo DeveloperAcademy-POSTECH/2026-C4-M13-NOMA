@@ -60,9 +60,14 @@ extension CorrectionFeedbackCardView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.foreground)
 
-            Image(systemName: "speaker.wave")
-                .font(.title3)
-                .foregroundStyle(.secondary)
+            Button {
+                print("듣기 버튼 탭")
+            } label: {
+                Image(systemName: "speaker.wave.2")
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+            }
+            .buttonStyle(.plain)
         }
     }
 
