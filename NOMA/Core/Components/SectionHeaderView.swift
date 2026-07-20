@@ -44,7 +44,7 @@ extension SectionHeaderView {
     private var sectionHeaderTitle: some View {
         Text(title)
             .font(.title3)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
             .foregroundStyle(.primary)
     }
     
