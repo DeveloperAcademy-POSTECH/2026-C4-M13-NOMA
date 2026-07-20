@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1821BB63000DE7D00EE80A5 /* .gitignore */; };
 		C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C31DF2FC3003BC6700831981 /* .swiftlint.yml */; };
+		C3FA6764300D0E9700D48BF7 /* FoundationModelsFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */; };
+		C3FA6766300D0EA100D48BF7 /* InterviewFeedbackSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6765300D0EA000D48BF7 /* InterviewFeedbackSchema.swift */; };
+		C3FA6768300D0EBA00D48BF7 /* AnswerAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */; };
+		C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */; };
+		C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */; };
+		C3FA67DD300E188C00D48BF7 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA67DC300E188900D48BF7 /* text.swift */; };
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
@@ -20,17 +26,6 @@
 		EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */; };
 		EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */; };
 		EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */; };
-		ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85727300B4325007EC965 /* QuestionSpeaking.swift */; };
-		ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85729300B43E3007EC965 /* AudioRecording.swift */; };
-		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
-		ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */; };
-		ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */; };
-		ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */; };
-		ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85733300B4F45007EC965 /* FeedbackItem.swift */; };
-		ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */; };
-		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
-		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
-		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -40,11 +35,26 @@
 		ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571F300A6D55007EC965 /* PushButtonType.swift */; };
 		ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85721300A6D8D007EC965 /* PushButton.swift */; };
 		ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */; };
+		ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85727300B4325007EC965 /* QuestionSpeaking.swift */; };
+		ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85729300B43E3007EC965 /* AudioRecording.swift */; };
+		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
+		ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */; };
+		ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */; };
+		ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85733300B4F45007EC965 /* FeedbackItem.swift */; };
+		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
+		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
+		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1821BB63000DE7D00EE80A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C31DF2FC3003BC6700831981 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsFeedbackService.swift; sourceTree = "<group>"; };
+		C3FA6765300D0EA000D48BF7 /* InterviewFeedbackSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackSchema.swift; sourceTree = "<group>"; };
+		C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerAnalysis.swift; sourceTree = "<group>"; };
+		C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAnswer.swift; sourceTree = "<group>"; };
+		C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSession.swift; sourceTree = "<group>"; };
+		C3FA67DC300E188900D48BF7 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,17 +66,6 @@
 		EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSummaryFile.swift; sourceTree = "<group>"; };
 		EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersFile.swift; sourceTree = "<group>"; };
 		EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesFile.swift; sourceTree = "<group>"; };
-		ECC85727300B4325007EC965 /* QuestionSpeaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSpeaking.swift; sourceTree = "<group>"; };
-		ECC85729300B43E3007EC965 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
-		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
-		ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribing.swift; sourceTree = "<group>"; };
-		ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptUpdate.swift; sourceTree = "<group>"; };
-		ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerFeedback.swift; sourceTree = "<group>"; };
-		ECC85733300B4F45007EC965 /* FeedbackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackItem.swift; sourceTree = "<group>"; };
-		ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectedSentence.swift; sourceTree = "<group>"; };
-		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
-		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
-		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -76,6 +75,15 @@
 		ECC8571F300A6D55007EC965 /* PushButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonType.swift; sourceTree = "<group>"; };
 		ECC85721300A6D8D007EC965 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStyle.swift; sourceTree = "<group>"; };
+		ECC85727300B4325007EC965 /* QuestionSpeaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSpeaking.swift; sourceTree = "<group>"; };
+		ECC85729300B43E3007EC965 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
+		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
+		ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribing.swift; sourceTree = "<group>"; };
+		ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptUpdate.swift; sourceTree = "<group>"; };
+		ECC85733300B4F45007EC965 /* FeedbackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackItem.swift; sourceTree = "<group>"; };
+		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
+		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
+		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,6 +101,7 @@
 		EC4D4FAA30071BF100FB5735 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				C3FA67DC300E188900D48BF7 /* text.swift */,
 				EC4D4FA930071BF100FB5735 /* NOMAApp.swift */,
 				EC4D4FAC30071BF100FB5735 /* ContentView.swift */,
 			);
@@ -116,11 +125,12 @@
 			isa = PBXGroup;
 			children = (
 				EC4D4FB530071E5F00FB5735 /* Enums */,
+				C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */,
+				C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */,
 				ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */,
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
-				ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */,
-				ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */,
 				ECC85739300B5131007EC965 /* InterviewQuestion.swift */,
+				ECC85733300B4F45007EC965 /* FeedbackItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,7 +158,7 @@
 		EC4D4FB530071E5F00FB5735 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				ECC85733300B4F45007EC965 /* FeedbackItem.swift */,
+				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -172,6 +182,8 @@
 		EC4D4FBB30071EC900FB5735 /* InterviewFeedbackGenerating */ = {
 			isa = PBXGroup;
 			children = (
+				C3FA6765300D0EA000D48BF7 /* InterviewFeedbackSchema.swift */,
+				C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */,
 				ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */,
 			);
 			path = InterviewFeedbackGenerating;
@@ -437,23 +449,25 @@
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
+				C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
+				C3FA67DD300E188C00D48BF7 /* text.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
-				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */,
-				EC4D4FC13007298B00FB5735 /* QuestionSpeakingFile.swift in Sources */,
 				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
+				C3FA6766300D0EA100D48BF7 /* InterviewFeedbackSchema.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
 				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
-				ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */,
+				C3FA6764300D0E9700D48BF7 /* FoundationModelsFeedbackService.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
+				C3FA6768300D0EBA00D48BF7 /* AnswerAnalysis.swift in Sources */,
 				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
@@ -463,6 +477,7 @@
 				ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */,
 				ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */,
 				ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */,
+				C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */,
 				ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
 				ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */,
