@@ -9,7 +9,12 @@ import AVFoundation
 import Foundation
 
 struct AudioRecordingService {
+    
+    // MARK: - Properties
+    
     let audioEngine = AVAudioEngine()
+    
+    // MARK: - Functions
     
     func startRecording() throws -> AsyncStream<SendableAudioBuffer> {
         let inputNode = audioEngine.inputNode
@@ -43,12 +48,4 @@ struct AudioRecordingService {
             }
         }
     }
-}
-
-struct SendableAudioBuffer: @unchecked Sendable {
-    let pcmBuffer: AVAudioPCMBuffer
-}
-
-struct SendableEngine: @unchecked Sendable {
-    weak var engine: AVAudioEngine?
 }
