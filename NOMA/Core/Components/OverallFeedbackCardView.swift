@@ -29,7 +29,7 @@ struct OverallFeedbackCardView: View {
         }
         .padding(16)
         .background(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: 8)
                 .fill(.accentColorBackground)
         )
     }
