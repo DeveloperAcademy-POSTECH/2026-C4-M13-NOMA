@@ -58,6 +58,8 @@ final class AVAudioRecordingService: AudioRecording {
         recordingStartDate = Date()
         recordingError = nil
 
+        inputNode.removeTap(onBus: inputBus)
+
         inputNode.installTap(
             onBus: inputBus,
             bufferSize: 1_024,
