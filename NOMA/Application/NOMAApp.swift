@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/9/26.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +14,7 @@ struct NOMAApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [PracticeAnswer.self])
+        .modelContainer(for: [InterviewQuestion.self])
     }
 }
