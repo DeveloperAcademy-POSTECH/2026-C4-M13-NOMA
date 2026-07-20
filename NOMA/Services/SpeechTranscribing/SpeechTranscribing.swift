@@ -8,6 +8,6 @@
 import Speech
 
 protocol SpeechTranscribing {
-    func transcribe(bufferStream: AsyncStream<SendableAudioBuffer>)
+    func transcribe(bufferStream: AsyncStream<SendableAudioBuffer>) async throws
     -> AsyncThrowingStream<TranscriptUpdate, Error>
 }
