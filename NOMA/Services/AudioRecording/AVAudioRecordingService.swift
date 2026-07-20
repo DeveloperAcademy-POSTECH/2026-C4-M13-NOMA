@@ -138,7 +138,7 @@ final class AVAudioRecordingService: AudioRecording {
 
     private func makeRecordingFileURL() throws -> URL {
         let directoryURL = FileManager.default.temporaryDirectory
-            .appendingPathComponent("NOMA")
+            .appendingPathComponent("JeongJoong")
             .appendingPathComponent("Recordings", isDirectory: true)
 
         try FileManager.default.createDirectory(
