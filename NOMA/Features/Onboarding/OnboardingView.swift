@@ -42,9 +42,8 @@ struct OnboardingView: View {
     // MARK: - Functions
     
     private func openAppleIntelligenceSettings() {
-        guard let url = URL(string: "x-apple.systempreferences:com.apple.Siri-Settings.extension") else {
-            return
-        }
+        guard let url = SystemSettingsURL.appleIntelligenceAndSiri else { return }
+        
         NSWorkspace.shared.open(url)
     }
 }

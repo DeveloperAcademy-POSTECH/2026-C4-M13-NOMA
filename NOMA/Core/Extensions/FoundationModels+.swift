@@ -10,10 +10,9 @@ import FoundationModels
 extension SystemLanguageModel.Availability {
     var isEnabled: Bool {
         switch self {
-        case .available:
-            return true
-        case .unavailable:
-            return false
+        case .available: return true
+            
+        case .unavailable: return false
         }
     }
 }
