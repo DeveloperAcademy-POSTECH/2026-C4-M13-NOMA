@@ -355,6 +355,8 @@
 				ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */,
 			);
 			path = LearningHistory;
+			sourceTree = "<group>";
+		};
 		ECE05945300DBFA300C0201E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
