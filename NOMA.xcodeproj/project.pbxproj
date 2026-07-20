@@ -40,6 +40,7 @@
 		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
 		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
 		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
+		ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */; };
 		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
 		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
+		ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsURL.swift; sourceTree = "<group>"; };
 		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC85718300A6228007EC965 /* Extensions */,
+				ECE05945300DBFA300C0201E /* Constants */,
 				EC4D4FE8300730A800FB5735 /* Modifiers */,
 				EC4D4FE9300730B900FB5735 /* Utilities */,
 				EC4D4FE63007308F00FB5735 /* Components */,
@@ -324,6 +327,14 @@
 				ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */,
 			);
 			path = PushButton;
+			sourceTree = "<group>";
+		};
+		ECE05945300DBFA300C0201E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
@@ -449,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
+				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
