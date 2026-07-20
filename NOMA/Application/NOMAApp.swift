@@ -13,7 +13,5 @@ struct NOMAApp: App {
         WindowGroup {
             OnboardingView()
         }
-        .defaultSize(width: 1000, height: 700)
-        .windowResizability(.contentSize)
     }
 }
