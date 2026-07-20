@@ -66,6 +66,8 @@ extension CorrectionFeedbackCardView {
         }
     }
 
+    // FIXME: - 버튼에 액션 주입
+    
     private var repeatAfterMeSection: some View {
         HStack(spacing: 0) {
             PushButton(
@@ -77,10 +79,15 @@ extension CorrectionFeedbackCardView {
             }
             .padding(.trailing, 8)
 
-            Image(systemName: "play.fill")
-                .font(.title3)
-                .foregroundStyle(.tertiary)
-                .padding(.horizontal, 16)
+            Button {
+                print("재생 버튼 탭")
+            } label: {
+                Image(systemName: "play.fill")
+                    .font(.title3)
+                    .foregroundStyle(.tertiary)
+            }
+            .buttonStyle(.plain)
+            .padding(.horizontal, 16)
 
             Capsule()
                 .fill(.tertiary)
