@@ -13,6 +13,7 @@ struct QuestionAnswerSectionView: View {
 
     let question: String
     let sentences: [AnswerSentence]
+    var onListenTapped: (String) -> Void = { _ in }
 
     // MARK: - Body
 
@@ -67,7 +68,8 @@ extension QuestionAnswerSectionView {
             CorrectionFeedbackCardView(
                 originalText: sentence.text,
                 correctedText: feedback.revisedSentence,
-                explanation: feedback.explanation
+                explanation: feedback.explanation,
+                onListenTapped: { onListenTapped(feedback.revisedSentence) }
             )
         }
     }

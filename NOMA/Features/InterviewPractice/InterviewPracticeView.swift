@@ -199,7 +199,10 @@ extension InterviewPracticeView {
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
-                                sentences: displayedAnswerSentences
+                                sentences: displayedAnswerSentences,
+                                onListenTapped: { correctedText in
+                                    store.send(.correctedSentencePlaybackRequested(correctedText))
+                                }
                             )
                         }
                         .padding(20)

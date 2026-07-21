@@ -122,6 +122,11 @@ final class InterviewPracticeReducer {
                 ? speakCurrentQuestionEffect(session: state.session)
                 : .none
 
+        case .correctedSentencePlaybackRequested(let text):
+            return .run { [questionSpeaker] _ in
+                try? await questionSpeaker.speak(text)
+            }
+
         case .captionsChanged(let enabled):
             state.captionsEnabled = enabled
             return .none

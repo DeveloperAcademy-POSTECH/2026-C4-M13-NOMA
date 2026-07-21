@@ -16,6 +16,7 @@ enum InterviewPracticeAction {
     case finishAnswering                                // 사용자가 "답변 완료" 버튼을 눌렀을 때
     case recordingTimeLimitReached                      // 3분 타이머가 다 됐을 때 (버튼 안 눌러도 강제 종료)
     case sentenceFeedbackArrived(index: Int, originalText: String, feedback: SentenceFeedback?) // 확정 문장 하나의 피드백 결과가 도착했을 때 (nil = 교정 불필요)
+    case correctedSentencePlaybackRequested(String)     // 교정 카드의 스피커 버튼을 눌렀을 때
     case retryCurrentAnswer                             // 사용자가 "다시 답변하기" 버튼을 눌렀을 때
     case moveToNextQuestion                             // 사용자가 "다음 질문" 버튼을 눌렀을 때
     case captionsChanged(Bool)                          // 자막 토글을 켜거나 껐을 때
