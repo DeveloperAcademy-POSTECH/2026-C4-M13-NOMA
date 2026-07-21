@@ -97,7 +97,16 @@ final class InterviewPracticeReducer {
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .generatingFeedback
             state.overallFeedbackText = nil
-            return generateOverallFeedbackEffect(sentences: state.answerSentences)
+            return generateAnswerReviewEffect(
+                currentQuestion: state.session.currentQuestion,
+                transcript: state.finalizedTranscript,
+                sentences: state.answerSentences
+            )
+
+        case .followUpQuestionGenerated(let question):
+            // 다음 질문으로 넘어갈 때 바로 삽입할 수 있도록 미리 준비해둔다.
+            state.session.pendingFollowUpQuestion = question
+            return .none
 
         case .overallFeedbackGenerated(let text):
             state.overallFeedbackText = text
@@ -178,8 +187,12 @@ extension InterviewPracticeReducer {
         }
     }
 
-    private func generateOverallFeedbackEffect(sentences: [AnswerSentence]) -> Effect<InterviewPracticeAction> {
-        .run { [audioRecorder, interviewFeedbackGenerating] send in
+    private func generateAnswerReviewEffect(
+        currentQuestion: InterviewQuestion?,
+        transcript: String,
+        sentences: [AnswerSentence]
+    ) -> Effect<InterviewPracticeAction> {
+        .run { [audioRecorder, interviewFeedbackGenerating, followUpQuestionGenerating] send in
             _ = try? await audioRecorder.stopRecording()
 
             let items: [FeedbackItem] = sentences.enumerated().compactMap { index, sentence in
@@ -192,9 +205,32 @@ extension InterviewPracticeReducer {
                 )
             }
 
+            // overallFeedbackGenerated가 phase를 reviewing으로 바꿔 버튼이 풀리기 전에
+            // pendingFollowUpQuestion이 먼저 채워져야, 다음 질문으로 넘어갈 때 곧바로 삽입할 수 있다.
+            let followUpQuestion = await Self.makeFollowUpQuestion(
+                currentQuestion: currentQuestion,
+                transcript: transcript,
+                followUpQuestionGenerating: followUpQuestionGenerating
+            )
+            await send(.followUpQuestionGenerated(followUpQuestion))
+
             let overallFeedback = (try? await interviewFeedbackGenerating.generateOverallFeedback(items: items)) ?? ""
             await send(.overallFeedbackGenerated(overallFeedback))
         }
+    }
+
+    private static func makeFollowUpQuestion(
+        currentQuestion: InterviewQuestion?,
+        transcript: String,
+        followUpQuestionGenerating: FollowUpQuestionGenerating
+    ) async -> InterviewQuestion? {
+        // 이미 꼬리질문인 문제에는 또 꼬리질문을 만들지 않는다 (q1→q2, q3→q4, q5→q6 구조).
+        guard let currentQuestion, !currentQuestion.isFollowUp else { return nil }
+
+        return try? await followUpQuestionGenerating.generateFollowUp(
+            question: currentQuestion,
+            transcript: transcript
+        )
     }
 
     private func startRecordingEffect() -> Effect<InterviewPracticeAction> {
