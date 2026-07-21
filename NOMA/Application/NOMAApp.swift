@@ -22,7 +22,10 @@ struct NOMAApp: App {
         ) {
             MemoWindowView()
         }
-        .defaultSize(width: 400, height: 405)
+        .defaultSize(
+            width: 400,
+            height: 405
+        )
         .restorationBehavior(.disabled)
     }
 }
