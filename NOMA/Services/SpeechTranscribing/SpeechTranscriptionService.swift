@@ -12,7 +12,7 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     
     // MARK: - Properties
     
-    let audioRecordingService = AudioRecordingService()
+    let audioRecordingService = AVAudioRecordingService()
     
     let transcriber = SpeechTranscriber(locale: Locale(identifier: "ko-KR"), preset: .progressiveTranscription)
     
@@ -49,7 +49,11 @@ struct SpeechTranscriptionService: SpeechTranscribing {
             let sourceFormat = audioRecordingService.audioEngine.inputNode.outputFormat(forBus: 0)
             
             for await sendableBuffer in recordingStream {
-                guard let convertedBuffer = convertFormat(inputBuffer: sendableBuffer, sourceFormat: sourceFormat, targetFormat: targetFormat) else {
+                guard let convertedBuffer = convertFormat(
+                    inputBuffer: sendableBuffer,
+                    sourceFormat: sourceFormat,
+                    targetFormat: targetFormat
+                ) else {
                     print("오디오 포맷 변환 실패")
                     
                     continue
