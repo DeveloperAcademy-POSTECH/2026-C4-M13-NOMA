@@ -14,7 +14,6 @@
 		C3FA6768300D0EBA00D48BF7 /* AnswerAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */; };
 		C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */; };
 		C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */; };
-		C3FA67DD300E188C00D48BF7 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA67DC300E188900D48BF7 /* text.swift */; };
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
@@ -54,7 +53,6 @@
 		C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerAnalysis.swift; sourceTree = "<group>"; };
 		C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAnswer.swift; sourceTree = "<group>"; };
 		C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSession.swift; sourceTree = "<group>"; };
-		C3FA67DC300E188900D48BF7 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		EC4D4FAA30071BF100FB5735 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				C3FA67DC300E188900D48BF7 /* text.swift */,
 				EC4D4FA930071BF100FB5735 /* NOMAApp.swift */,
 				EC4D4FAC30071BF100FB5735 /* ContentView.swift */,
 			);
@@ -454,7 +451,6 @@
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
-				C3FA67DD300E188C00D48BF7 /* text.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
