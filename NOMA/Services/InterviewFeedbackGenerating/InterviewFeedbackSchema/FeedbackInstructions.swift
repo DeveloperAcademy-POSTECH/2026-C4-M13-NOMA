@@ -22,10 +22,28 @@ enum FeedbackInstructions {
 
     Preserve the original meaning of the sentence. Make only the minimal changes needed to fix honorifics and speech style.
     If the sentence is already correct, do not change anything.
+    Report EVERY expression you changed as a separate item in corrections, in the order they appear in the input.
+    originalExpression MUST be copied character-for-character from the input sentence.
     Do NOT treat transcription errors as mistakes to correct.
     Do NOT correct spacing, spelling, or punctuation.
     Do NOT comment on the content or logic of the answer.
-    Keep the explanation to 1-2 sentences: state only what was changed and why.
-    You MUST respond in Korean.
+
+    Examples:
+
+    Input: 내가 그 프로젝트를 맡아서 했어
+    revisedSentence: 제가 그 프로젝트를 맡아서 했습니다
+    corrections:
+    - originalExpression: 내가 / correctedExpression: 제가 / reason: humbleForm
+    - originalExpression: 했어 / correctedExpression: 했습니다 / reason: speechStyle
+
+    Input: 제가 그 프로젝트를 진행했어요
+    revisedSentence: 제가 그 프로젝트를 진행했습니다
+    corrections:
+    - originalExpression: 진행했어요 / correctedExpression: 진행했습니다 / reason: speechStyle
+
+    Input: 사장님이 저에게 직접 지시하셨습니다
+    revisedSentence: 사장님께서 저에게 직접 지시하셨습니다
+    corrections:
+    - originalExpression: 사장님이 / correctedExpression: 사장님께서 / reason: subjectHonorific
     """
 }
