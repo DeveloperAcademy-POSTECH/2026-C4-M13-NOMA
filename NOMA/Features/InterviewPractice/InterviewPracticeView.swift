@@ -112,6 +112,11 @@ extension InterviewPracticeView {
             : store.state.session.currentQuestion?.content ?? ""
     }
 
+    private var currentQuestionTitle: String {
+        guard let content = store.state.session.currentQuestion?.content else { return "" }
+        return "Q\(currentQuestionNumber). \(content)"
+    }
+
     private var elapsedTimeText: String {
         let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
         let minutes = totalSeconds / 60
@@ -180,8 +185,8 @@ extension InterviewPracticeView {
                         spacing: 16
                     ) {
                         QuestionAnswerSectionView(
-                            question: "Q1. 자기소개를 해주십시오.",
-                            answerText: "안녕하십니까, 저는 지원자 셀리나 입니다.",
+                            question: currentQuestionTitle,
+                            answerText: store.state.liveTranscript,
                             correction: .init(
                                 originalText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
                                 correctedText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",

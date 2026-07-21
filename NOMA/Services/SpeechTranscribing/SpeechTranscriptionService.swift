@@ -26,7 +26,7 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     -> AsyncThrowingStream<TranscriptUpdate, Error> {
         try await requestAssetInstallation()
 
-        let (_, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
+        let (inputSequence, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
         let (outputSequence, outputContinuation) = AsyncThrowingStream.makeStream(of: TranscriptUpdate.self)
 
         guard let targetFormat = await SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith: [transcriber]) else {
@@ -43,7 +43,9 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         } catch {
             print("analyzer 준비 실패")
         }
-        
+
+        try await analyzer.start(inputSequence: inputSequence)
+
         Task {
             let recordingStream = bufferStream
 
@@ -54,28 +56,32 @@ struct SpeechTranscriptionService: SpeechTranscribing {
                     targetFormat: targetFormat
                 ) else {
                     print("오디오 포맷 변환 실패")
-                    
+
                     continue
                 }
-                
+
                 let analyzerInput = AnalyzerInput(buffer: convertedBuffer)
                 inputContinuation.yield(analyzerInput)
             }
-            
+
             inputContinuation.finish()
+
+            try? await analyzer.finalizeAndFinishThroughEndOfInput()
         }
-        
+
         Task {
             do {
                 for try await result in transcriber.results {
                     let attributedText = result.text
                     let transcriptUpdate = TranscriptUpdate(text: attributedText, isFinal: false)
-                    
+
                     outputContinuation.yield(transcriptUpdate)
                 }
+
+                outputContinuation.finish()
             } catch {
                 print("STT 변환 실패: \(error)")
-                
+                outputContinuation.finish(throwing: error)
             }
         }
         
