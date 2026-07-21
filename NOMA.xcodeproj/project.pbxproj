@@ -12,14 +12,13 @@
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
-		EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FD03007300900FB5735 /* OnboardingFile.swift */; };
-		EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FDA3007304300FB5735 /* HomeFile.swift */; };
-		EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FDC3007304600FB5735 /* PermissionFile.swift */; };
 		EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FDE3007304900FB5735 /* InterviewPracticeFile.swift */; };
 		EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FE03007304C00FB5735 /* ReviewFile.swift */; };
 		EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */; };
 		EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */; };
 		EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */; };
+    
+		EC80F68A300CDC7200B7CBBC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80F689300CDC7200B7CBBC /* OnboardingView.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -34,6 +33,9 @@
 		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
 		ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */; };
 		ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */; };
+		ECC85740300C0001007EC965 /* RecordedAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */; };
+		ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573E300C0001007EC965 /* AudioRecordingError.swift */; };
+		ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */; };
 		ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */; };
 		ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85733300B4F45007EC965 /* FeedbackItem.swift */; };
 		ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */; };
@@ -41,6 +43,16 @@
 		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
 		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
 		F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */; };
+		ECE05935300D1C6100C0201E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05934300D1C6100C0201E /* HomeView.swift */; };
+		ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */; };
+		ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05938300D2F7D00C0201E /* PermissionView.swift */; };
+		ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */; };
+		ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */; };
+		ECE05944300DAADD00C0201E /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05943300DAADD00C0201E /* SectionHeaderView.swift */; };
+		ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */; };
+		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
+		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,14 +61,12 @@
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EC4D4FD03007300900FB5735 /* OnboardingFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFile.swift; sourceTree = "<group>"; };
-		EC4D4FDA3007304300FB5735 /* HomeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFile.swift; sourceTree = "<group>"; };
-		EC4D4FDC3007304600FB5735 /* PermissionFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionFile.swift; sourceTree = "<group>"; };
 		EC4D4FDE3007304900FB5735 /* InterviewPracticeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeFile.swift; sourceTree = "<group>"; };
 		EC4D4FE03007304C00FB5735 /* ReviewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFile.swift; sourceTree = "<group>"; };
 		EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSummaryFile.swift; sourceTree = "<group>"; };
 		EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersFile.swift; sourceTree = "<group>"; };
 		EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesFile.swift; sourceTree = "<group>"; };
+		EC80F689300CDC7200B7CBBC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -71,12 +81,24 @@
 		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		ECC8572D300B4CB4007EC965 /* SpeechTranscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscribing.swift; sourceTree = "<group>"; };
 		ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptUpdate.swift; sourceTree = "<group>"; };
+		ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudioBuffer.swift; sourceTree = "<group>"; };
+		ECC8573E300C0001007EC965 /* AudioRecordingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingError.swift; sourceTree = "<group>"; };
+		ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioRecordingService.swift; sourceTree = "<group>"; };
 		ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerFeedback.swift; sourceTree = "<group>"; };
 		ECC85733300B4F45007EC965 /* FeedbackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackItem.swift; sourceTree = "<group>"; };
 		ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectedSentence.swift; sourceTree = "<group>"; };
 		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
 		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
+		ECE05934300D1C6100C0201E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryCardView.swift; sourceTree = "<group>"; };
+		ECE05938300D2F7D00C0201E /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionStatus.swift; sourceTree = "<group>"; };
+		ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryView.swift; sourceTree = "<group>"; };
+		ECE05943300DAADD00C0201E /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsURL.swift; sourceTree = "<group>"; };
+		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
+		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +141,7 @@
 			children = (
 				EC4D4FB530071E5F00FB5735 /* Enums */,
 				ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */,
+				ECC8573D300C0001007EC965 /* RecordedAudioBuffer.swift */,
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 				ECC85731300B4F2E007EC965 /* AnswerFeedback.swift */,
 				ECC85735300B4F6C007EC965 /* CorrectedSentence.swift */,
@@ -130,6 +153,8 @@
 		EC4D4FB230071C1300FB5735 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */,
+				ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,
 				EC4D4FBC30071ED600FB5735 /* SpeechTranscribing */,
@@ -159,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC85729300B43E3007EC965 /* AudioRecording.swift */,
+				ECC8573E300C0001007EC965 /* AudioRecordingError.swift */,
+				ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */,
 			);
 			path = AudioRecording;
 			sourceTree = "<group>";
@@ -205,6 +232,7 @@
 				EC4D4FD53007302000FB5735 /* InterviewPractice */,
 				EC4D4FD63007302000FB5735 /* Review */,
 				EC4D4FD73007302000FB5735 /* PracticeSummary */,
+				ECE05940300DAA0400C0201E /* LearningHistory */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -212,7 +240,7 @@
 		EC4D4FD23007301000FB5735 /* Permission */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FDC3007304600FB5735 /* PermissionFile.swift */,
+				ECE05938300D2F7D00C0201E /* PermissionView.swift */,
 			);
 			path = Permission;
 			sourceTree = "<group>";
@@ -220,7 +248,7 @@
 		EC4D4FD33007301900FB5735 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FDA3007304300FB5735 /* HomeFile.swift */,
+				ECE05934300D1C6100C0201E /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -228,7 +256,7 @@
 		EC4D4FD43007301C00FB5735 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				EC4D4FD03007300900FB5735 /* OnboardingFile.swift */,
+				EC80F689300CDC7200B7CBBC /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -262,6 +290,8 @@
 			children = (
 				ECC8571A300A68CF007EC965 /* PushButton */,
 				ECC8570D3007BDF8007EC965 /* CapsuleButton */,
+				ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */,
+				ECE05943300DAADD00C0201E /* SectionHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -270,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC85718300A6228007EC965 /* Extensions */,
+				ECE05945300DBFA300C0201E /* Constants */,
 				EC4D4FE8300730A800FB5735 /* Modifiers */,
 				EC4D4FE9300730B900FB5735 /* Utilities */,
 				EC4D4FE63007308F00FB5735 /* Components */,
@@ -307,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC85717300A6228007EC965 /* Color+.swift */,
+				ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +353,38 @@
 				ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */,
 			);
 			path = PushButton;
+			sourceTree = "<group>";
+		};
+		ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */ = {
+			isa = PBXGroup;
+			children = (
+				ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */,
+			);
+			path = MicrophonePermissionStatus;
+			sourceTree = "<group>";
+		};
+		ECE05940300DAA0400C0201E /* LearningHistory */ = {
+			isa = PBXGroup;
+			children = (
+				ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */,
+			);
+			path = LearningHistory;
+			sourceTree = "<group>";
+		};
+		ECE05945300DBFA300C0201E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
+			isa = PBXGroup;
+			children = (
+				ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */,
+			);
+			path = AppleIntelligenceStatus;
 			sourceTree = "<group>";
 		};
 		ECF649192FFF661100DA36B7 = {
@@ -438,28 +502,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
+				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
+				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
+				ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
+				ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */,
+				ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
+				ECE05935300D1C6100C0201E /* HomeView.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
 				F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */,
+				ECC85740300C0001007EC965 /* RecordedAudioBuffer.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
+				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
+				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
 				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */,
+				EC80F68A300CDC7200B7CBBC /* OnboardingView.swift in Sources */,
+				ECE05944300DAADD00C0201E /* SectionHeaderView.swift in Sources */,
 				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
-				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
 				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
+				ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */,
 				ECC85736300B4F6C007EC965 /* CorrectedSentence.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
-				EC4D4FD13007300900FB5735 /* OnboardingFile.swift in Sources */,
+				ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */,
 				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
-				EC4D4FDD3007304600FB5735 /* PermissionFile.swift in Sources */,
 				ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */,
 				ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
@@ -606,10 +680,21 @@
 				DEVELOPMENT_TEAM = M7F8AM92TP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 답변을 기록하고 발화를 분석하기 위해 마이크 접근 권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -638,10 +723,21 @@
 				DEVELOPMENT_TEAM = M7F8AM92TP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 답변을 기록하고 발화를 분석하기 위해 마이크 접근 권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
