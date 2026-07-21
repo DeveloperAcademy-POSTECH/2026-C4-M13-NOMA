@@ -56,15 +56,20 @@ extension InterviewPracticeView {
         store.state.session.currentQuestionIndex + 1
     }
 
+    /// ready 안내 문구를 읽는 동안에는 아직 첫 질문이 시작되지 않았으므로 0으로 표시한다.
+    private var displayedQuestionNumber: Int {
+        store.state.phase == .ready ? 0 : currentQuestionNumber
+    }
+
     private var header: some View {
         HStack(spacing: 8) {
-            Text("문제 \(currentQuestionNumber)/\(totalQuestions)")
+            Text("문제 \(displayedQuestionNumber)/\(totalQuestions)")
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
 
             ProgressView(
-                value: Double(currentQuestionNumber),
+                value: Double(displayedQuestionNumber),
                 total: Double(totalQuestions)
             )
             .progressViewStyle(.linear)
