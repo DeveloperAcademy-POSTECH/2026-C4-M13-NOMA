@@ -15,7 +15,7 @@ enum FeedbackReason: Codable, Sendable {
 }
 
 @Generable
-struct Correction {
+struct Correction: Codable, Sendable {
     @Guide(description: "The exact expression copied character-for-character from the input sentence")
     let originalExpression: String
     @Guide(description: "What originalExpression became in revisedSentence")
