@@ -62,12 +62,51 @@ extension PracticeSummaryView {
                 
                 QuestionAnswerSectionView(
                     question: "Q1. 자기소개를 해주십시오.",
-                    answerText: "안녕하십니까, 저는 지원자 셀리나 입니다.",
-                    correction: .init(
-                        originalText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                        correctedText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                        explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다."
-                    )
+                    sentences: [
+                        AnswerSentence(
+                            text: "안녕하십니까, 저는 지원자 셀리나 입니다."
+                        ),
+                        AnswerSentence(
+                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
+                            feedbackStatus: .corrected(
+                                SentenceFeedback(
+                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
+                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
+                                    corrections: []
+                                )
+                            )
+                        ),
+                        AnswerSentence(
+                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
+                            feedbackStatus: .corrected(
+                                SentenceFeedback(
+                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
+                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
+                                    corrections: []
+                                )
+                            )
+                        ),
+                        AnswerSentence(
+                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
+                            feedbackStatus: .corrected(
+                                SentenceFeedback(
+                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
+                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
+                                    corrections: []
+                                )
+                            )
+                        ),
+                        AnswerSentence(
+                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
+                            feedbackStatus: .corrected(
+                                SentenceFeedback(
+                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
+                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
+                                    corrections: []
+                                )
+                            )
+                        )
+                    ]
                 )
             }
             .padding(.bottom, 34)
