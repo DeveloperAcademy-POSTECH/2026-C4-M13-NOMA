@@ -56,7 +56,8 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
                 revisedSentence: feedbackOutput.revisedSentence,
                 explanation: valid
                     .map { $0.reason.explanation(from: $0.originalExpression, to: $0.correctedExpression) }
-                    .joined(separator: " ")
+                    .joined(separator: " "),
+                reasons: valid.map(\.reason)
             )
         } catch {
             throw foundationModelsError(error)
@@ -66,11 +67,20 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
     func generateOverallFeedback(items: [FeedbackItem]) async throws(FoundationModelsGenerationError) -> String {
         _ = await currentTask?.result
         
+        let reasons = items.flatMap { $0.reasons }
+        let order: [FeedbackReason] = [.speechStyle, .humbleForm, .subjectHonorific]
+        let counts = order.map { reason in (reason, reasons.count { $0 == reason }) }
+        guard let top = counts.max(by: { $0.1 < $1.1 }), top.1 > 0 else { return "" }
+        
         do {
             let session = LanguageModelSession {
                 OverallFeedbackInstructions.instructions
             }
-            return try await session.respond(to: items.map { $0.explanation }.joined(separator: "\n")).content
+            let output = try await session.respond(
+                to: "\(top.0) \(top.1)회",
+                generating: OverallFeedbackOutput.self
+            ).content
+            return "\(output.mostFrequentMistake) \(output.advice)"
         } catch {
             throw foundationModelsError(error)
         }
