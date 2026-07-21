@@ -16,7 +16,7 @@ struct AudioRecordingService {
     
     // MARK: - Functions
     
-    func startRecording() throws -> AsyncStream<SendableAudioBuffer> {
+    func startRecording() throws -> AsyncStream<RecordedAudioBuffer> {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         
@@ -35,7 +35,7 @@ struct AudioRecordingService {
                 format: recordingFormat
             ) { buffer, when in
                 print("\(when) 구간 버퍼 \(buffer.frameLength)만큼 들어옴")
-                let safeBuffer = SendableAudioBuffer(pcmBuffer: buffer)
+                let safeBuffer = RecordedAudioBuffer(pcmBuffer: buffer)
                 continuation.yield(safeBuffer)
             }
             

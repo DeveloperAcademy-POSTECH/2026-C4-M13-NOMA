@@ -7,6 +7,6 @@
 
 import AVFoundation
 
-struct SendableAudioBuffer: @unchecked Sendable {
+struct RecordedAudioBuffer: @unchecked Sendable {
     let pcmBuffer: AVAudioPCMBuffer
 }

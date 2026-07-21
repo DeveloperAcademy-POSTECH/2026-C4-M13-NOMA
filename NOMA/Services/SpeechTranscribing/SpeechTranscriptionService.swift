@@ -24,7 +24,7 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
     }
     
-    func transcribe(bufferStream: AsyncStream<SendableAudioBuffer>) async throws
+    func transcribe(bufferStream: AsyncStream<RecordedAudioBuffer>) async throws
     -> AsyncThrowingStream<TranscriptUpdate, Error> {
         let (inputSequence, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
         let (outputSequence, outputContinuation) = AsyncThrowingStream.makeStream(of: TranscriptUpdate.self)
@@ -80,7 +80,7 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     }
     
     func convertFormat(
-        inputBuffer: SendableAudioBuffer,
+        inputBuffer: RecordedAudioBuffer,
         sourceFormat: AVAudioFormat,
         targetFormat: AVAudioFormat
     ) -> AVAudioPCMBuffer? {
