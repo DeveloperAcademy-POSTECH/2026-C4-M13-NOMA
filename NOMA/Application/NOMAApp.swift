@@ -14,6 +14,7 @@ struct NOMAApp: App {
         WindowGroup {
             AppRootView()
         }
+        .windowToolbarStyle(.unified(showsTitle: false))
 
         Window(
             "메모창",

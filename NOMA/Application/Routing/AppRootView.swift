@@ -19,16 +19,20 @@ struct AppRootView: View {
         NavigationStack(path: $router.path) {
             // FIXME: - RootView Home 화면으로 변경 예정
             OnboardingView()
+                .navigationBarBackButtonHidden(true)
                 .navigationDestination(for: AppRoute.self) { route in
-                    switch route {
-                    case .onboarding: OnboardingView()
-                    case .home: HomeView()
-                    case .permission: PermissionView()
-                    case .interviewPractice: InterviewPracticeView()
-                    case .answerAnalysisLoading: AnswerAnalysisLoadingView()
-                    case .practiceSummary: PracticeSummaryView()
-                    case .learningHistory: LearningHistoryView()
+                    Group {
+                        switch route {
+                        case .onboarding: OnboardingView()
+                        case .home: HomeView()
+                        case .permission: PermissionView()
+                        case .interviewPractice: InterviewPracticeView()
+                        case .answerAnalysisLoading: AnswerAnalysisLoadingView()
+                        case .practiceSummary: PracticeSummaryView()
+                        case .learningHistory: LearningHistoryView()
+                        }
                     }
+                    .navigationBarBackButtonHidden(true)
                 }
         }
         .environment(router)
