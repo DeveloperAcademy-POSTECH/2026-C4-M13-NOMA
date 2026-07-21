@@ -9,27 +9,25 @@ import AVFoundation
 import Speech
 
 struct SpeechTranscriptionService: SpeechTranscribing {
-    
-    // MARK: - Properties
 
-    let transcriber = SpeechTranscriber(
-        locale: Locale(
-            identifier: "ko-KR"
-        ),
-        preset: .progressiveTranscription
-    )
-    
     // MARK: - Functions
-    
-    func requestAssetInstallation() async throws {
+
+    func requestAssetInstallation(transcriber: SpeechTranscriber) async throws {
         if let installationRequest = try await AssetInventory.assetInstallationRequest(supporting: [transcriber]) {
             try await installationRequest.downloadAndInstall()
         }
     }
-    
+
     func transcribe(bufferStream: AsyncStream<RecordedAudioBuffer>) async throws
     -> AsyncThrowingStream<TranscriptUpdate, Error> {
-        try await requestAssetInstallation()
+        let transcriber = SpeechTranscriber(
+            locale: Locale(
+                identifier: "ko-KR"
+            ),
+            preset: .progressiveTranscription
+        )
+
+        try await requestAssetInstallation(transcriber: transcriber)
 
         let (inputSequence, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
         let (outputSequence, outputContinuation) = AsyncThrowingStream.makeStream(of: TranscriptUpdate.self)

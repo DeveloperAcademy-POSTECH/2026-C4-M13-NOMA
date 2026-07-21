@@ -74,7 +74,6 @@ final class InterviewPracticeReducer {
             state.volatileTranscript = ""
             state.liveTranscript = state.finalizedTranscript
 
-            // 확정된 문장은 즉시 카드로 추가하고, 곧바로 격식체 피드백 생성을 요청한다.
             let newSentences = AnswerSentence.splitIntoSentences(text)
             guard !newSentences.isEmpty else { return .none }
 
@@ -104,7 +103,6 @@ final class InterviewPracticeReducer {
             )
 
         case .followUpQuestionGenerated(let question):
-            // 다음 질문으로 넘어갈 때 바로 삽입할 수 있도록 미리 준비해둔다.
             state.session.pendingFollowUpQuestion = question
             return .none
 
@@ -205,8 +203,6 @@ extension InterviewPracticeReducer {
                 )
             }
 
-            // overallFeedbackGenerated가 phase를 reviewing으로 바꿔 버튼이 풀리기 전에
-            // pendingFollowUpQuestion이 먼저 채워져야, 다음 질문으로 넘어갈 때 곧바로 삽입할 수 있다.
             let followUpQuestion = await Self.makeFollowUpQuestion(
                 currentQuestion: currentQuestion,
                 transcript: transcript,
@@ -224,7 +220,6 @@ extension InterviewPracticeReducer {
         transcript: String,
         followUpQuestionGenerating: FollowUpQuestionGenerating
     ) async -> InterviewQuestion? {
-        // 이미 꼬리질문인 문제에는 또 꼬리질문을 만들지 않는다 (q1→q2, q3→q4, q5→q6 구조).
         guard let currentQuestion, !currentQuestion.isFollowUp else { return nil }
 
         return try? await followUpQuestionGenerating.generateFollowUp(
