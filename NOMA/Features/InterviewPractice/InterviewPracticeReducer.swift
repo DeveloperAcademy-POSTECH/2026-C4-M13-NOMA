@@ -75,7 +75,7 @@ final class InterviewPracticeReducer {
 
         case .readyCountdownFinished:
             state.phase = .askingQuestion
-            return .none
+            return speakCurrentQuestionEffect(session: state.session)
 
         case .questionSpeechFinished:
             state.phase = .recording
@@ -94,12 +94,14 @@ final class InterviewPracticeReducer {
             }
 
             state.session.currentQuestionIndex += 1
-            
+
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
             ? .askingQuestion
             : .completed
-            
-            return .none
+
+            return state.phase == .askingQuestion
+                ? speakCurrentQuestionEffect(session: state.session)
+                : .none
 
         case .retryCurrentAnswer:
             state.phase = .recording
@@ -113,8 +115,24 @@ final class InterviewPracticeReducer {
             state.isExitConfirmationPresented = true
             return .none
 
-        case .exitConfirmed, .exitCancelled, .viewDisappeared:
+        case .exitConfirmed, .exitCancelled:
             return .none
+
+        case .viewDisappeared:
+            questionSpeaker.stopSpeaking()
+            return .none
+        }
+    }
+}
+
+// MARK: - Functions
+
+extension InterviewPracticeReducer {
+    private func speakCurrentQuestionEffect(session: PracticeSession) -> Effect<InterviewPracticeAction> {
+        guard let content = session.currentQuestion?.content else { return .none }
+        return .run { [questionSpeaker] send in
+            try? await questionSpeaker.speak(content)
+            await send(.questionSpeechFinished)
         }
     }
 }
