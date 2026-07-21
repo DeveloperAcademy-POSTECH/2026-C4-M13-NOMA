@@ -22,6 +22,8 @@
 		ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322A300E029C006FD6EB /* CorrectionFeedbackCardView.swift */; };
 		ECC3322D300E0DF4006FD6EB /* AnswerSentenceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322C300E0DF4006FD6EB /* AnswerSentenceCardView.swift */; };
 		ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */; };
+		ECC33232300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33231300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift */; };
+		ECC33234300E689C006FD6EB /* SpinningRingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33233300E689C006FD6EB /* SpinningRingLoader.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -69,6 +71,8 @@
 		ECC3322A300E029C006FD6EB /* CorrectionFeedbackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionFeedbackCardView.swift; sourceTree = "<group>"; };
 		ECC3322C300E0DF4006FD6EB /* AnswerSentenceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSentenceCardView.swift; sourceTree = "<group>"; };
 		ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerSectionView.swift; sourceTree = "<group>"; };
+		ECC33231300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerAnalysisLoadingView.swift; sourceTree = "<group>"; };
+		ECC33233300E689C006FD6EB /* SpinningRingLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningRingLoader.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 		EC4D4FD73007302000FB5735 /* PracticeSummary */ = {
 			isa = PBXGroup;
 			children = (
+				ECC33231300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift */,
+				ECC33233300E689C006FD6EB /* SpinningRingLoader.swift */,
 				ECC33226300DF637006FD6EB /* PracticeSummaryView.swift */,
 			);
 			path = PracticeSummary;
@@ -512,12 +518,14 @@
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
+				ECC33232300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
 				ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */,
 				EC4D4FDF3007304900FB5735 /* InterviewPracticeFile.swift in Sources */,
 				ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */,
 				ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */,
 				ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */,
+				ECC33234300E689C006FD6EB /* SpinningRingLoader.swift in Sources */,
 				ECE05935300D1C6100C0201E /* HomeView.swift in Sources */,
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
