@@ -12,7 +12,12 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     
     // MARK: - Properties
 
-    let transcriber = SpeechTranscriber(locale: Locale(identifier: "ko-KR"), preset: .progressiveTranscription)
+    let transcriber = SpeechTranscriber(
+        locale: Locale(
+            identifier: "ko-KR"
+        ),
+        preset: .progressiveTranscription
+    )
     
     // MARK: - Functions
     
@@ -72,8 +77,10 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         Task {
             do {
                 for try await result in transcriber.results {
-                    let attributedText = result.text
-                    let transcriptUpdate = TranscriptUpdate(text: attributedText, isFinal: false)
+                    let transcriptUpdate = TranscriptUpdate(
+                        text: result.text,
+                        isFinal: result.isFinal
+                    )
 
                     outputContinuation.yield(transcriptUpdate)
                 }
@@ -93,7 +100,10 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         sourceFormat: AVAudioFormat,
         targetFormat: AVAudioFormat
     ) -> AVAudioPCMBuffer? {
-        guard let audioConverter = AVAudioConverter(from: sourceFormat, to: targetFormat) else {
+        guard let audioConverter = AVAudioConverter(
+            from: sourceFormat,
+            to: targetFormat
+        ) else {
             print("AVAudioConverter 생성 실패")
             
             return nil
@@ -109,7 +119,10 @@ struct SpeechTranscriptionService: SpeechTranscribing {
 
         guard capacity > 0 else { return nil }
 
-        guard let outputBuffer = AVAudioPCMBuffer(pcmFormat: targetFormat, frameCapacity: capacity) else {
+        guard let outputBuffer = AVAudioPCMBuffer(
+            pcmFormat: targetFormat,
+            frameCapacity: capacity
+        ) else {
             print("outputBuffer 생성 실패")
             
             return nil
@@ -123,7 +136,12 @@ struct SpeechTranscriptionService: SpeechTranscribing {
             return rawBuffer
         }
         
-        audioConverter.convert(to: outputBuffer, error: &error, withInputFrom: inputBlock)
+        audioConverter
+            .convert(
+                to: outputBuffer,
+                error: &error,
+                withInputFrom: inputBlock
+            )
         
         if let error = error {
             print("변환 실패: \(error)")

@@ -12,33 +12,22 @@ struct QuestionAnswerSectionView: View {
     // MARK: - Properties
 
     let question: String
-    let answerText: String
-    let correction: Correction?
-
-    // TODO: - 추후 데이터 모델로 교체 예정
-    
-    struct Correction {
-        let originalText: String
-        let correctedText: String
-        let explanation: String
-    }
+    let sentences: [AnswerSentence]
 
     // MARK: - Body
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            questionTitle
+            
+            HStack {
+                questionTitle
+                
+                Spacer()
+            }
 
-            AnswerSentenceCardView(text: answerText)
-                .padding(.bottom, 16)
-
-            if let correction {
-                CorrectionFeedbackCardView(
-                    originalText: correction.originalText,
-                    correctedText: correction.correctedText,
-                    explanation: correction.explanation
-                )
-                .padding(.bottom, 16)
+            ForEach(sentences.indices, id: \.self) { index in
+                sentenceBlock(sentences[index])
+                    .padding(.bottom, 16)
             }
         }
     }
@@ -53,5 +42,18 @@ extension QuestionAnswerSectionView {
             .fontWeight(.semibold)
             .foregroundStyle(.secondary)
             .padding(.bottom, 16)
+    }
+
+    @ViewBuilder
+    private func sentenceBlock(_ sentence: AnswerSentence) -> some View {
+        if let feedback = sentence.feedback {
+            CorrectionFeedbackCardView(
+                originalText: sentence.text,
+                correctedText: feedback.revisedSentence,
+                explanation: feedback.explanation
+            )
+        } else {
+            AnswerSentenceCardView(text: sentence.text)
+        }
     }
 }

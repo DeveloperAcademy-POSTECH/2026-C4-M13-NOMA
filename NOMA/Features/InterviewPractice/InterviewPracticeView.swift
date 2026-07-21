@@ -117,6 +117,15 @@ extension InterviewPracticeView {
         return "Q\(currentQuestionNumber). \(content)"
     }
 
+    private var displayedAnswerSentences: [AnswerSentence] {
+        if !store.state.answerSentences.isEmpty {
+            return store.state.answerSentences
+        }
+
+        return AnswerSentence.splitIntoSentences(store.state.liveTranscript)
+            .map { AnswerSentence(text: $0, feedback: nil) }
+    }
+
     private var elapsedTimeText: String {
         let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
         let minutes = totalSeconds / 60
@@ -179,22 +188,28 @@ extension InterviewPracticeView {
                 .padding(.top, 16)
 
             if store.state.phase != .ready {
-                ScrollView {
-                    VStack(
-                        alignment: .leading,
-                        spacing: 16
-                    ) {
-                        QuestionAnswerSectionView(
-                            question: currentQuestionTitle,
-                            answerText: store.state.liveTranscript,
-                            correction: .init(
-                                originalText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                                correctedText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                                explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다."
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        VStack(
+                            alignment: .leading,
+                            spacing: 16
+                        ) {
+                            QuestionAnswerSectionView(
+                                question: currentQuestionTitle,
+                                sentences: displayedAnswerSentences
                             )
-                        )
+                        }
+                        .padding(20)
+
+                        Color.clear
+                            .frame(height: 1)
+                            .id("transcriptBottom")
                     }
-                    .padding(20)
+                    .onChange(of: store.state.liveTranscript) {
+                        withAnimation(.easeOut(duration: 0.15)) {
+                            proxy.scrollTo("transcriptBottom", anchor: .bottom)
+                        }
+                    }
                 }
 
                 Divider()

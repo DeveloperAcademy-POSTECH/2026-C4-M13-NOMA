@@ -7,31 +7,6 @@
 
 import Foundation
 
-struct Effect<Action> {
-    
-    // MARK: - Propertise
-    
-    typealias Send = (Action) async -> Void
-    private let operation: ((Send) async -> Void)?
-
-    static var none: Effect { Effect(operation: nil) }
-
-    // MARK: - Functions
-    
-    static func run(
-        _ operation: @escaping (Send) async -> Void
-    ) -> Effect {
-        Effect(operation: operation)
-    }
-
-    func run(_ send: @escaping (Action) -> Void) async {
-        guard let operation else { return }
-        await operation { action in
-            send(action)
-        }
-    }
-}
-
 final class InterviewPracticeReducer {
     
     // MARK: - Properties
@@ -82,17 +57,27 @@ final class InterviewPracticeReducer {
             state.phase = .recording
             state.elapsedRecordingDuration = .zero
             state.liveTranscript = ""
+            state.finalizedTranscript = ""
+            state.answerSentences = []
             return startRecordingEffect()
 
-        case .transcriptUpdated(let text):
-            state.liveTranscript = text
+        case .transcriptUpdated(let text, let isFinal):
+            if isFinal {
+                state.finalizedTranscript += text
+                state.liveTranscript = state.finalizedTranscript
+            } else {
+                state.liveTranscript = state.finalizedTranscript + text
+            }
             return .none
 
         case .finishAnswering, .recordingTimeLimitReached:
-            state.phase = .transcribing
-            return .run { [audioRecorder] _ in
-                _ = try? await audioRecorder.stopRecording()
-            }
+            state.phase = .generatingFeedback
+            return generateFeedbackEffect(transcript: state.liveTranscript)
+
+        case .feedbackGenerated(let sentences):
+            state.answerSentences = sentences
+            state.phase = .reviewing
+            return .none
 
         case .moveToNextQuestion:
             if let pending = state.session.pendingFollowUpQuestion {
@@ -102,6 +87,9 @@ final class InterviewPracticeReducer {
                 state.session.pendingFollowUpQuestion = nil
             }
 
+            state.liveTranscript = ""
+            state.finalizedTranscript = ""
+            state.answerSentences = []
             state.session.currentQuestionIndex += 1
 
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
@@ -141,6 +129,25 @@ extension InterviewPracticeReducer {
         }
     }
 
+    private func generateFeedbackEffect(transcript: String) -> Effect<InterviewPracticeAction> {
+        .run { [
+            audioRecorder,
+            interviewFeedbackGenerating
+        ] send in
+            _ = try? await audioRecorder.stopRecording()
+
+            var results: [AnswerSentence] = []
+
+            for sentenceText in AnswerSentence.splitIntoSentences(transcript) {
+                
+                let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil
+                results.append(AnswerSentence(text: sentenceText, feedback: feedback))
+            }
+
+            await send(.feedbackGenerated(results))
+        }
+    }
+
     private func startRecordingEffect() -> Effect<InterviewPracticeAction> {
         .run { [audioRecorder, speechTranscribing] send in
             do {
@@ -149,7 +156,10 @@ extension InterviewPracticeReducer {
                 let bufferStream = try audioRecorder.startRecording()
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
                 for try await update in transcriptStream {
-                    await send(.transcriptUpdated(String(update.text.characters)))
+                    await send(.transcriptUpdated(
+                        text: String(update.text.characters),
+                        isFinal: update.isFinal
+                    ))
                 }
             } catch {
                 return
