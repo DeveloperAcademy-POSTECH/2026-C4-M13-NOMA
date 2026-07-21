@@ -343,11 +343,11 @@
 		EC4D4FD53007302000FB5735 /* InterviewPractice */ = {
 			isa = PBXGroup;
 			children = (
-				F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */,
-				F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */,
-				F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */,
-				F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */,
 				F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */,
+				F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */,
+				F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */,
+				F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */,
+				F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */,
 				F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */,
 			);
 			path = InterviewPractice;

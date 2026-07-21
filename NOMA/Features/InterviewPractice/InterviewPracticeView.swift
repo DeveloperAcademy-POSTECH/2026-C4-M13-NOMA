@@ -66,7 +66,7 @@ extension InterviewPracticeView {
 
             PushButton(
                 title: "학습 종료",
-                type: .neutral,
+                type: .default,
                 size: .medium
             ) {
                 router.push(.answerAnalysisLoading)
@@ -209,10 +209,11 @@ extension InterviewPracticeView {
             OverallFeedbackCardView(
                 feedbackText: "일부 문장에서 격식체 어미가 사용되지 않았습니다.\n다음 답변에서는 '-해요' 대신 '-합니다'를 의식적으로 사용해 보십시오."
             )
+            .padding(20)
             
             feedbackBottomButtons
         }
-        .frame(width: 720)
+        .frame(width: 650)
         .background(Color(nsColor: .controlBackgroundColor))
     }
 
@@ -225,7 +226,7 @@ extension InterviewPracticeView {
                 
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 44)
+            .frame(height: 42)
 
             CapsuleButton(
                 title: "다음 질문",
@@ -234,9 +235,9 @@ extension InterviewPracticeView {
                 
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 44)
+            .frame(height: 42)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 16)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 50)
     }
 }
