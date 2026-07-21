@@ -186,7 +186,7 @@
 		EC4D4FAA30071BF100FB5735 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				ECC33239300FB783006FD6EB /* AppRouter */,
+				ECC33239300FB783006FD6EB /* Routing */,
 				EC4D4FA930071BF100FB5735 /* NOMAApp.swift */,
 				EC4D4FAC30071BF100FB5735 /* ContentView.swift */,
 			);
@@ -414,14 +414,14 @@
 			path = QuestionAnswerSectionView;
 			sourceTree = "<group>";
 		};
-		ECC33239300FB783006FD6EB /* AppRouter */ = {
+		ECC33239300FB783006FD6EB /* Routing */ = {
 			isa = PBXGroup;
 			children = (
 				ECC3323A300FB78A006FD6EB /* AppRoute.swift */,
 				ECC3323C300FB78E006FD6EB /* AppRouter.swift */,
 				ECC3323E300FB7DE006FD6EB /* AppRootView.swift */,
 			);
-			path = AppRouter;
+			path = Routing;
 			sourceTree = "<group>";
 		};
 		ECC8570D3007BDF8007EC965 /* CapsuleButton */ = {
