@@ -150,6 +150,8 @@ extension InterviewPracticeView {
                     .looping()
                     .frame(width: 385)
                     .id(currentLottieAnimationName)
+                    .padding(.top, 116)
+                    .padding(.bottom, 72)
             }
 
             Text(questionPromptText)
@@ -157,7 +159,12 @@ extension InterviewPracticeView {
                 .fontWeight(.bold)
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, currentLottieAnimationName != nil ? 94 : 288)
+                .padding(
+                    .bottom,
+                    currentLottieAnimationName != nil
+                    ? 106
+                    : 288
+                )
 
             bottomControls
                 .padding(.bottom, 112)
