@@ -17,19 +17,15 @@ struct QuestionAnswerSectionView: View {
 
     // MARK: - Body
 
+    /// LazyVStack(pinnedViews: [.sectionHeaders])의 자식으로 놓이면 question이 스크롤 시 상단에 고정된다.
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            
-            HStack {
-                questionTitle
-                
-                Spacer()
-            }
-
+        Section {
             ForEach(sentences.indices, id: \.self) { index in
                 sentenceBlock(sentences[index])
                     .padding(.bottom, 16)
             }
+        } header: {
+            questionTitle
         }
     }
 }
@@ -38,11 +34,16 @@ struct QuestionAnswerSectionView: View {
 
 extension QuestionAnswerSectionView {
     private var questionTitle: some View {
-        Text(question)
-            .font(.title3)
-            .fontWeight(.semibold)
-            .foregroundStyle(.secondary)
-            .padding(.bottom, 16)
+        HStack {
+            Text(question)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+        }
+        .padding(.vertical, 16)
+        .background(Color(nsColor: .controlBackgroundColor))
     }
 
     @ViewBuilder

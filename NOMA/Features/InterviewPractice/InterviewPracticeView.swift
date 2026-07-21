@@ -56,7 +56,6 @@ extension InterviewPracticeView {
         store.state.session.currentQuestionIndex + 1
     }
 
-    /// ready 안내 문구를 읽는 동안에는 아직 첫 질문이 시작되지 않았으므로 0으로 표시한다.
     private var displayedQuestionNumber: Int {
         store.state.phase == .ready ? 0 : currentQuestionNumber
     }
@@ -122,7 +121,6 @@ extension InterviewPracticeView {
         return "Q\(currentQuestionNumber). \(content)"
     }
 
-    /// 확정된 문장 카드들 뒤에, 아직 확정되지 않은 발화 중 문장을 임시 카드로 덧붙인다.
     private var displayedAnswerSentences: [AnswerSentence] {
         var sentences = store.state.answerSentences
 
@@ -198,9 +196,10 @@ extension InterviewPracticeView {
             if store.state.phase != .ready {
                 ScrollViewReader { proxy in
                     ScrollView {
-                        VStack(
+                        LazyVStack(
                             alignment: .leading,
-                            spacing: 0
+                            spacing: 0,
+                            pinnedViews: [.sectionHeaders]
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
@@ -209,9 +208,9 @@ extension InterviewPracticeView {
                                     store.send(.correctedSentencePlaybackRequested(correctedText))
                                 }
                             )
-                            .padding(.bottom, 16)
+                            .padding(.horizontal, 20)
                         }
-                        .padding(20)
+                        .padding(.bottom, 20)
 
                         Color.clear
                             .frame(height: 1)
