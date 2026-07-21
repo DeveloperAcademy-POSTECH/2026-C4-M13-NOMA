@@ -14,6 +14,7 @@ enum PracticePhase {
     case transcribing               // STT로 답변을 텍스트로 변환 중
     case generatingFeedback         // FM이 격식체 피드백 생성 중
     case reviewing                  // 피드백을 화면에 보여주는 중 (다시 답변 / 다음 질문 대기)
+    case shadowing                  // 사용자 쉐도잉 중
     case generatingFollowUpQuestion // FM이 꼬리질문 생성 중
     case completed                  // 모든 질문 완료
 }
