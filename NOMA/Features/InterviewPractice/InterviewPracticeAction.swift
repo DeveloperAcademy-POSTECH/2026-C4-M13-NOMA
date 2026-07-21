@@ -18,6 +18,7 @@ enum InterviewPracticeAction {
     case sentenceFeedbackArrived(index: Int, originalText: String, feedback: SentenceFeedback?) // 확정 문장 하나의 피드백 결과가 도착했을 때 (nil = 교정 불필요)
     case correctedSentencePlaybackRequested(String)     // 교정 카드의 스피커 버튼을 눌렀을 때
     case overallFeedbackGenerated(String)                // 전체적인 피드백 생성이 끝났을 때 (빈 문자열이면 특이사항 없음)
+    case followUpQuestionGenerated(InterviewQuestion?)   // 방금 답변한 질문에 대한 꼬리질문 생성이 끝났을 때 (nil = 생성 대상 아님/실패)
     case retryCurrentAnswer                             // 사용자가 "다시 답변하기" 버튼을 눌렀을 때
     case moveToNextQuestion                             // 사용자가 "다음 질문" 버튼을 눌렀을 때
     case captionsChanged(Bool)                          // 자막 토글을 켜거나 껐을 때

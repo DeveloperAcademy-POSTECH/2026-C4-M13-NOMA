@@ -60,15 +60,20 @@ final class FollowUpQuestionGeneratingService: FollowUpQuestionGenerating {
         let session = LanguageModelSession(instructions: Self.instructions)
 
         let prompt = """
-        Original uestion: \(question.content)
+        Original question: \(question.content)
         Answer: \(transcript)
         """
 
-        let response = try await session.respond(to: prompt)
+        // 자유 텍스트 응답(session.respond(to:))은 온디바이스 소형 모델이 지시를 안 따르고
+        // 답변을 그대로 되풀이하는 경우가 있어, 구조화된 스키마로 강제해 출력 형식을 고정한다.
+        let response = try await session.respond(
+            to: prompt,
+            generating: FollowUpQuestionOutput.self
+        )
 
         return InterviewQuestion(
             questionID: UUID().uuidString,
-            content: response.content.trimmingCharacters(in: .whitespacesAndNewlines),
+            content: response.content.followUpQuestion.trimmingCharacters(in: .whitespacesAndNewlines),
             isFollowUp: true
         )
     }

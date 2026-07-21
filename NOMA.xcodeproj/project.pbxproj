@@ -80,6 +80,7 @@
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 		F14EC910300EF84E00EE5C85 /* InterviewPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */; };
 		F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */; };
+		202E39F2674044848C7C3849 /* FollowUpQuestionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */; };
 		F14EC920300EF84E00EE5C85 /* MemoWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */; };
 		F14EC92C300F6DB400EE5C85 /* InterviewPracticeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */; };
 		F14EC92D300F6DB400EE5C85 /* InterviewPracticeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */; };
@@ -162,6 +163,7 @@
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeView.swift; sourceTree = "<group>"; };
 		F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingService.swift; sourceTree = "<group>"; };
+		6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionOutput.swift; sourceTree = "<group>"; };
 		F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWindowView.swift; sourceTree = "<group>"; };
 		F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeAction.swift; sourceTree = "<group>"; };
 		F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeReducer.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */,
 				ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */,
+				6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */,
 			);
 			path = FollowUpQuestionGenerating;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
 				F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */,
+				202E39F2674044848C7C3849 /* FollowUpQuestionOutput.swift in Sources */,
 				ECC85740300C0001007EC965 /* RecordedAudioBuffer.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
 				ECC33227300DF637006FD6EB /* PracticeSummaryView.swift in Sources */,

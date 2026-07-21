@@ -48,6 +48,11 @@ struct InterviewPracticeView: View {
         .onAppear {
             store.send(.viewAppeared)
         }
+        .onChange(of: store.state.phase) { _, newPhase in
+            if newPhase == .completed {
+                router.push(.answerAnalysisLoading)
+            }
+        }
     }
 }
 
@@ -166,6 +171,7 @@ extension InterviewPracticeView {
                     ? 106
                     : 288
                 )
+                .padding(.horizontal, 20)
 
             bottomControls
                 .padding(.bottom, 112)
