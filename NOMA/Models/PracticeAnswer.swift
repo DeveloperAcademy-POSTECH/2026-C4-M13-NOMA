@@ -15,7 +15,10 @@ final class PracticeAnswer {
     var sentences: [String]
     var analysis: AnswerAnalysis
     
-    init(question: InterviewQuestion, transcript: String, sentences: [String], analysis: AnswerAnalysis) {
+    init(question: InterviewQuestion,
+         transcript: String,
+         sentences: [String],
+         analysis: AnswerAnalysis) {
         self.question = question
         self.transcript = transcript
         self.sentences = sentences
