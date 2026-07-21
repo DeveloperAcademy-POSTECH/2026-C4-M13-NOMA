@@ -147,13 +147,14 @@ extension InterviewPracticeView {
 
             if let currentLottieAnimationName {
                 LottieView(animation: .named(currentLottieAnimationName))
+                    .resizable()
                     .looping()
-                    .frame(width: 385)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 385, height: 385)
                     .id(currentLottieAnimationName)
-                    .padding(.top, 116)
                     .padding(.bottom, 72)
             }
-
+            
             Text(questionPromptText)
                 .font(.title)
                 .fontWeight(.bold)
