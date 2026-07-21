@@ -12,6 +12,7 @@ struct OnboardingView: View {
     // MARK: - Properties
 
     @State private var appleIntelligenceStatus = AppleIntelligenceStatus()
+    @Environment(AppRouter.self) private var router
     @Environment(\.controlActiveState) private var controlActiveState
 
     // MARK: - Body
@@ -106,6 +107,7 @@ extension OnboardingView {
                 title: "시작하기",
                 capsuleButtonType: .primary
             ) {
+                router.push(.home)
                 print("시작하기")
             }
             .frame(
