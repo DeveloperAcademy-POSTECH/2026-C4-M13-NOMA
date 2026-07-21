@@ -17,6 +17,7 @@ struct AppRootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
+            // FIXME: - RootView Home 화면으로 변경 예정
             OnboardingView()
                 .navigationDestination(for: AppRoute.self) { route in
                     switch route {
