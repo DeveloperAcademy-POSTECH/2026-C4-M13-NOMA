@@ -1,8 +1,8 @@
 //
-//  SendableAudioBuffer.swift
+//  RecordedAudioBuffer.swift
 //  NOMA
 //
-//  Created by 앤디 on 7/20/26.
+//  Created by 정승민 on 7/19/26.
 //
 
 import AVFoundation
