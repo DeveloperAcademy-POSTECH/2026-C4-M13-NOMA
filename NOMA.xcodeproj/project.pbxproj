@@ -12,6 +12,8 @@
 		A1DF1C0F300E14E600A7576E /* AudioError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DF1C0E300E14DF00A7576E /* AudioError.swift */; };
 		A1FA6EDC300CA99700B987B0 /* SpeechTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA6EDB300CA99400B987B0 /* SpeechTranscriptionService.swift */; };
 		C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C31DF2FC3003BC6700831981 /* .swiftlint.yml */; };
+		C33D204E300FA693002ADE8C /* FeedbackReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D204D300FA691002ADE8C /* FeedbackReason.swift */; };
+		C33D2050300FC9F1002ADE8C /* OverallFeedbackOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D204F300FC9EA002ADE8C /* OverallFeedbackOutput.swift */; };
 		C3C31EB7300F0B9000C5ADAE /* FeedbackInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EB6300F0B8F00C5ADAE /* FeedbackInstructions.swift */; };
 		C3C31EBA300F0B9C00C5ADAE /* FoundationModelsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EB8300F0B9900C5ADAE /* FoundationModelsOutput.swift */; };
 		C3C31EBD300F0BA800C5ADAE /* OverallFeedbackInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EBB300F0BA300C5ADAE /* OverallFeedbackInstructions.swift */; };
@@ -85,6 +87,8 @@
 		A1DF1C0E300E14DF00A7576E /* AudioError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioError.swift; sourceTree = "<group>"; };
 		A1FA6EDB300CA99400B987B0 /* SpeechTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscriptionService.swift; sourceTree = "<group>"; };
 		C31DF2FC3003BC6700831981 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C33D204D300FA691002ADE8C /* FeedbackReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReason.swift; sourceTree = "<group>"; };
+		C33D204F300FC9EA002ADE8C /* OverallFeedbackOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallFeedbackOutput.swift; sourceTree = "<group>"; };
 		C3C31EB6300F0B8F00C5ADAE /* FeedbackInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInstructions.swift; sourceTree = "<group>"; };
 		C3C31EB8300F0B9900C5ADAE /* FoundationModelsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsOutput.swift; sourceTree = "<group>"; };
 		C3C31EBB300F0BA300C5ADAE /* OverallFeedbackInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallFeedbackInstructions.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		C3C31EC6300F136A00C5ADAE /* InterviewFeedbackSchema */ = {
 			isa = PBXGroup;
 			children = (
+				C33D204F300FC9EA002ADE8C /* OverallFeedbackOutput.swift */,
+				C33D204D300FA691002ADE8C /* FeedbackReason.swift */,
 				C3C31EB6300F0B8F00C5ADAE /* FeedbackInstructions.swift */,
 				C3C31EBB300F0BA300C5ADAE /* OverallFeedbackInstructions.swift */,
 				C3C31EB8300F0B9900C5ADAE /* FoundationModelsOutput.swift */,
@@ -605,6 +611,7 @@
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
+				C33D204E300FA693002ADE8C /* FeedbackReason.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
 				ECC33232300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift in Sources */,
 				ECC85719300A6228007EC965 /* Color+.swift in Sources */,
@@ -655,6 +662,8 @@
 				ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */,
+				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
+				C33D2050300FC9F1002ADE8C /* OverallFeedbackOutput.swift in Sources */,
 				ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */,
 				A1DF1C0F300E14E600A7576E /* AudioError.swift in Sources */,
 				ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */,
