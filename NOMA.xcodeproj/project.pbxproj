@@ -72,6 +72,9 @@
 		ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */; };
 		ECE05944300DAADD00C0201E /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05943300DAADD00C0201E /* SectionHeaderView.swift */; };
 		ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */; };
+		ECE702E330100806004921C1 /* UserSpeaking.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE702E230100806004921C1 /* UserSpeaking.json */; };
+		ECE702E430100806004921C1 /* Question playing.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE702E030100806004921C1 /* Question playing.json */; };
+		ECE702E530100806004921C1 /* Standby.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE702E130100806004921C1 /* Standby.json */; };
 		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 		F14EC910300EF84E00EE5C85 /* InterviewPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */; };
@@ -150,6 +153,9 @@
 		ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryView.swift; sourceTree = "<group>"; };
 		ECE05943300DAADD00C0201E /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsURL.swift; sourceTree = "<group>"; };
+		ECE702E030100806004921C1 /* Question playing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Question playing.json"; sourceTree = "<group>"; };
+		ECE702E130100806004921C1 /* Standby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Standby.json; sourceTree = "<group>"; };
+		ECE702E230100806004921C1 /* UserSpeaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserSpeaking.json; sourceTree = "<group>"; };
 		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +259,7 @@
 		EC4D4FB430071C3000FB5735 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ECE702DF301007EB004921C1 /* Lottie */,
 				EC4D4FAB30071BF100FB5735 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -494,6 +501,16 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		ECE702DF301007EB004921C1 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				ECE702E030100806004921C1 /* Question playing.json */,
+				ECE702E130100806004921C1 /* Standby.json */,
+				ECE702E230100806004921C1 /* UserSpeaking.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +599,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECE702E330100806004921C1 /* UserSpeaking.json in Resources */,
+				ECE702E430100806004921C1 /* Question playing.json in Resources */,
+				ECE702E530100806004921C1 /* Standby.json in Resources */,
 				C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */,
 				EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */,
 				A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */,
