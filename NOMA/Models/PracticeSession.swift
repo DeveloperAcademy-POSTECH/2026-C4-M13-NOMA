@@ -6,22 +6,29 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
 final class PracticeSession {
     var questions: [InterviewQuestion]
     var currentQuestionIndex: Int
     var answers: [PracticeAnswer]
     var overallFeedback: String?
-    
-    init(questions: [InterviewQuestion],
-         currentQuestionIndex: Int,
-         answers: [PracticeAnswer],
-         overallFeedback: String? = nil) {
+    var pendingFollowUpQuestion: InterviewQuestion?
+
+    init(
+        questions: [InterviewQuestion] = [],
+        currentQuestionIndex: Int = 0,
+        answers: [PracticeAnswer] = [],
+        overallFeedback: String? = nil,
+        pendingFollowUpQuestion: InterviewQuestion? = nil
+    ) {
         self.questions = questions
         self.currentQuestionIndex = currentQuestionIndex
         self.answers = answers
         self.overallFeedback = overallFeedback
+        self.pendingFollowUpQuestion = pendingFollowUpQuestion
+    }
+
+    var currentQuestion: InterviewQuestion? {
+        questions.indices.contains(currentQuestionIndex) ? questions[currentQuestionIndex] : nil
     }
 }
