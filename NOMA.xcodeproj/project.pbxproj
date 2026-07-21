@@ -20,6 +20,15 @@
 		EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */; };
 		EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */; };
 		EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */; };
+		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
+		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
+		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
+		ECC85719300A6228007EC965 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85717300A6228007EC965 /* Color+.swift */; };
+		ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */; };
+		ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */; };
+		ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571F300A6D55007EC965 /* PushButtonType.swift */; };
+		ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85721300A6D8D007EC965 /* PushButton.swift */; };
+		ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */; };
 		ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85727300B4325007EC965 /* QuestionSpeaking.swift */; };
 		ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85729300B43E3007EC965 /* AudioRecording.swift */; };
 		ECC8572C300B4BC1007EC965 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */; };
@@ -31,15 +40,7 @@
 		ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */; };
 		ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85739300B5131007EC965 /* InterviewQuestion.swift */; };
 		ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */; };
-		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
-		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
-		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
-		ECC85719300A6228007EC965 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85717300A6228007EC965 /* Color+.swift */; };
-		ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */; };
-		ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */; };
-		ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8571F300A6D55007EC965 /* PushButtonType.swift */; };
-		ECC85722300A6D8D007EC965 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85721300A6D8D007EC965 /* PushButton.swift */; };
-		ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */; };
+		F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,15 @@
 		EC4D4FE23007304F00FB5735 /* PracticeSummaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSummaryFile.swift; sourceTree = "<group>"; };
 		EC4D4FEA300730C700FB5735 /* ModifiersFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersFile.swift; sourceTree = "<group>"; };
 		EC4D4FEC300730C900FB5735 /* UtilitiesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesFile.swift; sourceTree = "<group>"; };
+		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
+		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
+		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		ECC85717300A6228007EC965 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonSize.swift; sourceTree = "<group>"; };
+		ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStatus.swift; sourceTree = "<group>"; };
+		ECC8571F300A6D55007EC965 /* PushButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonType.swift; sourceTree = "<group>"; };
+		ECC85721300A6D8D007EC965 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
+		ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStyle.swift; sourceTree = "<group>"; };
 		ECC85727300B4325007EC965 /* QuestionSpeaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSpeaking.swift; sourceTree = "<group>"; };
 		ECC85729300B43E3007EC965 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
 		ECC8572B300B4BC1007EC965 /* RecordedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
@@ -67,16 +77,8 @@
 		ECC85737300B5099007EC965 /* InterviewFeedbackGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewFeedbackGenerating.swift; sourceTree = "<group>"; };
 		ECC85739300B5131007EC965 /* InterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGenerating.swift; sourceTree = "<group>"; };
-		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
-		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
-		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
-		ECC85717300A6228007EC965 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		ECC8571B300A6BF8007EC965 /* PushButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonSize.swift; sourceTree = "<group>"; };
-		ECC8571D300A6C7E007EC965 /* PushButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStatus.swift; sourceTree = "<group>"; };
-		ECC8571F300A6D55007EC965 /* PushButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonType.swift; sourceTree = "<group>"; };
-		ECC85721300A6D8D007EC965 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
-		ECC85723300A6DB0007EC965 /* PushButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonStyle.swift; sourceTree = "<group>"; };
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		EC4D4FB930071EA900FB5735 /* FollowUpQuestionGenerating */ = {
 			isa = PBXGroup;
 			children = (
+				F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */,
 				ECC8573B300B531A007EC965 /* FollowUpQuestionGenerating.swift */,
 			);
 			path = FollowUpQuestionGenerating;
@@ -441,13 +444,13 @@
 				EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */,
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
+				F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
 				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */,
-				EC4D4FC13007298B00FB5735 /* QuestionSpeakingFile.swift in Sources */,
 				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
 				EC4D4FDB3007304300FB5735 /* HomeFile.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
@@ -600,7 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AT9KX3ZBW6;
+				DEVELOPMENT_TEAM = M7F8AM92TP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -632,7 +635,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AT9KX3ZBW6;
+				DEVELOPMENT_TEAM = M7F8AM92TP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

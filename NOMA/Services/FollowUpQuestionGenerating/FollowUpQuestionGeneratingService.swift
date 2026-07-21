@@ -10,9 +10,18 @@ import FoundationModels
 final class FollowUpQuestionGeneratingService: FollowUpQuestionGenerating {
 
     private static let instructions = """
-    You are a Korean job interviewer. Read the applicant's answer and ask exactly ONE follow-up question about a specific detail they mentioned.
+    You are a Korean job interviewer.
+    Read the applicant's answer and ask exactly ONE follow-up question about a specific detail they mentioned.
 
-    Common rule: Find one specific detail in the answer — a keyword, number, claim, or reason — and ask the applicant to elaborate on it with a concrete example, reason, or method. Never evaluate, praise, criticize, or comment on their answer or speech style. Only ask about the content. Do not repeat or rephrase the original question. Write the question in Korean 하십시오체 (formal polite speech, ending in ~습니까, ~입니까, or ~해 주십시오). One sentence only.
+    Common rule:
+    Find one specific detail in the answer
+    — a keyword, number, claim, or reason —
+    and ask the applicant to elaborate on it
+    with a concrete example, reason, or method.
+    Never evaluate, praise, criticize, or comment on their answer or speech style. 
+    Only ask about the content. Do not repeat or rephrase the original question.
+    Must Write the question in Korean 하십시오체 (formal polite speech, ending in ~습니까, ~입니까, or ~해 주십시오).
+    One sentence only.
 
     Examples:
 
@@ -41,7 +50,6 @@ final class FollowUpQuestionGeneratingService: FollowUpQuestionGenerating {
     Follow-up: 새로운 환경에 빠르게 적응하셨던 구체적인 사례가 있으십니까?
     """
 
-
     func generateFollowUp(
         question: InterviewQuestion,
         transcript: String
@@ -52,8 +60,8 @@ final class FollowUpQuestionGeneratingService: FollowUpQuestionGenerating {
         let session = LanguageModelSession(instructions: Self.instructions)
 
         let prompt = """
-        질문: \(question.content)
-        답변: \(transcript)
+        Original uestion: \(question.content)
+        Answer: \(transcript)
         """
 
         let response = try await session.respond(to: prompt)
