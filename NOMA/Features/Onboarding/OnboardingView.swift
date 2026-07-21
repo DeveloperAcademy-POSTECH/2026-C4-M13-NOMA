@@ -30,6 +30,10 @@ struct OnboardingView: View {
             
             settingsHintView
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .task {
             appleIntelligenceStatus.refresh()
         }

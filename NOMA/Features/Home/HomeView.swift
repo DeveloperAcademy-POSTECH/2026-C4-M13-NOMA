@@ -44,6 +44,10 @@ struct HomeView: View {
                 router.push(.learningHistory)
             }
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
     }
 }
 

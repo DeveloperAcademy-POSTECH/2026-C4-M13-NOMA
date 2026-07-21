@@ -140,7 +140,10 @@ extension InterviewPracticeView {
     }
     
     private var feedbackPanel: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
             HStack {
                 Text("􀅂")
                     .font(.title3)
@@ -181,11 +184,13 @@ extension InterviewPracticeView {
             .padding(.horizontal, 30)
             .padding(.vertical, 16)
 
-
             Divider()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(
+                    alignment: .leading,
+                    spacing: 16
+                ) {
                     QuestionAnswerSectionView(
                         question: "Q1. 자기소개를 해주십시오.",
                         answerText: "안녕하십니까, 저는 지원자 셀리나 입니다.",

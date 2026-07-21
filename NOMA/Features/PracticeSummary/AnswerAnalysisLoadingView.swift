@@ -19,6 +19,10 @@ struct AnswerAnalysisLoadingView: View {
         VStack(spacing: 0) {
             analyzingStatusView
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .task {
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }

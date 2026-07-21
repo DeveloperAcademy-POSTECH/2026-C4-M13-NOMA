@@ -31,6 +31,10 @@ struct PermissionView: View {
 
             returnHomeButton
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .task {
             microphonePermissionStatus.refresh()
         }
