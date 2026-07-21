@@ -42,6 +42,8 @@
 		ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */; };
 		ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05938300D2F7D00C0201E /* PermissionView.swift */; };
 		ECE0593F300D3BA800C0201E /* MicrophonePermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */; };
+		ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */; };
+		ECE05944300DAADD00C0201E /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05943300DAADD00C0201E /* SectionHeaderView.swift */; };
 		ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */; };
 		ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */; };
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
@@ -83,6 +85,8 @@
 		ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryCardView.swift; sourceTree = "<group>"; };
 		ECE05938300D2F7D00C0201E /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 		ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionStatus.swift; sourceTree = "<group>"; };
+		ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryView.swift; sourceTree = "<group>"; };
+		ECE05943300DAADD00C0201E /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		ECE05946300DBFB900C0201E /* SystemSettingsURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsURL.swift; sourceTree = "<group>"; };
 		ECF0CBB1300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceStatus.swift; sourceTree = "<group>"; };
 		ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationModels+.swift"; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				EC4D4FD53007302000FB5735 /* InterviewPractice */,
 				EC4D4FD63007302000FB5735 /* Review */,
 				EC4D4FD73007302000FB5735 /* PracticeSummary */,
+				ECE05940300DAA0400C0201E /* LearningHistory */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				ECC8571A300A68CF007EC965 /* PushButton */,
 				ECC8570D3007BDF8007EC965 /* CapsuleButton */,
 				ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */,
+				ECE05943300DAADD00C0201E /* SectionHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,6 +347,14 @@
 				ECE0593E300D3BA800C0201E /* MicrophonePermissionStatus.swift */,
 			);
 			path = MicrophonePermissionStatus;
+			sourceTree = "<group>";
+		};
+		ECE05940300DAA0400C0201E /* LearningHistory */ = {
+			isa = PBXGroup;
+			children = (
+				ECE05941300DAA0F00C0201E /* LearningHistoryView.swift */,
+			);
+			path = LearningHistory;
 			sourceTree = "<group>";
 		};
 		ECE05945300DBFA300C0201E /* Constants */ = {
@@ -487,12 +501,14 @@
 				EC4D4FED300730C900FB5735 /* UtilitiesFile.swift in Sources */,
 				ECC85730300B4CD9007EC965 /* TranscriptUpdate.swift in Sources */,
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
+				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
 				ECC85732300B4F2E007EC965 /* AnswerFeedback.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */,
 				EC80F68A300CDC7200B7CBBC /* OnboardingView.swift in Sources */,
+				ECE05944300DAADD00C0201E /* SectionHeaderView.swift in Sources */,
 				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
 				EC4D4FE33007304F00FB5735 /* PracticeSummaryFile.swift in Sources */,
 				ECC8572E300B4CB4007EC965 /* SpeechTranscribing.swift in Sources */,
