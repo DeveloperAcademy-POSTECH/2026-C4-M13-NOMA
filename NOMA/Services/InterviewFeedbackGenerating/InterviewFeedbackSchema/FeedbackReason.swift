@@ -8,7 +8,7 @@
 import FoundationModels
 
 @Generable
-enum FeedbackReason {
+enum FeedbackReason: Codable, Sendable {
     case speechStyle
     case humbleForm
     case subjectHonorific
