@@ -79,7 +79,7 @@ final class InterviewPracticeReducer {
 
             let startIndex = state.answerSentences.count
             state.answerSentences.append(
-                contentsOf: newSentences.map { AnswerSentence(text: $0, feedback: nil) }
+                contentsOf: newSentences.map { AnswerSentence(text: $0, feedbackStatus: .pending) }
             )
             return generateSentenceFeedbackEffect(
                 sentences: newSentences,
@@ -91,7 +91,7 @@ final class InterviewPracticeReducer {
             guard state.answerSentences.indices.contains(index),
                   state.answerSentences[index].text == originalText else { return .none }
 
-            state.answerSentences[index].feedback = feedback
+            state.answerSentences[index].feedbackStatus = feedback.map { .corrected($0) } ?? .none
             return .none
 
         case .finishAnswering, .recordingTimeLimitReached:
@@ -157,10 +157,9 @@ extension InterviewPracticeReducer {
     ) -> Effect<InterviewPracticeAction> {
         .run { [interviewFeedbackGenerating] send in
             for (offset, sentenceText) in sentences.enumerated() {
-                // 생성 실패 또는 교정 불필요(nil)면 아무것도 보내지 않는다 → 발화 카드만 유지된다.
-                guard let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil else {
-                    continue
-                }
+                // 생성 실패는 교정 불필요(nil)와 동일하게 취급한다.
+                // nil이어도 항상 결과를 보내야 해당 문장의 로더가 사라진다.
+                let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil
 
                 await send(.sentenceFeedbackArrived(
                     index: startIndex + offset,

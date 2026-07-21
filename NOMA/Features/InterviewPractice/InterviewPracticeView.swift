@@ -123,7 +123,7 @@ extension InterviewPracticeView {
 
         sentences.append(
             contentsOf: AnswerSentence.splitIntoSentences(store.state.volatileTranscript)
-                .map { AnswerSentence(text: $0, feedback: nil) }
+                .map { AnswerSentence(text: $0) }
         )
 
         return sentences

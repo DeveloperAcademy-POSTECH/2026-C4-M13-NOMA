@@ -48,7 +48,22 @@ extension QuestionAnswerSectionView {
     private func sentenceBlock(_ sentence: AnswerSentence) -> some View {
         AnswerSentenceCardView(text: sentence.text)
 
-        if let feedback = sentence.feedback {
+        switch sentence.feedbackStatus {
+        case .none:
+            EmptyView()
+
+        case .pending:
+            HStack(spacing: 8) {
+                SpinningRingLoader()
+                    .frame(width: 16, height: 16)
+
+                Text("피드백 확인 중")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.leading, 4)
+
+        case .corrected(let feedback):
             CorrectionFeedbackCardView(
                 originalText: sentence.text,
                 correctedText: feedback.revisedSentence,
