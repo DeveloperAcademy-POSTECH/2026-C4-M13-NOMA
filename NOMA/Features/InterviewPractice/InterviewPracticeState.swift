@@ -11,6 +11,7 @@ struct InterviewPracticeState {
     var captionsEnabled: Bool = false
     var elapsedRecordingDuration: Duration = .zero
     var isExitConfirmationPresented: Bool = false
+    var liveTranscript: String = ""
 
     var canFinishAnswer: Bool {
         phase == .recording && elapsedRecordingDuration > .seconds(1)

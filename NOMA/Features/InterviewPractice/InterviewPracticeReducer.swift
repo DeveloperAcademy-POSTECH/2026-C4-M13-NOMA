@@ -78,13 +78,21 @@ final class InterviewPracticeReducer {
             state.phase = .askingQuestion
             return speakCurrentQuestionEffect(session: state.session)
 
-        case .questionSpeechFinished:
+        case .questionSpeechFinished, .retryCurrentAnswer:
             state.phase = .recording
+            state.elapsedRecordingDuration = .zero
+            state.liveTranscript = ""
+            return startRecordingEffect()
+
+        case .transcriptUpdated(let text):
+            state.liveTranscript = text
             return .none
 
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .transcribing
-            return .none
+            return .run { [audioRecorder] _ in
+                _ = try? await audioRecorder.stopRecording()
+            }
 
         case .moveToNextQuestion:
             if let pending = state.session.pendingFollowUpQuestion {
@@ -103,10 +111,6 @@ final class InterviewPracticeReducer {
             return state.phase == .askingQuestion
                 ? speakCurrentQuestionEffect(session: state.session)
                 : .none
-
-        case .retryCurrentAnswer:
-            state.phase = .recording
-            return .none
 
         case .captionsChanged(let enabled):
             state.captionsEnabled = enabled
@@ -134,6 +138,22 @@ extension InterviewPracticeReducer {
         return .run { [questionSpeaker] send in
             try? await questionSpeaker.speak(content)
             await send(.questionSpeechFinished)
+        }
+    }
+
+    private func startRecordingEffect() -> Effect<InterviewPracticeAction> {
+        .run { [audioRecorder, speechTranscribing] send in
+            do {
+                try? await Task.sleep(for: .seconds(1))
+
+                let bufferStream = try audioRecorder.startRecording()
+                let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
+                for try await update in transcriptStream {
+                    await send(.transcriptUpdated(String(update.text.characters)))
+                }
+            } catch {
+                return
+            }
         }
     }
 }

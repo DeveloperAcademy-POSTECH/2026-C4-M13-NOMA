@@ -33,11 +33,42 @@ final class InterviewPracticeStore {
             state: &state,
             action: action
         )
-        
+
+        switch action {
+        case .questionSpeechFinished, .retryCurrentAnswer:
+            startRecordingTimer()
+
+        case .finishAnswering, .recordingTimeLimitReached:
+            stopRecordingTimer()
+
+        default:
+            break
+        }
+
         Task {
             await effect.run { [weak self] nextAction in
                 self?.send(nextAction)
             }
         }
+    }
+}
+
+// MARK: - Recording Timer
+
+extension InterviewPracticeStore {
+    private func startRecordingTimer() {
+        recordingTimerTask?.cancel()
+        recordingTimerTask = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                guard !Task.isCancelled, let self else { return }
+                self.state.elapsedRecordingDuration += .seconds(1)
+            }
+        }
+    }
+
+    private func stopRecordingTimer() {
+        recordingTimerTask?.cancel()
+        recordingTimerTask = nil
     }
 }

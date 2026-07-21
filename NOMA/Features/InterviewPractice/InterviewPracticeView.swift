@@ -112,6 +112,13 @@ extension InterviewPracticeView {
             : store.state.session.currentQuestion?.content ?? ""
     }
 
+    private var elapsedTimeText: String {
+        let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
     private var interviewerPane: some View {
         VStack(spacing: 0) {
             Spacer()
@@ -135,7 +142,7 @@ extension InterviewPracticeView {
 
     private var bottomControls: some View {
         VStack(spacing: 18) {
-            Text("00:00")
+            Text(elapsedTimeText)
                 .font(.body)
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
@@ -150,7 +157,7 @@ extension InterviewPracticeView {
                 width: 120,
                 height: 42
             )
-            .disabled(store.state.phase == .ready)
+            .disabled(!store.state.canFinishAnswer)
         }
     }
     
@@ -201,6 +208,10 @@ extension InterviewPracticeView {
         .background(Color(nsColor: .controlBackgroundColor))
     }
 
+    private var isAwaitingQuestion: Bool {
+        store.state.phase == .ready || store.state.phase == .askingQuestion
+    }
+
     private var feedbackBottomButtons: some View {
         HStack(spacing: 12) {
             CapsuleButton(
@@ -211,7 +222,7 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(store.state.phase == .ready)
+            .disabled(isAwaitingQuestion)
 
             CapsuleButton(
                 title: "다음 질문",
@@ -221,7 +232,7 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(store.state.phase == .ready)
+            .disabled(isAwaitingQuestion)
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 50)

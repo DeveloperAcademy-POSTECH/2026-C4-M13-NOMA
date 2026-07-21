@@ -11,9 +11,7 @@ import Speech
 struct SpeechTranscriptionService: SpeechTranscribing {
     
     // MARK: - Properties
-    
-    let audioRecordingService = AVAudioRecordingService()
-    
+
     let transcriber = SpeechTranscriber(locale: Locale(identifier: "ko-KR"), preset: .progressiveTranscription)
     
     // MARK: - Functions
@@ -26,9 +24,11 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     
     func transcribe(bufferStream: AsyncStream<RecordedAudioBuffer>) async throws
     -> AsyncThrowingStream<TranscriptUpdate, Error> {
-        let (inputSequence, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
+        try await requestAssetInstallation()
+
+        let (_, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
         let (outputSequence, outputContinuation) = AsyncThrowingStream.makeStream(of: TranscriptUpdate.self)
-        
+
         guard let targetFormat = await SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith: [transcriber]) else {
             print("모듈에 적합한 포맷 찾을 수 없음")
             
@@ -46,12 +46,11 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         
         Task {
             let recordingStream = bufferStream
-            let sourceFormat = audioRecordingService.audioEngine.inputNode.outputFormat(forBus: 0)
-            
+
             for await sendableBuffer in recordingStream {
                 guard let convertedBuffer = convertFormat(
                     inputBuffer: sendableBuffer,
-                    sourceFormat: sourceFormat,
+                    sourceFormat: sendableBuffer.pcmBuffer.format,
                     targetFormat: targetFormat
                 ) else {
                     print("오디오 포맷 변환 실패")
@@ -95,11 +94,15 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
         
         nonisolated(unsafe) let rawBuffer = inputBuffer.pcmBuffer
-        
+
+        guard rawBuffer.frameLength > 0 else { return nil }
+
         let capacity = AVAudioFrameCount(
             Double(rawBuffer.frameLength) * (targetFormat.sampleRate / sourceFormat.sampleRate)
         )
-        
+
+        guard capacity > 0 else { return nil }
+
         guard let outputBuffer = AVAudioPCMBuffer(pcmFormat: targetFormat, frameCapacity: capacity) else {
             print("outputBuffer 생성 실패")
             
@@ -107,7 +110,6 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         }
         
         var error: NSError?
-        
         
         let inputBlock: AVAudioConverterInputBlock = { requestedPackets, statusPointer in
             statusPointer.pointee = .haveData
