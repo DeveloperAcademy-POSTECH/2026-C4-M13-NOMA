@@ -32,6 +32,7 @@ struct InterviewPracticeView: View {
 
                 if isFeedbackVisible {
                     Divider()
+                    
                     feedbackPanel
                 }
             }
@@ -105,11 +106,10 @@ extension InterviewPracticeView {
                 .fontWeight(.bold)
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
-
-            Spacer()
+                .padding(.bottom, 288)
 
             bottomControls
-                .padding(.bottom, 28)
+                .padding(.bottom, 112)
         }
         .frame(
             maxWidth: .infinity,
@@ -144,48 +144,13 @@ extension InterviewPracticeView {
             alignment: .leading,
             spacing: 0
         ) {
-            HStack {
-                Text("􀅂")
-                    .font(.title3)
-                    .fontWeight(.medium)
-                    .foregroundStyle(.secondary)
-                
-                Text("피드백")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.primary)
-                Spacer()
-
-                HStack(spacing: 8) {
-                    Button {
-                        if currentQuestion > 1 { currentQuestion -= 1 }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .fontWeight(.medium)
-                            .foregroundStyle(.accent)
-                    }
-                    .buttonStyle(.plain)
-
-                    Text("\(currentQuestion)/\(totalQuestions)")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
-
-                    Button {
-                        if currentQuestion < totalQuestions { currentQuestion += 1 }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .fontWeight(.medium)
-                            .foregroundStyle(.accent)
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-            .padding(.horizontal, 30)
-            .padding(.vertical, 16)
-
-            Divider()
-
+            Text("피드백")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+            
             ScrollView {
                 VStack(
                     alignment: .leading,
