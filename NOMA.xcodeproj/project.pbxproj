@@ -43,6 +43,7 @@
 		ECC3323F300FB7DE006FD6EB /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323E300FB7DE006FD6EB /* AppRootView.swift */; };
 		ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */; };
 		ECC33245300FF49C006FD6EB /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33244300FF49C006FD6EB /* Effect.swift */; };
+		ECC33247300FF4FD006FD6EB /* AnswerSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -120,6 +121,7 @@
 		ECC3323E300FB7DE006FD6EB /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC33244300FF49C006FD6EB /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSentence.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 				ECC85739300B5131007EC965 /* InterviewQuestion.swift */,
 				ECC85733300B4F45007EC965 /* FeedbackItem.swift */,
+				ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */,
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
+				ECC33247300FF4FD006FD6EB /* AnswerSentence.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
 				C33D204E300FA693002ADE8C /* FeedbackReason.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
