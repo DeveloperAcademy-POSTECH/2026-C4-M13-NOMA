@@ -41,6 +41,9 @@
 		ECC3323B300FB78A006FD6EB /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323A300FB78A006FD6EB /* AppRoute.swift */; };
 		ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323C300FB78E006FD6EB /* AppRouter.swift */; };
 		ECC3323F300FB7DE006FD6EB /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323E300FB7DE006FD6EB /* AppRootView.swift */; };
+		ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */; };
+		ECC33245300FF49C006FD6EB /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33244300FF49C006FD6EB /* Effect.swift */; };
+		ECC33247300FF4FD006FD6EB /* AnswerSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -116,6 +119,9 @@
 		ECC3323A300FB78A006FD6EB /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		ECC3323C300FB78E006FD6EB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		ECC3323E300FB7DE006FD6EB /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterviewQuestion.swift; sourceTree = "<group>"; };
+		ECC33244300FF49C006FD6EB /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSentence.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				ECC8572F300B4CD9007EC965 /* TranscriptUpdate.swift */,
 				ECC85739300B5131007EC965 /* InterviewQuestion.swift */,
 				ECC85733300B4F45007EC965 /* FeedbackItem.swift */,
+				ECC33246300FF4FD006FD6EB /* AnswerSentence.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,8 +261,9 @@
 		EC4D4FB530071E5F00FB5735 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
 				F14EC931300F88B400EE5C85 /* PracticePhase.swift */,
+				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
+				ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -349,12 +357,13 @@
 		EC4D4FD53007302000FB5735 /* InterviewPractice */ = {
 			isa = PBXGroup;
 			children = (
-				F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */,
-				F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */,
-				F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */,
-				F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */,
 				F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */,
+				F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */,
+				F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */,
+				F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */,
+				F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */,
 				F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */,
+				ECC33244300FF49C006FD6EB /* Effect.swift */,
 			);
 			path = InterviewPractice;
 			sourceTree = "<group>";
@@ -610,6 +619,7 @@
 				ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */,
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
+				ECC33247300FF4FD006FD6EB /* AnswerSentence.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
 				C33D204E300FA693002ADE8C /* FeedbackReason.swift in Sources */,
 				ECF0CBB2300CFB5F00FFCCA1 /* AppleIntelligenceStatus.swift in Sources */,
@@ -641,6 +651,7 @@
 				ECC33227300DF637006FD6EB /* PracticeSummaryView.swift in Sources */,
 				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
 				ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */,
+				ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */,
 				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
@@ -662,9 +673,9 @@
 				ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */,
-				EC4D4FE13007304C00FB5735 /* ReviewFile.swift in Sources */,
 				C33D2050300FC9F1002ADE8C /* OverallFeedbackOutput.swift in Sources */,
 				ECC85738300B5099007EC965 /* InterviewFeedbackGenerating.swift in Sources */,
+				ECC33245300FF49C006FD6EB /* Effect.swift in Sources */,
 				A1DF1C0F300E14E600A7576E /* AudioError.swift in Sources */,
 				ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,

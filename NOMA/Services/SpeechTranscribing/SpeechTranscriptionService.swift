@@ -11,10 +11,13 @@ import Speech
 struct SpeechTranscriptionService: SpeechTranscribing {
     
     // MARK: - Properties
-    
-    let audioRecordingService = AVAudioRecordingService()
-    
-    let transcriber = SpeechTranscriber(locale: Locale(identifier: "ko-KR"), preset: .progressiveTranscription)
+
+    let transcriber = SpeechTranscriber(
+        locale: Locale(
+            identifier: "ko-KR"
+        ),
+        preset: .progressiveTranscription
+    )
     
     // MARK: - Functions
     
@@ -26,9 +29,11 @@ struct SpeechTranscriptionService: SpeechTranscribing {
     
     func transcribe(bufferStream: AsyncStream<RecordedAudioBuffer>) async throws
     -> AsyncThrowingStream<TranscriptUpdate, Error> {
+        try await requestAssetInstallation()
+
         let (inputSequence, inputContinuation) = AsyncStream.makeStream(of: AnalyzerInput.self)
         let (outputSequence, outputContinuation) = AsyncThrowingStream.makeStream(of: TranscriptUpdate.self)
-        
+
         guard let targetFormat = await SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith: [transcriber]) else {
             print("모듈에 적합한 포맷 찾을 수 없음")
             
@@ -43,40 +48,47 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         } catch {
             print("analyzer 준비 실패")
         }
-        
+
+        try await analyzer.start(inputSequence: inputSequence)
+
         Task {
             let recordingStream = bufferStream
-            let sourceFormat = audioRecordingService.audioEngine.inputNode.outputFormat(forBus: 0)
-            
+
             for await sendableBuffer in recordingStream {
                 guard let convertedBuffer = convertFormat(
                     inputBuffer: sendableBuffer,
-                    sourceFormat: sourceFormat,
+                    sourceFormat: sendableBuffer.pcmBuffer.format,
                     targetFormat: targetFormat
                 ) else {
                     print("오디오 포맷 변환 실패")
-                    
+
                     continue
                 }
-                
+
                 let analyzerInput = AnalyzerInput(buffer: convertedBuffer)
                 inputContinuation.yield(analyzerInput)
             }
-            
+
             inputContinuation.finish()
+
+            try? await analyzer.finalizeAndFinishThroughEndOfInput()
         }
-        
+
         Task {
             do {
                 for try await result in transcriber.results {
-                    let attributedText = result.text
-                    let transcriptUpdate = TranscriptUpdate(text: attributedText, isFinal: false)
-                    
+                    let transcriptUpdate = TranscriptUpdate(
+                        text: result.text,
+                        isFinal: result.isFinal
+                    )
+
                     outputContinuation.yield(transcriptUpdate)
                 }
+
+                outputContinuation.finish()
             } catch {
                 print("STT 변환 실패: \(error)")
-                
+                outputContinuation.finish(throwing: error)
             }
         }
         
@@ -88,19 +100,29 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         sourceFormat: AVAudioFormat,
         targetFormat: AVAudioFormat
     ) -> AVAudioPCMBuffer? {
-        guard let audioConverter = AVAudioConverter(from: sourceFormat, to: targetFormat) else {
+        guard let audioConverter = AVAudioConverter(
+            from: sourceFormat,
+            to: targetFormat
+        ) else {
             print("AVAudioConverter 생성 실패")
             
             return nil
         }
         
         nonisolated(unsafe) let rawBuffer = inputBuffer.pcmBuffer
-        
+
+        guard rawBuffer.frameLength > 0 else { return nil }
+
         let capacity = AVAudioFrameCount(
             Double(rawBuffer.frameLength) * (targetFormat.sampleRate / sourceFormat.sampleRate)
         )
-        
-        guard let outputBuffer = AVAudioPCMBuffer(pcmFormat: targetFormat, frameCapacity: capacity) else {
+
+        guard capacity > 0 else { return nil }
+
+        guard let outputBuffer = AVAudioPCMBuffer(
+            pcmFormat: targetFormat,
+            frameCapacity: capacity
+        ) else {
             print("outputBuffer 생성 실패")
             
             return nil
@@ -108,14 +130,18 @@ struct SpeechTranscriptionService: SpeechTranscribing {
         
         var error: NSError?
         
-        
         let inputBlock: AVAudioConverterInputBlock = { requestedPackets, statusPointer in
             statusPointer.pointee = .haveData
             
             return rawBuffer
         }
         
-        audioConverter.convert(to: outputBuffer, error: &error, withInputFrom: inputBlock)
+        audioConverter
+            .convert(
+                to: outputBuffer,
+                error: &error,
+                withInputFrom: inputBlock
+            )
         
         if let error = error {
             print("변환 실패: \(error)")

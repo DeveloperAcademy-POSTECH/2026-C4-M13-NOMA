@@ -12,34 +12,20 @@ struct QuestionAnswerSectionView: View {
     // MARK: - Properties
 
     let question: String
-    let answerText: String
-    let correction: Correction?
-
-    // TODO: - 추후 데이터 모델로 교체 예정
-    
-    struct Correction {
-        let originalText: String
-        let correctedText: String
-        let explanation: String
-    }
+    let sentences: [AnswerSentence]
+    var onListenTapped: (String) -> Void = { _ in }
 
     // MARK: - Body
 
+    /// LazyVStack(pinnedViews: [.sectionHeaders])의 자식으로 놓이면 question이 스크롤 시 상단에 고정된다.
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            questionTitle
-
-            AnswerSentenceCardView(text: answerText)
-                .padding(.bottom, 16)
-
-            if let correction {
-                CorrectionFeedbackCardView(
-                    originalText: correction.originalText,
-                    correctedText: correction.correctedText,
-                    explanation: correction.explanation
-                )
-                .padding(.bottom, 16)
+        Section {
+            ForEach(sentences.indices, id: \.self) { index in
+                sentenceBlock(sentences[index])
+                    .padding(.bottom, 16)
             }
+        } header: {
+            questionTitle
         }
     }
 }
@@ -48,10 +34,44 @@ struct QuestionAnswerSectionView: View {
 
 extension QuestionAnswerSectionView {
     private var questionTitle: some View {
-        Text(question)
-            .font(.title3)
-            .fontWeight(.semibold)
-            .foregroundStyle(.secondary)
-            .padding(.bottom, 16)
+        HStack {
+            Text(question)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+        }
+        .padding(.vertical, 16)
+        .background(Color(nsColor: .controlBackgroundColor))
+    }
+
+    @ViewBuilder
+    private func sentenceBlock(_ sentence: AnswerSentence) -> some View {
+        AnswerSentenceCardView(text: sentence.text)
+
+        switch sentence.feedbackStatus {
+        case .none:
+            EmptyView()
+
+        case .pending:
+            HStack(spacing: 8) {
+                SpinningRingLoader()
+                    .frame(width: 16, height: 16)
+
+                Text("피드백 확인 중")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.leading, 4)
+
+        case .corrected(let feedback):
+            CorrectionFeedbackCardView(
+                originalText: sentence.text,
+                correctedText: feedback.revisedSentence,
+                explanation: feedback.explanation,
+                onListenTapped: { onListenTapped(feedback.revisedSentence) }
+            )
+        }
     }
 }

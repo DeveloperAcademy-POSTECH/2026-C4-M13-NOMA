@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol QuestionSpeaking {
     func speak(_ text: String) async throws
     func stopSpeaking()

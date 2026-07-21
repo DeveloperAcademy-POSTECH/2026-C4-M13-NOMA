@@ -14,6 +14,7 @@ struct CorrectionFeedbackCardView: View {
     let originalText: String
     let correctedText: String
     let explanation: String
+    var onListenTapped: () -> Void = {}
     
     // MARK: - Body
     
@@ -60,9 +61,7 @@ extension CorrectionFeedbackCardView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.foreground)
 
-            Button {
-                print("듣기 버튼 탭")
-            } label: {
+            Button(action: onListenTapped) {
                 Image(systemName: "speaker.wave.2")
                     .font(.title3)
                     .foregroundStyle(.secondary)

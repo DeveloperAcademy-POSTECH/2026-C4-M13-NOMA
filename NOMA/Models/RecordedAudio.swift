@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecordedAudio: Sendable {
+nonisolated struct RecordedAudio: Sendable {
     let fileURL: URL
     let duration: Duration
 }

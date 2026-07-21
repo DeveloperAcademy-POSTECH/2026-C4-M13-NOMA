@@ -8,7 +8,8 @@
 import AVFoundation
 import Foundation
 
-final class AVSpeechSynthesizerService: QuestionSpeaking {
+@MainActor
+final class AVSpeechSynthesizerService: NSObject, QuestionSpeaking {
 
     // MARK: - Properties
 
@@ -17,6 +18,7 @@ final class AVSpeechSynthesizerService: QuestionSpeaking {
     private let speechPitch: Float
     private let speechVolume: Float
     private let languageCode = "ko-KR"
+    private var speechContinuation: CheckedContinuation<Void, Never>?
 
     // MARK: - Initializer
 
@@ -30,6 +32,8 @@ final class AVSpeechSynthesizerService: QuestionSpeaking {
         self.speechRate = speechRate
         self.speechPitch = speechPitch
         self.speechVolume = speechVolume
+        super.init()
+        self.speechSynthesizer.delegate = self
     }
 
     // MARK: - Speaking
@@ -41,12 +45,13 @@ final class AVSpeechSynthesizerService: QuestionSpeaking {
         stopSpeaking()
 
         let utterance = makeUtterance(text: trimmedText)
-        speechSynthesizer.speak(utterance)
+        await withCheckedContinuation { continuation in
+            speechContinuation = continuation
+            speechSynthesizer.speak(utterance)
+        }
     }
 
     func stopSpeaking() {
-        guard speechSynthesizer.isSpeaking || speechSynthesizer.isPaused else { return }
-
         speechSynthesizer.stopSpeaking(at: .immediate)
     }
 
@@ -60,5 +65,32 @@ final class AVSpeechSynthesizerService: QuestionSpeaking {
         utterance.volume = speechVolume
 
         return utterance
+    }
+
+    private func resumeSpeechContinuation() {
+        speechContinuation?.resume()
+        speechContinuation = nil
+    }
+}
+
+// MARK: - AVSpeechSynthesizerDelegate
+
+extension AVSpeechSynthesizerService: AVSpeechSynthesizerDelegate {
+    nonisolated func speechSynthesizer(
+        _ synthesizer: AVSpeechSynthesizer,
+        didFinish utterance: AVSpeechUtterance
+    ) {
+        Task { @MainActor in
+            resumeSpeechContinuation()
+        }
+    }
+
+    nonisolated func speechSynthesizer(
+        _ synthesizer: AVSpeechSynthesizer,
+        didCancel utterance: AVSpeechUtterance
+    ) {
+        Task { @MainActor in
+            resumeSpeechContinuation()
+        }
     }
 }

@@ -9,7 +9,12 @@ import Foundation
 import FoundationModels
 
 actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
+    
+    // MARK: - Properties
+    
     private var currentTask: Task<SentenceFeedback?, any Error>?
+    
+    // MARK: - Functions
     
     private func cancel() {
         currentTask?.cancel()

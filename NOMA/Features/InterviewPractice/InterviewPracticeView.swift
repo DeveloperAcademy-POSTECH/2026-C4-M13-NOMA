@@ -13,12 +13,14 @@ struct InterviewPracticeView: View {
     
     @Environment(AppRouter.self) private var router
     @Environment(\.openWindow) private var openWindow
-    @State private var currentQuestion = 1
+    
     @State private var isFeedbackVisible = true
+
+    let store: InterviewPracticeStore
     private let totalQuestions = 6
 
     // MARK: - Body
-    
+
     var body: some View {
         VStack(spacing: 0) {
             header
@@ -32,6 +34,7 @@ struct InterviewPracticeView: View {
 
                 if isFeedbackVisible {
                     Divider()
+
                     feedbackPanel
                 }
             }
@@ -40,21 +43,32 @@ struct InterviewPracticeView: View {
             minWidth: 800,
             minHeight: 560
         )
+        .onAppear {
+            store.send(.viewAppeared)
+        }
     }
 }
 
 // MARK: - SubViews
 
 extension InterviewPracticeView {
+    private var currentQuestionNumber: Int {
+        store.state.session.currentQuestionIndex + 1
+    }
+
+    private var displayedQuestionNumber: Int {
+        store.state.phase == .ready ? 0 : currentQuestionNumber
+    }
+
     private var header: some View {
         HStack(spacing: 8) {
-            Text("문제 \(currentQuestion)/\(totalQuestions)")
+            Text("문제 \(displayedQuestionNumber)/\(totalQuestions)")
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
 
             ProgressView(
-                value: Double(currentQuestion),
+                value: Double(displayedQuestionNumber),
                 total: Double(totalQuestions)
             )
             .progressViewStyle(.linear)
@@ -66,7 +80,7 @@ extension InterviewPracticeView {
 
             PushButton(
                 title: "학습 종료",
-                type: .neutral,
+                type: .default,
                 size: .medium
             ) {
                 router.push(.answerAnalysisLoading)
@@ -96,20 +110,48 @@ extension InterviewPracticeView {
         }
     }
     
+    private var questionPromptText: String {
+        store.state.phase == .ready
+            ? BaseInterviewQuestion.readyPromptText
+            : store.state.session.currentQuestion?.content ?? ""
+    }
+
+    private var currentQuestionTitle: String {
+        guard let content = store.state.session.currentQuestion?.content else { return "" }
+        return "Q\(currentQuestionNumber). \(content)"
+    }
+
+    private var displayedAnswerSentences: [AnswerSentence] {
+        var sentences = store.state.answerSentences
+
+        sentences.append(
+            contentsOf: AnswerSentence.splitIntoSentences(store.state.volatileTranscript)
+                .map { AnswerSentence(text: $0) }
+        )
+
+        return sentences
+    }
+
+    private var elapsedTimeText: String {
+        let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
     private var interviewerPane: some View {
         VStack(spacing: 0) {
             Spacer()
 
-            Text("잠시 후 문제가 시작됩니다.")
+            Text(questionPromptText)
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
-
-            Spacer()
+                .padding(.bottom, 288)
 
             bottomControls
-                .padding(.bottom, 28)
+                .padding(.bottom, 112)
         }
         .frame(
             maxWidth: .infinity,
@@ -120,7 +162,7 @@ extension InterviewPracticeView {
 
     private var bottomControls: some View {
         VStack(spacing: 18) {
-            Text("00:00")
+            Text(elapsedTimeText)
                 .font(.body)
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
@@ -129,13 +171,13 @@ extension InterviewPracticeView {
                 title: "답변 완료",
                 capsuleButtonType: .primary
             ) {
-                
+                store.send(.finishAnswering)
             }
             .frame(
                 width: 120,
                 height: 42
             )
-            .disabled(true)
+            .disabled(!store.state.canFinishAnswer)
         }
     }
     
@@ -144,76 +186,64 @@ extension InterviewPracticeView {
             alignment: .leading,
             spacing: 0
         ) {
-            HStack {
-                Text("􀅂")
-                    .font(.title3)
-                    .fontWeight(.medium)
-                    .foregroundStyle(.secondary)
-                
-                Text("피드백")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.primary)
-                Spacer()
+            Text("피드백")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
 
-                HStack(spacing: 8) {
-                    Button {
-                        if currentQuestion > 1 { currentQuestion -= 1 }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .fontWeight(.medium)
-                            .foregroundStyle(.accent)
+            if store.state.phase != .ready {
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        LazyVStack(
+                            alignment: .leading,
+                            spacing: 0,
+                            pinnedViews: [.sectionHeaders]
+                        ) {
+                            QuestionAnswerSectionView(
+                                question: currentQuestionTitle,
+                                sentences: displayedAnswerSentences,
+                                onListenTapped: { correctedText in
+                                    store.send(.correctedSentencePlaybackRequested(correctedText))
+                                }
+                            )
+                            .padding(.horizontal, 20)
+                        }
+                        .padding(.bottom, 20)
+
+                        Color.clear
+                            .frame(height: 1)
+                            .id("transcriptBottom")
                     }
-                    .buttonStyle(.plain)
-
-                    Text("\(currentQuestion)/\(totalQuestions)")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
-
-                    Button {
-                        if currentQuestion < totalQuestions { currentQuestion += 1 }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .fontWeight(.medium)
-                            .foregroundStyle(.accent)
+                    .onChange(of: store.state.liveTranscript) {
+                        withAnimation(.easeOut(duration: 0.15)) {
+                            proxy.scrollTo("transcriptBottom", anchor: .bottom)
+                        }
                     }
-                    .buttonStyle(.plain)
                 }
-            }
-            .padding(.horizontal, 30)
-            .padding(.vertical, 16)
 
-            Divider()
+                if let overallFeedbackText = store.state.overallFeedbackText, !overallFeedbackText.isEmpty {
+                    Divider()
 
-            ScrollView {
-                VStack(
-                    alignment: .leading,
-                    spacing: 16
-                ) {
-                    QuestionAnswerSectionView(
-                        question: "Q1. 자기소개를 해주십시오.",
-                        answerText: "안녕하십니까, 저는 지원자 셀리나 입니다.",
-                        correction: .init(
-                            originalText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                            correctedText: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                            explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다."
-                        )
-                    )
+                    OverallFeedbackCardView(feedbackText: overallFeedbackText)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
                 }
-                .padding(20)
+            } else {
+                Spacer(minLength: 0)
             }
 
-            Divider()
-            
-            OverallFeedbackCardView(
-                feedbackText: "일부 문장에서 격식체 어미가 사용되지 않았습니다.\n다음 답변에서는 '-해요' 대신 '-합니다'를 의식적으로 사용해 보십시오."
-            )
-            
             feedbackBottomButtons
         }
-        .frame(width: 720)
+        .frame(width: 650)
         .background(Color(nsColor: .controlBackgroundColor))
+    }
+
+    private var isAwaitingQuestion: Bool {
+        store.state.phase == .ready
+            || store.state.phase == .askingQuestion
+            || store.state.phase == .generatingFeedback
     }
 
     private var feedbackBottomButtons: some View {
@@ -222,21 +252,24 @@ extension InterviewPracticeView {
                 title: "다시 답변하기",
                 capsuleButtonType: .secondary
             ) {
-                
+                store.send(.retryCurrentAnswer)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 44)
+            .frame(height: 42)
+            .disabled(isAwaitingQuestion)
 
             CapsuleButton(
                 title: "다음 질문",
                 capsuleButtonType: .primary
             ) {
-                
+                store.send(.moveToNextQuestion)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 44)
+            .frame(height: 42)
+            .disabled(isAwaitingQuestion)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 16)
+        .padding(.horizontal, 20)
+        .padding(.top, 20)
+        .padding(.bottom, 50)
     }
 }

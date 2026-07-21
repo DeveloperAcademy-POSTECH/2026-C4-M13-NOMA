@@ -14,9 +14,11 @@ final class InterviewQuestion {
     var content: String
     var isFollowUp: Bool
     
-    init(questionID: String,
-         content: String,
-         isFollowUp: Bool) {
+    init(
+        questionID: String,
+        content: String,
+        isFollowUp: Bool
+    ) {
         self.questionID = questionID
         self.content = content
         self.isFollowUp = isFollowUp

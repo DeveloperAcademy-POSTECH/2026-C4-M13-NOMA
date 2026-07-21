@@ -8,7 +8,7 @@
 import AVFoundation
 import Foundation
 
-final class AVAudioRecordingService: AudioRecording {
+nonisolated final class AVAudioRecordingService: AudioRecording {
 
     // MARK: - Properties
 
