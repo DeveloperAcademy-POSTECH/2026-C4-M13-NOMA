@@ -32,3 +32,16 @@ final class PracticeSession {
         questions.indices.contains(currentQuestionIndex) ? questions[currentQuestionIndex] : nil
     }
 }
+
+extension PracticeSession {
+    static func makeInitial() -> PracticeSession {
+        let questions = BaseInterviewQuestion.allCases.enumerated().map { index, base in
+            InterviewQuestion(
+                questionID: "q\(index * 2 + 1)",
+                content: base.content,
+                isFollowUp: false
+            )
+        }
+        return PracticeSession(questions: questions)
+    }
+}

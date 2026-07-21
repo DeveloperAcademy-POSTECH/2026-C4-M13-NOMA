@@ -8,11 +8,16 @@
 import Foundation
 
 struct Effect<Action> {
+    
+    // MARK: - Propertise
+    
     typealias Send = (Action) async -> Void
     private let operation: ((Send) async -> Void)?
 
     static var none: Effect { Effect(operation: nil) }
 
+    // MARK: - Functions
+    
     static func run(
         _ operation: @escaping (Send) async -> Void
     ) -> Effect {
@@ -28,6 +33,9 @@ struct Effect<Action> {
 }
 
 final class InterviewPracticeReducer {
+    
+    // MARK: - Properties
+    
     private let audioRecorder: AudioRecording
     private let questionSpeaker: QuestionSpeaking
     private let speechTranscribing: SpeechTranscribing
@@ -35,6 +43,8 @@ final class InterviewPracticeReducer {
     private let followUpQuestionGenerating: FollowUpQuestionGenerating
     private let maximumRecordingDuration: Duration = .seconds(180)
 
+    // MARK: - Initializer
+    
     init(
         audioRecorder: AudioRecording,
         questionSpeaker: QuestionSpeaking,
@@ -49,15 +59,24 @@ final class InterviewPracticeReducer {
         self.followUpQuestionGenerating = followUpQuestionGenerating
     }
     
+    // MARK: - Functions
+    
     func reduce(
         state: inout InterviewPracticeState,
         action: InterviewPracticeAction
     ) -> Effect<InterviewPracticeAction> {
         switch action {
+            
         case .viewAppeared:
+            return .run { send in
+                try? await Task.sleep(for: .seconds(3))
+                await send(.readyCountdownFinished)
+            }
+
+        case .readyCountdownFinished:
             state.phase = .askingQuestion
             return .none
-            
+
         case .questionSpeechFinished:
             state.phase = .recording
             return .none
@@ -68,12 +87,18 @@ final class InterviewPracticeReducer {
 
         case .moveToNextQuestion:
             if let pending = state.session.pendingFollowUpQuestion {
-                state.session.questions.append(pending)
+                let insertIndex = state.session.currentQuestionIndex + 1
+                pending.questionID = "q\(insertIndex + 1)"
+                state.session.questions.insert(pending, at: insertIndex)
                 state.session.pendingFollowUpQuestion = nil
             }
+
             state.session.currentQuestionIndex += 1
+            
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
-                ? .askingQuestion : .completed
+            ? .askingQuestion
+            : .completed
+            
             return .none
 
         case .retryCurrentAnswer:

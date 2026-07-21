@@ -26,7 +26,7 @@ struct AppRootView: View {
                         case .onboarding: OnboardingView()
                         case .home: HomeView()
                         case .permission: PermissionView()
-                        case .interviewPractice: InterviewPracticeView()
+                        case .interviewPractice: InterviewPracticeView(store: AppRootView.makeInterviewPracticeStore())
                         case .answerAnalysisLoading: AnswerAnalysisLoadingView()
                         case .practiceSummary: PracticeSummaryView()
                         case .learningHistory: LearningHistoryView()
@@ -36,5 +36,22 @@ struct AppRootView: View {
                 }
         }
         .environment(router)
+    }
+}
+
+// MARK: - Factory
+
+extension AppRootView {
+    private static func makeInterviewPracticeStore() -> InterviewPracticeStore {
+        InterviewPracticeStore(
+            session: .makeInitial(),
+            reducer: InterviewPracticeReducer(
+                audioRecorder: AVAudioRecordingService(),
+                questionSpeaker: AVSpeechSynthesizerService(),
+                speechTranscribing: SpeechTranscriptionService(),
+                interviewFeedbackGenerating: FoundationModelsFeedbackService(),
+                followUpQuestionGenerating: FollowUpQuestionGeneratingService()
+            )
+        )
     }
 }

@@ -39,6 +39,7 @@
 		ECC3323B300FB78A006FD6EB /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323A300FB78A006FD6EB /* AppRoute.swift */; };
 		ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323C300FB78E006FD6EB /* AppRouter.swift */; };
 		ECC3323F300FB7DE006FD6EB /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323E300FB7DE006FD6EB /* AppRootView.swift */; };
+		ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -112,6 +113,7 @@
 		ECC3323A300FB78A006FD6EB /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		ECC3323C300FB78E006FD6EB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		ECC3323E300FB7DE006FD6EB /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterviewQuestion.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -248,8 +250,9 @@
 		EC4D4FB530071E5F00FB5735 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
 				F14EC931300F88B400EE5C85 /* PracticePhase.swift */,
+				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
+				ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				ECC33227300DF637006FD6EB /* PracticeSummaryView.swift in Sources */,
 				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
 				ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */,
+				ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */,
 				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,

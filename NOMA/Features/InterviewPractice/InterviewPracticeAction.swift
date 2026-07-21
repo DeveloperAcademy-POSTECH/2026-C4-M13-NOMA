@@ -10,6 +10,7 @@ import Foundation
 enum InterviewPracticeAction {
     case viewAppeared // InterviewPracticeView가 화면에 나타났을 때
     case viewDisappeared // 화면이 사라질 때
+    case readyCountdownFinished // ready 안내 문구가 3초간 노출된 뒤 질문 시작 시점이 됐을 때
     case questionSpeechFinished // TTS가 질문을 다 끝냈을 때
     case finishAnswering // 사용자가 "답변 완료" 버튼을 눌렀을 때
     case recordingTimeLimitReached // 3분 타이머가 다 됐을 때 (버튼 안 눌러도 강제 종료)
