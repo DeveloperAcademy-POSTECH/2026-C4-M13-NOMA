@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import Lottie
+
 struct InterviewPracticeView: View {
 
     // MARK: - Properties
@@ -143,12 +145,19 @@ extension InterviewPracticeView {
         VStack(spacing: 0) {
             Spacer()
 
+            if let currentLottieAnimationName {
+                LottieView(animation: .named(currentLottieAnimationName))
+                    .looping()
+                    .frame(width: 385)
+                    .id(currentLottieAnimationName)
+            }
+
             Text(questionPromptText)
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 288)
+                .padding(.bottom, currentLottieAnimationName != nil ? 94 : 288)
 
             bottomControls
                 .padding(.bottom, 112)
@@ -158,6 +167,22 @@ extension InterviewPracticeView {
             maxHeight: .infinity
         )
         .background(Color(nsColor: .windowBackgroundColor))
+    }
+    
+    private var currentLottieAnimationName: String? {
+        switch store.state.phase {
+        case .ready:
+            return nil
+            
+        case .askingQuestion:
+            return "Question playing"
+            
+        case .recording:
+            return "UserSpeaking"
+            
+        default:
+            return "Standby"
+        }
     }
 
     private var bottomControls: some View {
