@@ -43,14 +43,21 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
                 generating: FoundationModelsOutput.self,
             ).content
             
-            let cleanedOriginal = sentence.trimmingCharacters(in: .whitespacesAndNewlines)
-            let cleanedRevised = feedbackOutput.revisedSentence.trimmingCharacters(in: .whitespacesAndNewlines)
-
-            if feedbackOutput.feedback && cleanedRevised != cleanedOriginal {
-                return SentenceFeedback(revisedSentence: feedbackOutput.revisedSentence, explanation: feedbackOutput.explanation)
-            } else {
-                return nil
+            let valid = feedbackOutput.corrections.filter {
+                !$0.originalExpression.isEmpty
+                    && sentence.contains($0.originalExpression)
+                    && feedbackOutput.revisedSentence.contains($0.correctedExpression)
+                    && $0.originalExpression != $0.correctedExpression
             }
+
+            guard feedbackOutput.feedback, !valid.isEmpty else { return nil }
+
+            return SentenceFeedback(
+                revisedSentence: feedbackOutput.revisedSentence,
+                explanation: valid
+                    .map { $0.reason.explanation(from: $0.originalExpression, to: $0.correctedExpression) }
+                    .joined(separator: " ")
+            )
         } catch {
             throw foundationModelsError(error)
         }
