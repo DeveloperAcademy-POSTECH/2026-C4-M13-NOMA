@@ -108,7 +108,6 @@ extension OnboardingView {
                 capsuleButtonType: .primary
             ) {
                 router.push(.home)
-                print("시작하기")
             }
             .frame(
                 width: 200,
