@@ -15,7 +15,7 @@ enum InterviewPracticeAction {
     case transcriptUpdated(text: String, isFinal: Bool) // 실시간 STT 결과가 갱신됐을 때 (isFinal이면 확정 문장으로 누적)
     case finishAnswering                                // 사용자가 "답변 완료" 버튼을 눌렀을 때
     case recordingTimeLimitReached                      // 3분 타이머가 다 됐을 때 (버튼 안 눌러도 강제 종료)
-    case feedbackGenerated([AnswerSentence])            // 문장별 격식체 피드백 생성이 끝났을 때
+    case sentenceFeedbackArrived(index: Int, originalText: String, feedback: SentenceFeedback) // 확정 문장 하나의 격식체 피드백이 도착했을 때
     case retryCurrentAnswer                             // 사용자가 "다시 답변하기" 버튼을 눌렀을 때
     case moveToNextQuestion                             // 사용자가 "다음 질문" 버튼을 눌렀을 때
     case captionsChanged(Bool)                          // 자막 토글을 켜거나 껐을 때

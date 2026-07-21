@@ -58,26 +58,47 @@ final class InterviewPracticeReducer {
             state.elapsedRecordingDuration = .zero
             state.liveTranscript = ""
             state.finalizedTranscript = ""
+            state.volatileTranscript = ""
             state.answerSentences = []
             return startRecordingEffect()
 
         case .transcriptUpdated(let text, let isFinal):
-            if isFinal {
-                state.finalizedTranscript += text
-                state.liveTranscript = state.finalizedTranscript
-            } else {
+            guard isFinal else {
+                state.volatileTranscript = text
                 state.liveTranscript = state.finalizedTranscript + text
+                return .none
             }
+
+            state.finalizedTranscript += text
+            state.volatileTranscript = ""
+            state.liveTranscript = state.finalizedTranscript
+
+            // 확정된 문장은 즉시 카드로 추가하고, 곧바로 격식체 피드백 생성을 요청한다.
+            let newSentences = AnswerSentence.splitIntoSentences(text)
+            guard !newSentences.isEmpty else { return .none }
+
+            let startIndex = state.answerSentences.count
+            state.answerSentences.append(
+                contentsOf: newSentences.map { AnswerSentence(text: $0, feedback: nil) }
+            )
+            return generateSentenceFeedbackEffect(
+                sentences: newSentences,
+                startIndex: startIndex
+            )
+
+        case .sentenceFeedbackArrived(let index, let originalText, let feedback):
+            // 재답변/다음 질문으로 문장 목록이 초기화된 뒤 도착한 낡은 피드백은 무시한다.
+            guard state.answerSentences.indices.contains(index),
+                  state.answerSentences[index].text == originalText else { return .none }
+
+            state.answerSentences[index].feedback = feedback
             return .none
 
         case .finishAnswering, .recordingTimeLimitReached:
-            state.phase = .generatingFeedback
-            return generateFeedbackEffect(transcript: state.liveTranscript)
-
-        case .feedbackGenerated(let sentences):
-            state.answerSentences = sentences
             state.phase = .reviewing
-            return .none
+            return .run { [audioRecorder] _ in
+                _ = try? await audioRecorder.stopRecording()
+            }
 
         case .moveToNextQuestion:
             if let pending = state.session.pendingFollowUpQuestion {
@@ -89,6 +110,7 @@ final class InterviewPracticeReducer {
 
             state.liveTranscript = ""
             state.finalizedTranscript = ""
+            state.volatileTranscript = ""
             state.answerSentences = []
             state.session.currentQuestionIndex += 1
 
@@ -129,22 +151,23 @@ extension InterviewPracticeReducer {
         }
     }
 
-    private func generateFeedbackEffect(transcript: String) -> Effect<InterviewPracticeAction> {
-        .run { [
-            audioRecorder,
-            interviewFeedbackGenerating
-        ] send in
-            _ = try? await audioRecorder.stopRecording()
+    private func generateSentenceFeedbackEffect(
+        sentences: [String],
+        startIndex: Int
+    ) -> Effect<InterviewPracticeAction> {
+        .run { [interviewFeedbackGenerating] send in
+            for (offset, sentenceText) in sentences.enumerated() {
+                // 생성 실패 또는 교정 불필요(nil)면 아무것도 보내지 않는다 → 발화 카드만 유지된다.
+                guard let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil else {
+                    continue
+                }
 
-            var results: [AnswerSentence] = []
-
-            for sentenceText in AnswerSentence.splitIntoSentences(transcript) {
-                
-                let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil
-                results.append(AnswerSentence(text: sentenceText, feedback: feedback))
+                await send(.sentenceFeedbackArrived(
+                    index: startIndex + offset,
+                    originalText: sentenceText,
+                    feedback: feedback
+                ))
             }
-
-            await send(.feedbackGenerated(results))
         }
     }
 

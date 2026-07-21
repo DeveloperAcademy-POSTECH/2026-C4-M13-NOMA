@@ -46,14 +46,14 @@ extension QuestionAnswerSectionView {
 
     @ViewBuilder
     private func sentenceBlock(_ sentence: AnswerSentence) -> some View {
+        AnswerSentenceCardView(text: sentence.text)
+
         if let feedback = sentence.feedback {
             CorrectionFeedbackCardView(
                 originalText: sentence.text,
                 correctedText: feedback.revisedSentence,
                 explanation: feedback.explanation
             )
-        } else {
-            AnswerSentenceCardView(text: sentence.text)
         }
     }
 }

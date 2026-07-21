@@ -15,6 +15,7 @@ struct InterviewPracticeState {
     var isExitConfirmationPresented: Bool = false
     var liveTranscript: String = ""
     var finalizedTranscript: String = ""
+    var volatileTranscript: String = ""
     var answerSentences: [AnswerSentence] = []
 
     var canFinishAnswer: Bool {

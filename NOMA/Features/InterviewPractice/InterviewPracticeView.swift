@@ -117,13 +117,16 @@ extension InterviewPracticeView {
         return "Q\(currentQuestionNumber). \(content)"
     }
 
+    /// 확정된 문장 카드들 뒤에, 아직 확정되지 않은 발화 중 문장을 임시 카드로 덧붙인다.
     private var displayedAnswerSentences: [AnswerSentence] {
-        if !store.state.answerSentences.isEmpty {
-            return store.state.answerSentences
-        }
+        var sentences = store.state.answerSentences
 
-        return AnswerSentence.splitIntoSentences(store.state.liveTranscript)
-            .map { AnswerSentence(text: $0, feedback: nil) }
+        sentences.append(
+            contentsOf: AnswerSentence.splitIntoSentences(store.state.volatileTranscript)
+                .map { AnswerSentence(text: $0, feedback: nil) }
+        )
+
+        return sentences
     }
 
     private var elapsedTimeText: String {
