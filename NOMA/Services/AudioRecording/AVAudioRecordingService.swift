@@ -12,7 +12,7 @@ final class AVAudioRecordingService: AudioRecording {
 
     // MARK: - Properties
 
-    private let audioEngine: AVAudioEngine
+    let audioEngine: AVAudioEngine
     private let inputBus: AVAudioNodeBus
 
     private var audioFile: AVAudioFile?
