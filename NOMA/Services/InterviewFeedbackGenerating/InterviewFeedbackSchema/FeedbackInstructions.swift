@@ -22,6 +22,7 @@ enum FeedbackInstructions {
 
     Preserve the original meaning of the sentence. Make only the minimal changes needed to fix honorifics and speech style.
     If the sentence is already correct, do not change anything.
+    If nothing needs to be fixed, corrections MUST be an empty array and feedback MUST be false.
     Report EVERY expression you changed as a separate item in corrections, in the order they appear in the input.
     originalExpression MUST be copied character-for-character from the input sentence.
     Do NOT treat transcription errors as mistakes to correct.
