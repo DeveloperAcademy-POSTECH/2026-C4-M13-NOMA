@@ -8,6 +8,8 @@
 import Foundation
 
 enum BaseInterviewQuestion: Int, CaseIterable {
+    static let readyPromptText = "잠시 후 문제가 시작됩니다."
+
     case selfIntroduction
     case relevantExperience
     case strength

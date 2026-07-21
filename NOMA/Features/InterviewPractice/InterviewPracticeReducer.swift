@@ -68,8 +68,9 @@ final class InterviewPracticeReducer {
         switch action {
             
         case .viewAppeared:
-            return .run { send in
-                try? await Task.sleep(for: .seconds(3))
+            return .run { [questionSpeaker] send in
+                try? await questionSpeaker.speak(BaseInterviewQuestion.readyPromptText)
+                try? await Task.sleep(for: .seconds(5))
                 await send(.readyCountdownFinished)
             }
 

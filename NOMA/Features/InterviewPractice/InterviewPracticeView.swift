@@ -108,7 +108,7 @@ extension InterviewPracticeView {
     
     private var questionPromptText: String {
         store.state.phase == .ready
-            ? "잠시 후 문제가 시작됩니다."
+            ? BaseInterviewQuestion.readyPromptText
             : store.state.session.currentQuestion?.content ?? ""
     }
 
