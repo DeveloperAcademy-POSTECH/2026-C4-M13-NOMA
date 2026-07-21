@@ -7,9 +7,8 @@
 
 import Foundation
 
-protocol InterviewFeedbackGenerating {
-    func generateFeedback(
-        question: InterviewQuestion,
-        transcript: String
-    ) async throws -> AnswerFeedback
+nonisolated protocol InterviewFeedbackGenerating {
+    func generateFeedback(sentence: String) async throws(FoundationModelsGenerationError) -> SentenceFeedback?
+    func generateOverallFeedback(items: [FeedbackItem]) async throws(FoundationModelsGenerationError) -> String
+    func stopFeedback()
 }

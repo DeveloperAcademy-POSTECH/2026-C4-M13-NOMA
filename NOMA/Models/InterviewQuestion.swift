@@ -6,9 +6,19 @@
 //
 
 import Foundation
+import SwiftData
 
-struct InterviewQuestion {
-    let questionID: String
-    let content: String
-    let isFollowUp: Bool
+@Model
+final class InterviewQuestion {
+    var questionID: String
+    var content: String
+    var isFollowUp: Bool
+    
+    init(questionID: String,
+         content: String,
+         isFollowUp: Bool) {
+        self.questionID = questionID
+        self.content = content
+        self.isFollowUp = isFollowUp
+    }
 }
