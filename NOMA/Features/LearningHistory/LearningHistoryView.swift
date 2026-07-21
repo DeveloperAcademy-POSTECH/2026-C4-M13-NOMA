@@ -11,6 +11,8 @@ struct LearningHistoryView: View {
     
     // MARK: - Properties
     
+    @Environment(AppRouter.self) private var router
+
     // FIXME: - 예시 데이터, 모델 배열로 교체할 예정
     private let sessionNumbers = Array(1...50).reversed()
 
@@ -28,8 +30,7 @@ struct LearningHistoryView: View {
                 title: "학습 기록",
                 actionTitle: "홈으로 이동"
             ) {
-                // FIXME: - 액션 주입
-                print("홈으로 이동 버튼 탭")
+                router.popToRoot()
             }
 
             learningHistoryScrollView
@@ -65,8 +66,4 @@ extension LearningHistoryView {
             }
         }
     }
-}
-
-#Preview {
-    LearningHistoryView()
 }

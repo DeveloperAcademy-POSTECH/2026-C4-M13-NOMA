@@ -9,6 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // MARK: - Properties
+
+    @Environment(AppRouter.self) private var router
+
     // MARK: - Body
 
     var body: some View {
@@ -37,10 +41,13 @@ struct HomeView: View {
                 type: .borderless,
                 size: .small
             ) {
-                // FIXME: - 액션 주입
-                print("더보기 버튼 클릭")
+                router.push(.learningHistory)
             }
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
     }
 }
 
@@ -60,7 +67,7 @@ extension HomeView {
             title: "학습하기",
             capsuleButtonType: .primary
         ) {
-            print("학습하기 버튼 클릭")
+            router.push(.permission)
         }
         .frame(
             width: 300,
