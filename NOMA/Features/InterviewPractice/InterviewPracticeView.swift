@@ -9,12 +9,16 @@ import SwiftUI
 
 struct InterviewPracticeView: View {
 
+    // MARK: - Properties
+    
+    @Environment(AppRouter.self) private var router
     @Environment(\.openWindow) private var openWindow
-
-    private let totalQuestions = 6
     @State private var currentQuestion = 1
     @State private var isFeedbackVisible = true
+    private let totalQuestions = 6
 
+    // MARK: - Body
+    
     var body: some View {
         VStack(spacing: 0) {
             header
@@ -32,9 +36,14 @@ struct InterviewPracticeView: View {
                 }
             }
         }
-        .frame(minWidth: 800, minHeight: 560)
+        .frame(
+            minWidth: 800,
+            minHeight: 560
+        )
     }
 }
+
+// MARK: - SubViews
 
 extension InterviewPracticeView {
     private var header: some View {
@@ -55,18 +64,31 @@ extension InterviewPracticeView {
 
             layoutToggleButtons
 
-            PushButton(title: "학습 종료", type: .neutral, size: .medium) {
-                // 홈으로 가기
+            PushButton(
+                title: "학습 종료",
+                type: .neutral,
+                size: .medium
+            ) {
+                router.push(.answerAnalysisLoading)
             }
         }
     }
     
     private var layoutToggleButtons: some View {
         HStack(spacing: 4) {
-            PushButton(title: "􀧵", type: .neutral, size: .medium) {
+            PushButton(
+                title: "􀧵",
+                type: .neutral,
+                size: .medium
+            ) {
                 openWindow(id: "memo")
             }
-            PushButton(title: "􀏛", type: .neutral, size: .medium) {
+            
+            PushButton(
+                title: "􀏛",
+                type: .neutral,
+                size: .medium
+            ) {
                 withAnimation(.easeInOut(duration: 0.2)) {
                     isFeedbackVisible.toggle()
                 }
@@ -74,9 +96,6 @@ extension InterviewPracticeView {
         }
     }
     
-}
-
-extension InterviewPracticeView {
     private var interviewerPane: some View {
         VStack(spacing: 0) {
             Spacer()
@@ -92,7 +111,10 @@ extension InterviewPracticeView {
             bottomControls
                 .padding(.bottom, 28)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .background(Color(nsColor: .windowBackgroundColor))
     }
 
@@ -103,18 +125,26 @@ extension InterviewPracticeView {
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
 
-            CapsuleButton(title: "답변 완료", capsuleButtonType: .primary) { }
-                .frame(width: 120, height: 42)
-                .disabled(true)
+            CapsuleButton(
+                title: "답변 완료",
+                capsuleButtonType: .primary
+            ) {
+                
+            }
+            .frame(
+                width: 120,
+                height: 42
+            )
+            .disabled(true)
         }
     }
-}
-
-extension InterviewPracticeView {
+    
     private var feedbackPanel: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
             HStack {
-                
                 Text("􀅂")
                     .font(.title3)
                     .fontWeight(.medium)
@@ -154,11 +184,13 @@ extension InterviewPracticeView {
             .padding(.horizontal, 30)
             .padding(.vertical, 16)
 
-
             Divider()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(
+                    alignment: .leading,
+                    spacing: 16
+                ) {
                     QuestionAnswerSectionView(
                         question: "Q1. 자기소개를 해주십시오.",
                         answerText: "안녕하십니까, 저는 지원자 셀리나 입니다.",
@@ -186,13 +218,23 @@ extension InterviewPracticeView {
 
     private var feedbackBottomButtons: some View {
         HStack(spacing: 12) {
-            CapsuleButton(title: "다시 답변하기", capsuleButtonType: .secondary) { }
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
+            CapsuleButton(
+                title: "다시 답변하기",
+                capsuleButtonType: .secondary
+            ) {
+                
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
 
-            CapsuleButton(title: "다음 질문", capsuleButtonType: .primary) { }
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
+            CapsuleButton(
+                title: "다음 질문",
+                capsuleButtonType: .primary
+            ) {
+                
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 16)

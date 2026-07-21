@@ -10,14 +10,23 @@ import SwiftUI
 struct AnswerAnalysisLoadingView: View {
     
     // MARK: - Properties
-    
     @State private var isShowingExitAlert = false
+    @Environment(AppRouter.self) private var router
     
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 0) {
             analyzingStatusView
+        }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
+        .task {
+            try? await Task.sleep(for: .seconds(5))
+            guard !Task.isCancelled else { return }
+            router.push(.practiceSummary)
         }
         .alert(
             "정말 나가시겠습니까?",
@@ -32,8 +41,7 @@ struct AnswerAnalysisLoadingView: View {
             Button(
                 "취소",
                 role: .cancel
-            ) {
-            }
+            ) { }
         } message: {
             Text("지금 화면을 벗어나시면 지금까지 진행된 면접 내용과 설정 정보는 저장되지 않습니다. 그래도 종료하시겠습니까?")
         }

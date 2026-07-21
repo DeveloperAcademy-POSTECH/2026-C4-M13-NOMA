@@ -12,13 +12,20 @@ import SwiftUI
 struct NOMAApp: App {
     var body: some Scene {
         WindowGroup {
-            InterviewPracticeView()
+            AppRootView()
         }
+        .windowToolbarStyle(.unified(showsTitle: false))
 
-        Window("메모창", id: "memo") {
+        Window(
+            "메모창",
+            id: "memo"
+        ) {
             MemoWindowView()
         }
-        .defaultSize(width: 400, height: 405)
+        .defaultSize(
+            width: 400,
+            height: 405
+        )
         .restorationBehavior(.disabled)
     }
 }

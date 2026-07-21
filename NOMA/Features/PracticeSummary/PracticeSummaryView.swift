@@ -11,6 +11,8 @@ struct PracticeSummaryView: View {
     
     // MARK: - Properties
     
+    @Environment(AppRouter.self) private var router
+
     // MARK: - Body
     
     var body: some View {
@@ -19,8 +21,7 @@ struct PracticeSummaryView: View {
                 title: "학습 결과",
                 actionTitle: "홈으로 이동"
             ) {
-                // FIXME: - 액션 주입
-                print("홈으로 이동 버튼 클릭")
+                router.popToRoot()
             }
 
             practiceSummaryScrollView

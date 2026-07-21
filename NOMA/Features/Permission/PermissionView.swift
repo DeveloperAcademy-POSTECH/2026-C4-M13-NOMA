@@ -12,6 +12,7 @@ struct PermissionView: View {
     // MARK: - Properties
 
     @State private var microphonePermissionStatus = MicrophonePermissionStatus()
+    @Environment(AppRouter.self) private var router
     @Environment(\.controlActiveState) private var controlActiveState
 
     // MARK: - Body
@@ -30,6 +31,10 @@ struct PermissionView: View {
 
             returnHomeButton
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .task {
             microphonePermissionStatus.refresh()
         }
@@ -105,27 +110,33 @@ extension PermissionView {
     }
     
     private var permissionStatusText: some View {
-        Text(microphonePermissionStatus.isGranted
-             ? "권한 허용됨"
-             : "권한 허용되지 않음")
-            .font(.callout)
-            .foregroundStyle(microphonePermissionStatus.isGranted
-                             ? .green
-                             : .red)
-            .padding(.vertical, 6)
-            .padding(.horizontal, 8)
-            .background(
-                RoundedRectangle(
-                    cornerRadius: 4,
-                    style: .continuous
-                )
-                .fill(
-                    (microphonePermissionStatus.isGranted
-                     ? Color(nsColor: .systemGreen)
-                     : Color(nsColor: .systemRed))
-                    .opacity(0.1)
-                )
+        Text(
+            microphonePermissionStatus.isGranted
+            ? "권한 허용됨"
+            : "권한 허용되지 않음"
+        )
+        .font(.callout)
+        .foregroundStyle(
+            microphonePermissionStatus.isGranted
+            ? .green
+            : .red
+        )
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(
+            RoundedRectangle(
+                cornerRadius: 4,
+                style: .continuous
             )
+            .fill(
+                (
+                    microphonePermissionStatus.isGranted
+                    ? Color(nsColor: .systemGreen)
+                    : Color(nsColor: .systemRed)
+                )
+                .opacity(0.1)
+            )
+        )
     }
     
     private var actionButtons: some View {
@@ -145,7 +156,7 @@ extension PermissionView {
                 title: "시작하기",
                 capsuleButtonType: .primary
             ) {
-                print("시작하기")
+                router.push(.interviewPractice)
             }
             .frame(
                 width: 200,
@@ -161,8 +172,7 @@ extension PermissionView {
             type: .borderless,
             size: .small
         ) {
-            // FIXME: - 액션 주입
-            print("홈으로 돌아가기")
+            router.popToRoot()
         }
     }
 }
