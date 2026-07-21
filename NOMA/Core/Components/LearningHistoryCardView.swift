@@ -10,8 +10,8 @@ import SwiftUI
 struct LearningHistoryCardView: View {
     
     // MARK: - Properties
-
     @State private var isHovering: Bool = false
+    @Environment(AppRouter.self) private var router
     
     // MARK: - Body
     
@@ -78,8 +78,7 @@ extension LearningHistoryCardView {
     
     private var detailButton: some View {
         Button {
-            // FIXME: - 버튼 액션 구현
-            print("자세히 보기 클릭")
+            router.push(.practiceSummary)
         } label: {
             Text("자세히 보기")
                 .font(.system(size: 13, weight: .medium))
