@@ -193,14 +193,14 @@ extension InterviewPracticeView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
                 .padding(.horizontal, 20)
-                .padding(.top, 16)
+                .padding(.vertical, 16)
 
             if store.state.phase != .ready {
                 ScrollViewReader { proxy in
                     ScrollView {
                         VStack(
                             alignment: .leading,
-                            spacing: 16
+                            spacing: 0
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
@@ -209,6 +209,7 @@ extension InterviewPracticeView {
                                     store.send(.correctedSentencePlaybackRequested(correctedText))
                                 }
                             )
+                            .padding(.bottom, 16)
                         }
                         .padding(20)
 
@@ -227,7 +228,8 @@ extension InterviewPracticeView {
                     Divider()
 
                     OverallFeedbackCardView(feedbackText: overallFeedbackText)
-                        .padding(20)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
                 }
             } else {
                 Spacer(minLength: 0)
@@ -268,6 +270,7 @@ extension InterviewPracticeView {
             .disabled(isAwaitingQuestion)
         }
         .padding(.horizontal, 20)
+        .padding(.top, 20)
         .padding(.bottom, 50)
     }
 }
