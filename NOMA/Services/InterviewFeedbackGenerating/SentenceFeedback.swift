@@ -8,5 +8,5 @@
 struct SentenceFeedback {
     let revisedSentence: String
     let explanation: String
-    let reasons: [FeedbackReason]
+    let corrections: [Correction]
 }

@@ -57,7 +57,7 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
                 explanation: valid
                     .map { $0.reason.explanation(from: $0.originalExpression, to: $0.correctedExpression) }
                     .joined(separator: " "),
-                reasons: valid.map(\.reason)
+                corrections: valid
             )
         } catch {
             throw foundationModelsError(error)
@@ -67,7 +67,7 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
     func generateOverallFeedback(items: [FeedbackItem]) async throws(FoundationModelsGenerationError) -> String {
         _ = await currentTask?.result
         
-        let reasons = items.flatMap { $0.reasons }
+        let reasons = items.flatMap { $0.corrections.map(\.reason) }
         let order: [FeedbackReason] = [.speechStyle, .humbleForm, .subjectHonorific]
         let counts = order.map { reason in (reason, reasons.count { $0 == reason }) }
         guard let top = counts.max(by: { $0.1 < $1.1 }), top.1 > 0 else { return "" }

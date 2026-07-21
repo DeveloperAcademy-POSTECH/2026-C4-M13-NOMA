@@ -11,5 +11,5 @@ struct FeedbackItem: Sendable, Codable {
     let sentenceIndex: Int
     let revisedSentence: String
     let explanation: String
-    let reasons: [FeedbackReason]
+    let corrections: [Correction]
 }
