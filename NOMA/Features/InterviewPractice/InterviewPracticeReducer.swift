@@ -60,6 +60,7 @@ final class InterviewPracticeReducer {
             state.finalizedTranscript = ""
             state.volatileTranscript = ""
             state.answerSentences = []
+            state.overallFeedbackText = nil
             return startRecordingEffect()
 
         case .transcriptUpdated(let text, let isFinal):
@@ -87,7 +88,6 @@ final class InterviewPracticeReducer {
             )
 
         case .sentenceFeedbackArrived(let index, let originalText, let feedback):
-            // 재답변/다음 질문으로 문장 목록이 초기화된 뒤 도착한 낡은 피드백은 무시한다.
             guard state.answerSentences.indices.contains(index),
                   state.answerSentences[index].text == originalText else { return .none }
 
@@ -95,10 +95,14 @@ final class InterviewPracticeReducer {
             return .none
 
         case .finishAnswering, .recordingTimeLimitReached:
+            state.phase = .generatingFeedback
+            state.overallFeedbackText = nil
+            return generateOverallFeedbackEffect(sentences: state.answerSentences)
+
+        case .overallFeedbackGenerated(let text):
+            state.overallFeedbackText = text
             state.phase = .reviewing
-            return .run { [audioRecorder] _ in
-                _ = try? await audioRecorder.stopRecording()
-            }
+            return .none
 
         case .moveToNextQuestion:
             if let pending = state.session.pendingFollowUpQuestion {
@@ -112,6 +116,7 @@ final class InterviewPracticeReducer {
             state.finalizedTranscript = ""
             state.volatileTranscript = ""
             state.answerSentences = []
+            state.overallFeedbackText = nil
             state.session.currentQuestionIndex += 1
 
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
@@ -162,8 +167,6 @@ extension InterviewPracticeReducer {
     ) -> Effect<InterviewPracticeAction> {
         .run { [interviewFeedbackGenerating] send in
             for (offset, sentenceText) in sentences.enumerated() {
-                // 생성 실패는 교정 불필요(nil)와 동일하게 취급한다.
-                // nil이어도 항상 결과를 보내야 해당 문장의 로더가 사라진다.
                 let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil
 
                 await send(.sentenceFeedbackArrived(
@@ -172,6 +175,25 @@ extension InterviewPracticeReducer {
                     feedback: feedback
                 ))
             }
+        }
+    }
+
+    private func generateOverallFeedbackEffect(sentences: [AnswerSentence]) -> Effect<InterviewPracticeAction> {
+        .run { [audioRecorder, interviewFeedbackGenerating] send in
+            _ = try? await audioRecorder.stopRecording()
+
+            let items: [FeedbackItem] = sentences.enumerated().compactMap { index, sentence in
+                guard case .corrected(let feedback) = sentence.feedbackStatus else { return nil }
+                return FeedbackItem(
+                    sentenceIndex: index,
+                    revisedSentence: feedback.revisedSentence,
+                    explanation: feedback.explanation,
+                    corrections: feedback.corrections
+                )
+            }
+
+            let overallFeedback = (try? await interviewFeedbackGenerating.generateOverallFeedback(items: items)) ?? ""
+            await send(.overallFeedbackGenerated(overallFeedback))
         }
     }
 

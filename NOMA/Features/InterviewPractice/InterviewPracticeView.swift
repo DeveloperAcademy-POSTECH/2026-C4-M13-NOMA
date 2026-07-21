@@ -218,12 +218,12 @@ extension InterviewPracticeView {
                     }
                 }
 
-                Divider()
+                if let overallFeedbackText = store.state.overallFeedbackText, !overallFeedbackText.isEmpty {
+                    Divider()
 
-                OverallFeedbackCardView(
-                    feedbackText: "일부 문장에서 격식체 어미가 사용되지 않았습니다.\n다음 답변에서는 '-해요' 대신 '-합니다'를 의식적으로 사용해 보십시오."
-                )
-                .padding(20)
+                    OverallFeedbackCardView(feedbackText: overallFeedbackText)
+                        .padding(20)
+                }
             } else {
                 Spacer(minLength: 0)
             }
@@ -235,7 +235,9 @@ extension InterviewPracticeView {
     }
 
     private var isAwaitingQuestion: Bool {
-        store.state.phase == .ready || store.state.phase == .askingQuestion
+        store.state.phase == .ready
+            || store.state.phase == .askingQuestion
+            || store.state.phase == .generatingFeedback
     }
 
     private var feedbackBottomButtons: some View {

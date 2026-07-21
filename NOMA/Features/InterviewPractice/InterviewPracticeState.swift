@@ -17,6 +17,7 @@ struct InterviewPracticeState {
     var finalizedTranscript: String = ""
     var volatileTranscript: String = ""
     var answerSentences: [AnswerSentence] = []
+    var overallFeedbackText: String?
 
     var canFinishAnswer: Bool {
         phase == .recording && elapsedRecordingDuration > .seconds(1)
