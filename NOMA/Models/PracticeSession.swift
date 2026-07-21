@@ -24,4 +24,8 @@ final class PracticeSession {
         self.answers = answers
         self.overallFeedback = overallFeedback
     }
+
+    var currentQuestion: InterviewQuestion? {
+        questions.indices.contains(currentQuestionIndex) ? questions[currentQuestionIndex] : nil
+    }
 }
