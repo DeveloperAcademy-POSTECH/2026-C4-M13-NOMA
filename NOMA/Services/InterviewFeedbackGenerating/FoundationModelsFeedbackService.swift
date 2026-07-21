@@ -16,18 +16,7 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
         currentTask = nil
     }
     
-    private static func foundationModelsError(_ error: any Error) -> FeedbackGenerationError {
-        
-        guard let error = error as? LanguageModelSession.GenerationError else { return .generationFailed }
-        
-        switch error {
-        case .exceededContextWindowSize: return .contextWindowExceeded
-        case .guardrailViolation: return .guardrailViolation
-        default: return .generationFailed
-        }
-    }
-    
-    func generateFeedback(sentence: String) async throws(FeedbackGenerationError) -> SentenceFeedback? {
+    func generateFeedback(sentence: String) async throws(FoundationModelsGenerationError) -> SentenceFeedback? {
         let previous = currentTask
         let task = Task {
             _ = await previous?.result
@@ -36,14 +25,14 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
         currentTask = task
         do {
             return try await task.value
-        } catch let error as FeedbackGenerationError {
+        } catch let error as FoundationModelsGenerationError {
             throw error
         } catch {
             throw .generationFailed
         }
     }
     
-    private func performGeneration(sentence: String) async throws(FeedbackGenerationError) -> SentenceFeedback? {
+    private func performGeneration(sentence: String) async throws(FoundationModelsGenerationError) -> SentenceFeedback? {
         do {
             let session = LanguageModelSession {
                 FeedbackInstructions.instructions
@@ -51,7 +40,7 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
             
             let feedbackOutput = try await session.respond(
                 to: sentence,
-                generating: FMOutput.self,
+                generating: FoundationModelsOutput.self,
             ).content
             
             let cleanedOriginal = sentence.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -63,11 +52,11 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
                 return nil
             }
         } catch {
-            throw Self.foundationModelsError(error)
+            throw foundationModelsError(error)
         }
     }
     
-    func generateOverallFeedback(items: [FeedbackItem]) async throws(FeedbackGenerationError) -> String {
+    func generateOverallFeedback(items: [FeedbackItem]) async throws(FoundationModelsGenerationError) -> String {
         _ = await currentTask?.result
         
         do {
@@ -76,7 +65,7 @@ actor FoundationModelsFeedbackService: InterviewFeedbackGenerating {
             }
             return try await session.respond(to: items.map { $0.explanation }.joined(separator: "\n")).content
         } catch {
-            throw Self.foundationModelsError(error)
+            throw foundationModelsError(error)
         }
     }
     

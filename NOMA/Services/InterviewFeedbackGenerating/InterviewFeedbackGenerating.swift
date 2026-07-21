@@ -8,18 +8,7 @@
 import Foundation
 
 nonisolated protocol InterviewFeedbackGenerating {
-    func generateFeedback(sentence: String) async throws(FeedbackGenerationError) -> SentenceFeedback?
-    func generateOverallFeedback(items: [FeedbackItem]) async throws(FeedbackGenerationError) -> String
+    func generateFeedback(sentence: String) async throws(FoundationModelsGenerationError) -> SentenceFeedback?
+    func generateOverallFeedback(items: [FeedbackItem]) async throws(FoundationModelsGenerationError) -> String
     func stopFeedback()
-}
-
-struct SentenceFeedback {
-    let revisedSentence: String
-    let explanation: String
-}
-
-enum FeedbackGenerationError: Error {
-    case contextWindowExceeded
-    case guardrailViolation
-    case generationFailed
 }
