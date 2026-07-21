@@ -12,7 +12,7 @@ import SwiftUI
 struct NOMAApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnboardingView()
         }
         .modelContainer(for: [PracticeAnswer.self])
         .modelContainer(for: [InterviewQuestion.self])
