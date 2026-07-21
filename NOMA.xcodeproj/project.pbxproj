@@ -36,6 +36,9 @@
 		ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */; };
 		ECC33232300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33231300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift */; };
 		ECC33234300E689C006FD6EB /* SpinningRingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC33233300E689C006FD6EB /* SpinningRingLoader.swift */; };
+		ECC3323B300FB78A006FD6EB /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323A300FB78A006FD6EB /* AppRoute.swift */; };
+		ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323C300FB78E006FD6EB /* AppRouter.swift */; };
+		ECC3323F300FB7DE006FD6EB /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3323E300FB7DE006FD6EB /* AppRootView.swift */; };
 		ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */; };
 		ECC8570F3007BDF8007EC965 /* CapsuleButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */; };
 		ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */; };
@@ -106,6 +109,9 @@
 		ECC3322E300E10B6006FD6EB /* QuestionAnswerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerSectionView.swift; sourceTree = "<group>"; };
 		ECC33231300E67E8006FD6EB /* AnswerAnalysisLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerAnalysisLoadingView.swift; sourceTree = "<group>"; };
 		ECC33233300E689C006FD6EB /* SpinningRingLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningRingLoader.swift; sourceTree = "<group>"; };
+		ECC3323A300FB78A006FD6EB /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
+		ECC3323C300FB78E006FD6EB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		ECC3323E300FB7DE006FD6EB /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		ECC8570B3007BDF8007EC965 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		ECC8570C3007BDF8007EC965 /* CapsuleButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonType.swift; sourceTree = "<group>"; };
 		ECC85710300A5664007EC965 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 		EC4D4FAA30071BF100FB5735 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				ECC33239300FB783006FD6EB /* AppRouter */,
 				EC4D4FA930071BF100FB5735 /* NOMAApp.swift */,
 				EC4D4FAC30071BF100FB5735 /* ContentView.swift */,
 			);
@@ -407,6 +414,16 @@
 			path = QuestionAnswerSectionView;
 			sourceTree = "<group>";
 		};
+		ECC33239300FB783006FD6EB /* AppRouter */ = {
+			isa = PBXGroup;
+			children = (
+				ECC3323A300FB78A006FD6EB /* AppRoute.swift */,
+				ECC3323C300FB78E006FD6EB /* AppRouter.swift */,
+				ECC3323E300FB7DE006FD6EB /* AppRootView.swift */,
+			);
+			path = AppRouter;
+			sourceTree = "<group>";
+		};
 		ECC8570D3007BDF8007EC965 /* CapsuleButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +633,7 @@
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
 				ECC33227300DF637006FD6EB /* PracticeSummaryView.swift in Sources */,
 				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
+				ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */,
 				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
 				ECC8573A300B5131007EC965 /* InterviewQuestion.swift in Sources */,
 				ECC8571E300A6C7E007EC965 /* PushButtonStatus.swift in Sources */,
@@ -641,11 +659,13 @@
 				A1DF1C0F300E14E600A7576E /* AudioError.swift in Sources */,
 				ECC85734300B4F45007EC965 /* FeedbackItem.swift in Sources */,
 				EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */,
+				ECC3323B300FB78A006FD6EB /* AppRoute.swift in Sources */,
 				ECC3322D300E0DF4006FD6EB /* AnswerSentenceCardView.swift in Sources */,
 				ECC85728300B4325007EC965 /* QuestionSpeaking.swift in Sources */,
 				ECC85744300E16C4007EC965 /* AVSpeechSynthesizerService.swift in Sources */,
 				ECC8571C300A6BF8007EC965 /* PushButtonSize.swift in Sources */,
 				ECC85724300A6DB0007EC965 /* PushButtonStyle.swift in Sources */,
+				ECC3323F300FB7DE006FD6EB /* AppRootView.swift in Sources */,
 				C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */,
 				ECC85711300A5664007EC965 /* CapsuleButtonStyle.swift in Sources */,
 				C3C31EBF300F0D0100C5ADAE /* SentenceFeedback.swift in Sources */,
@@ -786,7 +806,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -831,7 +851,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
