@@ -57,7 +57,7 @@ extension SectionHeaderView {
             action: action
         )
         .accessibilityLabel(actionTitle)
-        .accessibilityHint("홈 화면으로 이동합니다")
+        .accessibilityHint("홈 화면으로 이동합니다.")
         .accessibilityAddTraits(.isButton)
         .focusable(true)
     }
