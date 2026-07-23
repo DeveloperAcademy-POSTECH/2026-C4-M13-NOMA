@@ -55,11 +55,7 @@ final class InterviewPracticeReducer {
 
         case .questionSpeechFinished, .retryCurrentAnswer:
             state.phase = .recording
-            state.liveTranscript = ""
-            state.finalizedTranscript = ""
-            state.volatileTranscript = ""
-            state.answerSentences = []
-            state.overallFeedbackText = nil
+            resetAnswerState(&state)
             return startRecordingEffect()
 
         case .recordingStarted:
@@ -122,11 +118,7 @@ final class InterviewPracticeReducer {
                 state.session.pendingFollowUpQuestion = nil
             }
 
-            state.liveTranscript = ""
-            state.finalizedTranscript = ""
-            state.volatileTranscript = ""
-            state.answerSentences = []
-            state.overallFeedbackText = nil
+            resetAnswerState(&state)
             state.session.currentQuestionIndex += 1
 
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
@@ -235,6 +227,15 @@ extension InterviewPracticeReducer {
             question: currentQuestion,
             transcript: transcript
         )
+    }
+
+    private func resetAnswerState(_ state: inout InterviewPracticeState) {
+        state.liveTranscript = ""
+        state.finalizedTranscript = ""
+        state.volatileTranscript = ""
+        state.answerSentences = []
+        state.overallFeedbackText = nil
+        state.elapsedRecordingDuration = .zero
     }
 
     private func forceStopRecordingEffect() -> Effect<InterviewPracticeAction> {
