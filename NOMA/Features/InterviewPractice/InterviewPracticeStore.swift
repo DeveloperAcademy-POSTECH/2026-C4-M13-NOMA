@@ -35,7 +35,7 @@ final class InterviewPracticeStore {
         )
 
         switch action {
-        case .questionSpeechFinished, .retryCurrentAnswer:
+        case .recordingStarted:
             startRecordingTimer()
 
         case .finishAnswering, .recordingTimeLimitReached:

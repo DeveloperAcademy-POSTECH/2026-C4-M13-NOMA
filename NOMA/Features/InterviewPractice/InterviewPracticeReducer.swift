@@ -55,13 +55,16 @@ final class InterviewPracticeReducer {
 
         case .questionSpeechFinished, .retryCurrentAnswer:
             state.phase = .recording
-            state.elapsedRecordingDuration = .zero
             state.liveTranscript = ""
             state.finalizedTranscript = ""
             state.volatileTranscript = ""
             state.answerSentences = []
             state.overallFeedbackText = nil
             return startRecordingEffect()
+
+        case .recordingStarted:
+            state.elapsedRecordingDuration = .zero
+            return .none
 
         case .transcriptUpdated(let text, let isFinal):
             guard isFinal else {
@@ -234,6 +237,7 @@ extension InterviewPracticeReducer {
                 try? await Task.sleep(for: .seconds(1))
 
                 let bufferStream = try audioRecorder.startRecording()
+                await send(.recordingStarted)
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
                 for try await update in transcriptStream {
                     await send(.transcriptUpdated(
