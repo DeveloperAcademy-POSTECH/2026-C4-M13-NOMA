@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/20/26.
 //
 
+import SwiftData
 import SwiftUI
 
 struct PracticeSummaryView: View {
@@ -12,6 +13,11 @@ struct PracticeSummaryView: View {
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.openWindow) private var openWindow
+    @Environment(MemoStore.self) private var memoStore
+    let recordID: PersistentIdentifier
+    private var record: PracticeRecord? { modelContext.model(for: recordID) as? PracticeRecord }
 
     // MARK: - Body
     
@@ -43,71 +49,25 @@ extension PracticeSummaryView {
             VStack(alignment: .leading, spacing: 0) {
                 practiceSummaryInfoSection
                     .padding(.vertical, 34)
-                
-                Divider()
-                    .padding(.bottom, 30)
-                
-                // FIXME: - 데이터 주입
-                
-                OverallFeedbackCardView(
-                    feedbackText: "전반적으로 격식체 어미가 사용되지 않았습니다.\n다음 학습에서는 '-해요' 대신 '-합니다'를 의식적으로 사용해 보십시오."
-                )
-                .padding(.bottom, 30)
-                
-                Text("스크립트")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.primary)
-                    .padding(.bottom, 20)
-                
-                QuestionAnswerSectionView(
-                    question: "Q1. 자기소개를 해주십시오.",
-                    sentences: [
-                        AnswerSentence(
-                            text: "안녕하십니까, 저는 지원자 셀리나 입니다."
-                        ),
-                        AnswerSentence(
-                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                            feedbackStatus: .corrected(
-                                SentenceFeedback(
-                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
-                                    corrections: []
-                                )
-                            )
-                        ),
-                        AnswerSentence(
-                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                            feedbackStatus: .corrected(
-                                SentenceFeedback(
-                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
-                                    corrections: []
-                                )
-                            )
-                        ),
-                        AnswerSentence(
-                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                            feedbackStatus: .corrected(
-                                SentenceFeedback(
-                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
-                                    corrections: []
-                                )
-                            )
-                        ),
-                        AnswerSentence(
-                            text: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했어요.",
-                            feedbackStatus: .corrected(
-                                SentenceFeedback(
-                                    revisedSentence: "스페인에서 왔고 한국에서 컴퓨터공학을 전공했습니다.",
-                                    explanation: "'-어요'는 비격식체 어미입니다. 이력을 설명할 때는 '-습니다' 체를 사용해야 합니다.",
-                                    corrections: []
-                                )
-                            )
+                Divider().padding(.bottom, 30)
+
+                if let record {
+                    ForEach(record.questions.sorted { $0.order < $1.order }) { question in
+                        Text("Q\(question.order + 1). \(question.questionContent)")
+                            .font(.title2).fontWeight(.semibold)
+                            .padding(.bottom, 20)
+
+                        QuestionAnswerSectionView(
+                            question: "Q\(question.order + 1). \(question.questionContent)",
+                            sentences: question.answerSentences(),
+                            onListenTapped: { _ in }
                         )
-                    ]
-                )
+                        .padding(.bottom, 20)
+
+                        OverallFeedbackCardView(feedbackText: question.overallFeedback)
+                            .padding(.bottom, 30)
+                    }
+                }
             }
             .padding(.bottom, 34)
         }
@@ -115,10 +75,12 @@ extension PracticeSummaryView {
     
     private var practiceSummaryInfoSection: some View {
         HStack {
-            Text("2026.07.08")
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .padding(.trailing, 42)
+            if let createdAt = record?.createdAt {
+                Text(createdAt, format: .dateTime.year().month(.twoDigits).day(.twoDigits))
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+                    .padding(.trailing, 42)
+            }
             
             Text("IT • 개발")
                 .font(.body)
@@ -130,7 +92,7 @@ extension PracticeSummaryView {
                 .foregroundStyle(.secondary)
                 .padding(.trailing, 42)
 
-            Text("6문항")
+            Text("\(record?.questions.count ?? 0)문항")
                 .font(.body)
                 .foregroundStyle(.secondary)
             
@@ -141,8 +103,24 @@ extension PracticeSummaryView {
                 type: .neutral,
                 size: .small
             ) {
-                print("메모 보기 버튼 탭")
+                if let record { memoStore.text = record.memo }
+                openWindow(id: "memo")
             }
+        }
+    }
+}
+
+extension QuestionRecord {
+    func answerSentences() -> [AnswerSentence] {
+        guard !feedbackItems.isEmpty else {
+            return sentences.map { AnswerSentence(text: $0) }
+        }
+        let byIndex = Dictionary(feedbackItems.map { ($0.sentenceIndex, $0) }, uniquingKeysWith: { first, _ in first })
+        return sentences.enumerated().map { index, text in
+            guard let item = byIndex[index] else { return AnswerSentence(text: text) }
+            return AnswerSentence(text: text, feedbackStatus: .corrected(
+                SentenceFeedback(revisedSentence: item.revisedSentence,
+                                 explanation: item.explanation, corrections: item.corrections)))
         }
     }
 }
