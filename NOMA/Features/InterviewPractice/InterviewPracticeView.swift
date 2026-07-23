@@ -107,7 +107,6 @@ extension InterviewPracticeView {
                 openWindow(id: "memo")
             }
             .accessibilityLabel("메모 열기")
-            .accessibilityHint("메모창을 엽니다")
             
             PushButton(
                 title: "􀏛",
@@ -119,7 +118,6 @@ extension InterviewPracticeView {
                 }
             }
             .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
-            .accessibilityHint("피드백 패널 표시 여부를 변경합니다")
         }
     }
     
@@ -226,7 +224,7 @@ extension InterviewPracticeView {
                 height: 42
             )
             .disabled(!store.state.canFinishAnswer)
-            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다")
+            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
         }
     }
     
