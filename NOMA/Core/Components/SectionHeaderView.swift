@@ -46,6 +46,7 @@ extension SectionHeaderView {
             .font(.title3)
             .fontWeight(.semibold)
             .foregroundStyle(.primary)
+            .accessibilityAddTraits(.isHeader)
     }
     
     private var sectionHeaderButton: some View {
@@ -55,5 +56,9 @@ extension SectionHeaderView {
             size: .small,
             action: action
         )
+        .accessibilityLabel(actionTitle)
+        .accessibilityHint("홈 화면으로 이동합니다")
+        .accessibilityAddTraits(.isButton)
+        .focusable(true)
     }
 }

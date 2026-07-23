@@ -80,6 +80,8 @@ extension InterviewPracticeView {
             )
             .progressViewStyle(.linear)
             .frame(maxWidth: 300)
+            .accessibilityLabel("문제 진행률")
+            .accessibilityValue("\(displayedQuestionNumber) / \(totalQuestions)")
 
             Spacer()
 
@@ -104,6 +106,8 @@ extension InterviewPracticeView {
             ) {
                 openWindow(id: "memo")
             }
+            .accessibilityLabel("메모 열기")
+            .accessibilityHint("메모창을 엽니다")
             
             PushButton(
                 title: "􀏛",
@@ -114,6 +118,8 @@ extension InterviewPracticeView {
                     isFeedbackVisible.toggle()
                 }
             }
+            .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
+            .accessibilityHint("피드백 패널 표시 여부를 변경합니다")
         }
     }
     
@@ -158,6 +164,7 @@ extension InterviewPracticeView {
                     .frame(width: 385, height: 385)
                     .id(currentLottieAnimationName)
                     .padding(.bottom, 72)
+                    .accessibilityHidden(true)
             }
             
             Text(questionPromptText)
@@ -205,6 +212,8 @@ extension InterviewPracticeView {
                 .font(.body)
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
+                .accessibilityLabel("답변 시간")
+                .accessibilityValue(elapsedTimeText)
 
             CapsuleButton(
                 title: "답변 완료",
@@ -217,6 +226,7 @@ extension InterviewPracticeView {
                 height: 42
             )
             .disabled(!store.state.canFinishAnswer)
+            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다")
         }
     }
     
