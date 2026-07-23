@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import SwiftData
 
 enum AppRoute: Hashable {
     case onboarding
     case home
     case permission
     case interviewPractice
-    case answerAnalysisLoading
-    case practiceSummary
+    case answerAnalysisLoading(PersistentIdentifier)
+    case practiceSummary(PersistentIdentifier)
     case learningHistory
 }
