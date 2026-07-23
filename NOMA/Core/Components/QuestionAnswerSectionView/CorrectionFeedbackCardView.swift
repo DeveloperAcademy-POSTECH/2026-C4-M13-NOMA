@@ -71,7 +71,6 @@ extension CorrectionFeedbackCardView {
             }
             .buttonStyle(.plain)
             .accessibilityLabel("교정 문장 듣기")
-            .accessibilityHint("교정된 문장을 음성으로 재생합니다")
         }
     }
 
@@ -87,7 +86,6 @@ extension CorrectionFeedbackCardView {
                 print("따라 말하기 버튼 탭")
             }
             .accessibilityLabel("따라 말하기")
-            .accessibilityHint("교정된 문장을 따라 말하는 연습을 시작합니다")
             .padding(.trailing, 8)
 
             Button {
@@ -99,7 +97,6 @@ extension CorrectionFeedbackCardView {
             }
             .buttonStyle(.plain)
             .accessibilityLabel("녹음 재생")
-            .accessibilityHint("따라 말한 녹음을 재생합니다")
             .padding(.horizontal, 16)
 
             Capsule()
