@@ -363,6 +363,10 @@ extension InterviewPracticeView {
         store.state.phase != .reviewing
     }
 
+    private var isLastQuestion: Bool {
+        currentQuestionNumber >= totalQuestions
+    }
+
     private var feedbackBottomButtons: some View {
         HStack(spacing: 12) {
             CapsuleButton(
@@ -376,7 +380,7 @@ extension InterviewPracticeView {
             .disabled(isAwaitingAnswerCompletion)
 
             CapsuleButton(
-                title: "다음 질문",
+                title: isLastQuestion ? "학습 종료" : "다음 질문",
                 capsuleButtonType: .primary
             ) {
                 store.send(.moveToNextQuestion)
