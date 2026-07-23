@@ -10,6 +10,7 @@ import Foundation
 enum InterviewPracticeAction {
     case viewAppeared                                   // InterviewPracticeView가 화면에 나타났을 때
     case viewDisappeared                                // 화면이 사라질 때
+    case toggleFeedbackVisibility
     case readyCountdownFinished                         // ready 안내 문구가 3초간 노출된 뒤 질문 시작 시점이 됐을 때
     case questionSpeechFinished                         // TTS가 질문을 다 끝냈을 때
     case transcriptUpdated(text: String, isFinal: Bool) // 실시간 STT 결과가 갱신됐을 때 (isFinal이면 확정 문장으로 누적)
