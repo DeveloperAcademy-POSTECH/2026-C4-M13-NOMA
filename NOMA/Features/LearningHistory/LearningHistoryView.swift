@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/20/26.
 //
 
+import SwiftData
 import SwiftUI
 
 struct LearningHistoryView: View {
@@ -12,9 +13,7 @@ struct LearningHistoryView: View {
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
-
-    // FIXME: - 예시 데이터, 모델 배열로 교체할 예정
-    private let sessionNumbers = Array(1...50).reversed()
+    @Query(sort: \PracticeRecord.createdAt, order: .reverse) private var records: [PracticeRecord]
 
     private let columns = [
         GridItem(.fixed(333.5), spacing: 24),
@@ -58,11 +57,8 @@ extension LearningHistoryView {
             columns: columns,
             spacing: 24
         ) {
-            ForEach(
-                sessionNumbers,
-                id: \.self
-            ) { _ in
-                LearningHistoryCardView()
+            ForEach(Array(records.enumerated()), id: \.element.persistentModelID) { index, record in
+                LearningHistoryCardView(record: record, order: records.count - index)
             }
         }
     }
