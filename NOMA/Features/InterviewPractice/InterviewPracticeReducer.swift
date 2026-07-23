@@ -150,7 +150,12 @@ final class InterviewPracticeReducer {
             state.isExitConfirmationPresented = true
             return .none
 
-        case .exitConfirmed, .exitCancelled:
+        case .exitConfirmed:
+            state.isExitConfirmationPresented = false
+            questionSpeaker.stopSpeaking()
+            return forceStopRecordingEffect()
+
+        case .exitCancelled:
             state.isExitConfirmationPresented = false
             return .none
 
@@ -230,6 +235,12 @@ extension InterviewPracticeReducer {
             question: currentQuestion,
             transcript: transcript
         )
+    }
+
+    private func forceStopRecordingEffect() -> Effect<InterviewPracticeAction> {
+        .run { [audioRecorder] _ in
+            _ = try? await audioRecorder.stopRecording()
+        }
     }
 
     private func startRecordingEffect() -> Effect<InterviewPracticeAction> {

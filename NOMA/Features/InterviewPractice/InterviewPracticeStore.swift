@@ -38,7 +38,7 @@ final class InterviewPracticeStore {
         case .recordingStarted:
             startRecordingTimer()
 
-        case .finishAnswering, .recordingTimeLimitReached:
+        case .finishAnswering, .recordingTimeLimitReached, .exitConfirmed:
             stopRecordingTimer()
 
         default:
