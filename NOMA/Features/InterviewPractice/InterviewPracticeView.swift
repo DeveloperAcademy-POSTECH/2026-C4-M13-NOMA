@@ -287,10 +287,8 @@ extension InterviewPracticeView {
         .background(Color(nsColor: .controlBackgroundColor))
     }
 
-    private var isAwaitingQuestion: Bool {
-        store.state.phase == .ready
-            || store.state.phase == .askingQuestion
-            || store.state.phase == .generatingFeedback
+    private var isAwaitingAnswerCompletion: Bool {
+        store.state.phase != .reviewing
     }
 
     private var feedbackBottomButtons: some View {
@@ -303,7 +301,7 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
 
             CapsuleButton(
                 title: "다음 질문",
@@ -313,7 +311,7 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
         }
         .padding(.horizontal, 20)
         .padding(.top, 20)
