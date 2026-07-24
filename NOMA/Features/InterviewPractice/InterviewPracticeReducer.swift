@@ -61,14 +61,6 @@ final class InterviewPracticeReducer {
 
         if let effect = reduceViewStateAction(state: &state, action: action) {
             return effect
-          
-        case .exitCancelled:
-            state.isExitConfirmationPresented = false
-            return .none
-
-        case .viewDisappeared:
-            questionSpeaker.stopSpeaking()
-            return .none
         }
 
         return .none
