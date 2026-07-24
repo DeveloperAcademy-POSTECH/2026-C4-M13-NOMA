@@ -27,6 +27,8 @@
 		C3FA6764300D0E9700D48BF7 /* FoundationModelsFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */; };
 		C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */; };
 		C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */; };
+		EC3A8F9C3013988000E4796E /* QuestionPlaying.json in Resources */ = {isa = PBXBuildFile; fileRef = EC3A8F9A3013988000E4796E /* QuestionPlaying.json */; };
+		EC3A8F9D3013988000E4796E /* UserSpeaking.json in Resources */ = {isa = PBXBuildFile; fileRef = EC3A8F9B3013988000E4796E /* UserSpeaking.json */; };
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
@@ -91,8 +93,6 @@
 		F14EC92F300F6DB400EE5C85 /* InterviewPracticeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */; };
 		F14EC932300F88B400EE5C85 /* PracticePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC931300F88B400EE5C85 /* PracticePhase.swift */; };
 		F14EC934300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */; };
-		F14EC93630127E3B00EE5C85 /* UserSpeaking.json in Resources */ = {isa = PBXBuildFile; fileRef = F14EC93530127E3B00EE5C85 /* UserSpeaking.json */; };
-		F14EC93730127E3B00EE5C85 /* QuestionPlaying.json in Resources */ = {isa = PBXBuildFile; fileRef = F14EC93430127E3B00EE5C85 /* QuestionPlaying.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +116,8 @@
 		C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsFeedbackService.swift; sourceTree = "<group>"; };
 		C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAnswer.swift; sourceTree = "<group>"; };
 		C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSession.swift; sourceTree = "<group>"; };
+		EC3A8F9A3013988000E4796E /* QuestionPlaying.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = QuestionPlaying.json; sourceTree = "<group>"; };
+		EC3A8F9B3013988000E4796E /* UserSpeaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserSpeaking.json; sourceTree = "<group>"; };
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,8 +182,6 @@
 		F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeStore.swift; sourceTree = "<group>"; };
 		F14EC931300F88B400EE5C85 /* PracticePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePhase.swift; sourceTree = "<group>"; };
 		F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterviewPracticeReducer+ActionReducing.swift"; sourceTree = "<group>"; };
-		F14EC93430127E3B00EE5C85 /* QuestionPlaying.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = QuestionPlaying.json; sourceTree = "<group>"; };
-		F14EC93530127E3B00EE5C85 /* UserSpeaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserSpeaking.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,9 +535,9 @@
 		ECE702DF301007EB004921C1 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				F14EC93430127E3B00EE5C85 /* QuestionPlaying.json */,
-				F14EC93530127E3B00EE5C85 /* UserSpeaking.json */,
 				ECE702E130100806004921C1 /* Standby.json */,
+				EC3A8F9A3013988000E4796E /* QuestionPlaying.json */,
+				EC3A8F9B3013988000E4796E /* UserSpeaking.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -634,9 +634,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3A8F9C3013988000E4796E /* QuestionPlaying.json in Resources */,
+				EC3A8F9D3013988000E4796E /* UserSpeaking.json in Resources */,
 				ECE702E530100806004921C1 /* Standby.json in Resources */,
-				F14EC93630127E3B00EE5C85 /* UserSpeaking.json in Resources */,
-				F14EC93730127E3B00EE5C85 /* QuestionPlaying.json in Resources */,
 				C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */,
 				EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */,
 				A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */,
@@ -888,7 +888,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZA8K4QN49X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -935,7 +935,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZA8K4QN49X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
