@@ -42,12 +42,14 @@ extension CorrectionFeedbackCardView {
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .strikethrough()
+                    .accessibilityLabel("교정 전 문장, \(originalText)")
 
                 correctedSentenceRow
 
                 Text("→ \(explanation)")
                     .font(.system(size: 13, weight: .regular))
                     .padding(.bottom, 12)
+                    .accessibilityLabel("교정 이유, \(explanation)")
             }
 
             Spacer()
@@ -60,6 +62,7 @@ extension CorrectionFeedbackCardView {
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundStyle(.foreground)
+                .accessibilityLabel("교정 후 문장, \(correctedText)")
 
             Button(action: onListenTapped) {
                 Image(systemName: "speaker.wave.2")
@@ -67,6 +70,7 @@ extension CorrectionFeedbackCardView {
                     .foregroundStyle(.secondary)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("교정 문장 듣기")
         }
     }
 
@@ -81,6 +85,7 @@ extension CorrectionFeedbackCardView {
             ) {
                 print("따라 말하기 버튼 탭")
             }
+            .accessibilityLabel("따라 말하기")
             .padding(.trailing, 8)
 
             Button {
@@ -91,11 +96,13 @@ extension CorrectionFeedbackCardView {
                     .foregroundStyle(.tertiary)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("녹음 재생")
             .padding(.horizontal, 16)
 
             Capsule()
                 .fill(.tertiary)
                 .frame(width: 160, height: 6)
+                .accessibilityHidden(true)
         }
     }
 }

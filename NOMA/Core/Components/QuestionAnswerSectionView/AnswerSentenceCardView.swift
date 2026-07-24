@@ -28,5 +28,7 @@ struct AnswerSentenceCardView: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.thickMaterial.opacity(0.28))
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("답변 문장, \(text)")
     }
 }

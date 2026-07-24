@@ -50,6 +50,11 @@ final class InterviewPracticeReducer {
                 await send(.readyCountdownFinished)
             }
             
+        case .toggleFeedbackVisibility:
+            state.isFeedbackVisibleDefault.toggle()
+            state.isFeedbackVisible.toggle()
+            return .none
+
         case .readyCountdownFinished:
             state.phase = .askingQuestion
             return speakCurrentQuestionEffect(session: state.session)
@@ -62,6 +67,11 @@ final class InterviewPracticeReducer {
             state.volatileTranscript = ""
             state.answerSentences = []
             state.overallFeedbackText = nil
+            if state.isFeedbackVisibleDefault {
+                state.isFeedbackVisible = true
+            } else {
+                state.isFeedbackVisible = false
+            }
             return startRecordingEffect()
             
         case .transcriptUpdated(let text, let isFinal):
@@ -97,6 +107,7 @@ final class InterviewPracticeReducer {
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .generatingFeedback
             state.overallFeedbackText = nil
+            state.isFeedbackVisible = true
             return generateAnswerReviewEffect(
                 currentQuestion: state.session.currentQuestion,
                 transcript: state.finalizedTranscript,
@@ -151,6 +162,12 @@ final class InterviewPracticeReducer {
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
             ? .askingQuestion
             : .completed
+
+            if state.isFeedbackVisibleDefault {
+                state.isFeedbackVisible = true
+            } else {
+                state.isFeedbackVisible = false
+            }
             
             return state.phase == .askingQuestion
             ? speakCurrentQuestionEffect(session: state.session)
@@ -179,6 +196,7 @@ final class InterviewPracticeReducer {
     }
     // swiftlint:disable cyclomatic_complexity function_body_length
 }
+
 
 // MARK: - Functions
 

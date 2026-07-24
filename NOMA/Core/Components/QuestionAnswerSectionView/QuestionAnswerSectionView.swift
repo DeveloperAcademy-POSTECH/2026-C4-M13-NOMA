@@ -44,6 +44,9 @@ extension QuestionAnswerSectionView {
         }
         .padding(.vertical, 16)
         .background(Color(nsColor: .controlBackgroundColor))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("질문, \(question)")
+        .accessibilityAddTraits(.isHeader)
     }
 
     @ViewBuilder
@@ -58,12 +61,15 @@ extension QuestionAnswerSectionView {
             HStack(spacing: 8) {
                 SpinningRingLoader()
                     .frame(width: 16, height: 16)
+                    .accessibilityHidden(true)
 
                 Text("피드백 확인 중")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
             .padding(.leading, 4)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("피드백 확인 중")
 
         case .corrected(let feedback):
             CorrectionFeedbackCardView(

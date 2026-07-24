@@ -37,7 +37,7 @@ struct InterviewPracticeView: View {
             HStack(spacing: 0) {
                 interviewerPane
 
-                if isFeedbackVisible {
+                if store.state.isFeedbackVisible {
                     Divider()
 
                     feedbackPanel
@@ -95,6 +95,8 @@ extension InterviewPracticeView {
             )
             .progressViewStyle(.linear)
             .frame(maxWidth: 300)
+            .accessibilityLabel("문제 진행률")
+            .accessibilityValue("\(displayedQuestionNumber) / \(totalQuestions)")
 
             Spacer()
 
@@ -119,6 +121,7 @@ extension InterviewPracticeView {
             ) {
                 openWindow(id: "memo")
             }
+            .accessibilityLabel("메모 열기")
             
             PushButton(
                 title: "􀏛",
@@ -126,9 +129,10 @@ extension InterviewPracticeView {
                 size: .medium
             ) {
                 withAnimation(.easeInOut(duration: 0.2)) {
-                    isFeedbackVisible.toggle()
+                    store.send(.toggleFeedbackVisibility)
                 }
             }
+            .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
         }
     }
     
@@ -173,6 +177,7 @@ extension InterviewPracticeView {
                     .frame(width: 385, height: 385)
                     .id(currentLottieAnimationName)
                     .padding(.bottom, 72)
+                    .accessibilityHidden(true)
             }
             
             Text(questionPromptText)
@@ -220,6 +225,8 @@ extension InterviewPracticeView {
                 .font(.body)
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
+                .accessibilityLabel("답변 시간")
+                .accessibilityValue(elapsedTimeText)
 
             CapsuleButton(
                 title: "답변 완료",
@@ -232,6 +239,7 @@ extension InterviewPracticeView {
                 height: 42
             )
             .disabled(!store.state.canFinishAnswer)
+            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
         }
     }
     
