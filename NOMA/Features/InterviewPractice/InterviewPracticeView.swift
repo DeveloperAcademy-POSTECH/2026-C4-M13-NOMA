@@ -50,6 +50,7 @@ struct InterviewPracticeView: View {
         )
         .onAppear {
             store.send(.viewAppeared)
+            memoStore.text = ""
         }
         .onChange(of: store.state.phase) { _, newPhase in
             guard newPhase == .completed else { return }
@@ -192,6 +193,7 @@ extension InterviewPracticeView {
                     : 288
                 )
                 .padding(.horizontal, 20)
+                .fixedSize(horizontal: false, vertical: true)
 
             bottomControls
                 .padding(.bottom, 112)
@@ -260,8 +262,7 @@ extension InterviewPracticeView {
                     ScrollView {
                         LazyVStack(
                             alignment: .leading,
-                            spacing: 0,
-                            pinnedViews: [.sectionHeaders]
+                            spacing: 0
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
