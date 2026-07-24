@@ -27,8 +27,8 @@ struct AppRootView: View {
                         case .home: HomeView()
                         case .permission: PermissionView()
                         case .interviewPractice: InterviewPracticeView(store: AppRootView.makeInterviewPracticeStore())
-                        case .answerAnalysisLoading: AnswerAnalysisLoadingView()
-                        case .practiceSummary: PracticeSummaryView()
+                        case .answerAnalysisLoading(let id): AnswerAnalysisLoadingView(recordID: id)
+                        case .practiceSummary(let id): PracticeSummaryView(recordID: id)
                         case .learningHistory: LearningHistoryView()
                         }
                     }
