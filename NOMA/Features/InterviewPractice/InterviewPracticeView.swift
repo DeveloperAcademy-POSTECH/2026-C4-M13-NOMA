@@ -283,7 +283,7 @@ extension InterviewPracticeView {
             return nil
             
         case .askingQuestion:
-            return "Question playing"
+            return "QuestionPlaying"
             
         case .recording:
             return "UserSpeaking"
