@@ -23,7 +23,6 @@ struct QuestionAnswerSectionView: View {
 
     // MARK: - Body
 
-    /// LazyVStack(pinnedViews: [.sectionHeaders])의 자식으로 놓이면 question이 상단에 고정된다.
     var body: some View {
         Section {
             ForEach(sentences.indices, id: \.self) { index in
@@ -52,7 +51,9 @@ extension QuestionAnswerSectionView {
             Spacer()
         }
         .padding(.vertical, 16)
-        .background(Color(nsColor: .controlBackgroundColor))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("질문, \(question)")
+        .accessibilityAddTraits(.isHeader)
     }
 
     @ViewBuilder
@@ -70,12 +71,15 @@ extension QuestionAnswerSectionView {
             HStack(spacing: 8) {
                 SpinningRingLoader()
                     .frame(width: 16, height: 16)
+                    .accessibilityHidden(true)
 
                 Text("피드백 확인 중")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
             .padding(.leading, 4)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("피드백 확인 중")
 
         case .corrected(let feedback):
             CorrectionFeedbackCardView(

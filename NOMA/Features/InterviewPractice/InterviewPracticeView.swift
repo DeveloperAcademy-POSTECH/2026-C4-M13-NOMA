@@ -5,6 +5,7 @@
 //  Created by myone on 7/21/26.
 //
 
+import SwiftData
 import SwiftUI
 
 import Lottie
@@ -15,6 +16,8 @@ struct InterviewPracticeView: View {
     
     @Environment(AppRouter.self) private var router
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.modelContext) private var modelContext
+    @Environment(MemoStore.self) private var memoStore
     
     @State private var isFeedbackVisible = true
 
@@ -34,7 +37,7 @@ struct InterviewPracticeView: View {
             HStack(spacing: 0) {
                 interviewerPane
 
-                if isFeedbackVisible {
+                if store.state.isFeedbackVisible {
                     Divider()
 
                     feedbackPanel
@@ -47,10 +50,28 @@ struct InterviewPracticeView: View {
         )
         .onAppear {
             store.send(.viewAppeared)
+            memoStore.text = ""
         }
         .onChange(of: store.state.phase) { _, newPhase in
-            if newPhase == .completed {
-                router.push(.answerAnalysisLoading)
+            guard newPhase == .completed else { return }
+            let record = PracticeRecord(
+                memo: memoStore.text,
+                questions: store.state.session.answers.enumerated().map { index, answer in
+                    QuestionRecord(order: index, questionContent: answer.question.content,
+                                   isFollowUp: answer.question.isFollowUp, transcript: answer.transcript,
+                                   sentences: answer.sentences,
+                                   feedbackItems: answer.feedbackItems,
+                                   overallFeedback: answer.overallFeedback)
+                }
+            )
+            modelContext.insert(record)
+            try? modelContext.save()
+            memoStore.text = ""
+            router.push(.answerAnalysisLoading(record.persistentModelID))
+        }
+        .overlay {
+            if store.state.isExitConfirmationPresented {
+                exitConfirmationDialog
             }
         }
     }
@@ -59,6 +80,73 @@ struct InterviewPracticeView: View {
 // MARK: - SubViews
 
 extension InterviewPracticeView {
+    private var exitConfirmationDialog: some View {
+        ZStack {
+            Color.black.opacity(0.25)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    store.send(.exitCancelled)
+                }
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("정말 나가시겠습니까?")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+
+                Text("지금 화면을 벗어나시면 지금까지 진행된 면접 내용과 설정 정보는 저장되지 않습니다. 그래도 종료하시겠습니까?")
+                
+                    .font(.subheadline)
+                    .fontWeight(.regular)
+                    .foregroundStyle(.primary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 8) {
+                    exitDialogButton(
+                        title: "나가기",
+                        titleColor: Color(nsColor: .labelColor),
+                        background: Color(nsColor: .secondarySystemFill)
+                    ) {
+                        store.send(.exitConfirmed)
+                        router.popToRoot()
+                    }
+
+                    exitDialogButton(
+                        title: "취소",
+                        titleColor: .white,
+                        background: .accentsBlue
+                    ) {
+                        store.send(.exitCancelled)
+                    }
+                }
+                .padding(.top, 8)
+            }
+            .padding(20)
+            .frame(width: 260, height: 154)
+            .background(Color(nsColor: .windowBackgroundColor))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .black.opacity(0.2), radius: 20, y: 8)
+        }
+    }
+
+    private func exitDialogButton(
+        title: String,
+        titleColor: Color,
+        background: Color,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(titleColor)
+                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity, minHeight: 32, maxHeight: 32)
+                .background(background)
+                .cornerRadius(100)
+        }
+        .buttonStyle(.plain)
+    }
+
     private var currentQuestionNumber: Int {
         store.state.session.currentQuestionIndex + 1
     }
@@ -80,6 +168,8 @@ extension InterviewPracticeView {
             )
             .progressViewStyle(.linear)
             .frame(maxWidth: 300)
+            .accessibilityLabel("문제 진행률")
+            .accessibilityValue("\(displayedQuestionNumber) / \(totalQuestions)")
 
             Spacer()
 
@@ -90,7 +180,7 @@ extension InterviewPracticeView {
                 type: .default,
                 size: .medium
             ) {
-                router.push(.answerAnalysisLoading)
+                store.send(.exitRequested)
             }
         }
     }
@@ -104,6 +194,7 @@ extension InterviewPracticeView {
             ) {
                 openWindow(id: "memo")
             }
+            .accessibilityLabel("메모 열기")
             
             PushButton(
                 title: "􀏛",
@@ -111,9 +202,10 @@ extension InterviewPracticeView {
                 size: .medium
             ) {
                 withAnimation(.easeInOut(duration: 0.2)) {
-                    isFeedbackVisible.toggle()
+                    store.send(.toggleFeedbackVisibility)
                 }
             }
+            .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
         }
     }
     
@@ -158,6 +250,7 @@ extension InterviewPracticeView {
                     .frame(width: 385, height: 385)
                     .id(currentLottieAnimationName)
                     .padding(.bottom, 72)
+                    .accessibilityHidden(true)
             }
             
             Text(questionPromptText)
@@ -172,6 +265,7 @@ extension InterviewPracticeView {
                     : 288
                 )
                 .padding(.horizontal, 20)
+                .fixedSize(horizontal: false, vertical: true)
 
             bottomControls
                 .padding(.bottom, 112)
@@ -205,6 +299,8 @@ extension InterviewPracticeView {
                 .font(.body)
                 .fontWeight(.thin)
                 .foregroundStyle(.secondary)
+                .accessibilityLabel("답변 시간")
+                .accessibilityValue(elapsedTimeText)
 
             CapsuleButton(
                 title: "답변 완료",
@@ -217,6 +313,7 @@ extension InterviewPracticeView {
                 height: 42
             )
             .disabled(!store.state.canFinishAnswer)
+            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
         }
     }
     
@@ -237,8 +334,7 @@ extension InterviewPracticeView {
                     ScrollView {
                         LazyVStack(
                             alignment: .leading,
-                            spacing: 0,
-                            pinnedViews: [.sectionHeaders]
+                            spacing: 0
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
@@ -289,10 +385,12 @@ extension InterviewPracticeView {
         .background(Color(nsColor: .controlBackgroundColor))
     }
 
-    private var isAwaitingQuestion: Bool {
-        store.state.phase == .ready
-            || store.state.phase == .askingQuestion
-            || store.state.phase == .generatingFeedback
+    private var isAwaitingAnswerCompletion: Bool {
+        store.state.phase != .reviewing
+    }
+
+    private var isLastQuestion: Bool {
+        currentQuestionNumber >= totalQuestions
     }
 
     private var feedbackBottomButtons: some View {
@@ -305,17 +403,17 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
 
             CapsuleButton(
-                title: "다음 질문",
+                title: isLastQuestion ? "학습 종료" : "다음 질문",
                 capsuleButtonType: .primary
             ) {
                 store.send(.moveToNextQuestion)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
         }
         .padding(.horizontal, 20)
         .padding(.top, 20)

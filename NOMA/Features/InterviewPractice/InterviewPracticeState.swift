@@ -11,6 +11,8 @@ struct InterviewPracticeState {
     var session: PracticeSession
     var phase: PracticePhase = .ready
     var captionsEnabled: Bool = false
+    var isFeedbackVisibleDefault: Bool = true
+    var isFeedbackVisible: Bool = true
     var elapsedRecordingDuration: Duration = .zero
     var isExitConfirmationPresented: Bool = false
     var liveTranscript: String = ""
@@ -23,7 +25,7 @@ struct InterviewPracticeState {
     var playingSentencePracticeIndex: Int?
 
     var canFinishAnswer: Bool {
-        phase == .recording && elapsedRecordingDuration > .seconds(1)
+        phase == .recording && elapsedRecordingDuration >= .seconds(1)
     }
 
     var isSentencePracticeEnabled: Bool {

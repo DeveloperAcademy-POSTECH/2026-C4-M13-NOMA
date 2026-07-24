@@ -10,17 +10,22 @@ import SwiftUI
 
 @main
 struct NOMAApp: App {
+    @State private var memoStore = MemoStore()
+    
     var body: some Scene {
         WindowGroup {
             AppRootView()
+                .environment(memoStore)
         }
         .windowToolbarStyle(.unified(showsTitle: false))
+        .modelContainer(for: PracticeRecord.self)
 
         Window(
             "메모창",
             id: "memo"
         ) {
             MemoWindowView()
+                .environment(memoStore)
         }
         .defaultSize(
             width: 400,

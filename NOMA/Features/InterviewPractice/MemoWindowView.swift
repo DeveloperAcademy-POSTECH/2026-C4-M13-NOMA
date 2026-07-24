@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct MemoWindowView: View {
-
-    @State private var text = ""
+    @Environment(MemoStore.self) private var memoStore
 
     var body: some View {
-        TextEditor(text: $text)
+        @Bindable var memoStore = memoStore
+        TextEditor(text: $memoStore.text)
             .font(.system(size: 13))
             .padding(12)
             .frame(minWidth: 300, minHeight: 200)
+            .accessibilityLabel("면접 메모")
     }
 }

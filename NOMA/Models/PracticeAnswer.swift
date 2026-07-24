@@ -7,21 +7,10 @@
 
 import Foundation
 
-final class PracticeAnswer {
-    var question: InterviewQuestion
-    var transcript: String
-    var sentences: [String]
-    var analysis: AnswerAnalysis
-
-    init(
-        question: InterviewQuestion,
-        transcript: String,
-        sentences: [String],
-        analysis: AnswerAnalysis
-    ) {
-        self.question = question
-        self.transcript = transcript
-        self.sentences = sentences
-        self.analysis = analysis
-    }
+struct PracticeAnswer {
+    let question: InterviewQuestion
+    let transcript: String
+    let sentences: [String]
+    let feedbackItems: [FeedbackItem]
+    let overallFeedback: String
 }

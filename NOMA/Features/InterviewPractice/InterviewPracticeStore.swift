@@ -74,11 +74,11 @@ extension InterviewPracticeStore {
 
     private func updateAnswerRecordingTimer(after action: InterviewPracticeAction) {
         switch action {
-        case .questionSpeechFinished, .retryCurrentAnswer:
+        case .recordingStarted:
             startRecordingTimer()
             stopSentencePracticeTimers()
 
-        case .finishAnswering, .recordingTimeLimitReached:
+        case .finishAnswering, .recordingTimeLimitReached, .exitConfirmed:
             stopRecordingTimer()
 
         default:

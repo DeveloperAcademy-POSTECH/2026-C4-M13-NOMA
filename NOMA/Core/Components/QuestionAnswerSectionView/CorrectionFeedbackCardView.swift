@@ -49,12 +49,14 @@ extension CorrectionFeedbackCardView {
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .strikethrough()
+                    .accessibilityLabel("교정 전 문장, \(originalText)")
 
                 correctedSentenceRow
 
                 Text("→ \(explanation)")
                     .font(.system(size: 13, weight: .regular))
                     .padding(.bottom, 12)
+                    .accessibilityLabel("교정 이유, \(explanation)")
             }
 
             Spacer()
@@ -67,6 +69,7 @@ extension CorrectionFeedbackCardView {
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundStyle(.foreground)
+                .accessibilityLabel("교정 후 문장, \(correctedText)")
 
             Button {
                 onListenTapped()
