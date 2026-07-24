@@ -17,7 +17,6 @@ struct QuestionAnswerSectionView: View {
 
     // MARK: - Body
 
-    /// LazyVStack(pinnedViews: [.sectionHeaders])의 자식으로 놓이면 question이 스크롤 시 상단에 고정된다.
     var body: some View {
         Section {
             ForEach(sentences.indices, id: \.self) { index in
@@ -43,7 +42,6 @@ extension QuestionAnswerSectionView {
             Spacer()
         }
         .padding(.vertical, 16)
-        .background(Color(nsColor: .controlBackgroundColor))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("질문, \(question)")
         .accessibilityAddTraits(.isHeader)

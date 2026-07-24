@@ -5,6 +5,7 @@
 //  Created by myone on 7/21/26.
 //
 
+import SwiftData
 import SwiftUI
 
 import Lottie
@@ -15,6 +16,10 @@ struct InterviewPracticeView: View {
     
     @Environment(AppRouter.self) private var router
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.modelContext) private var modelContext
+    @Environment(MemoStore.self) private var memoStore
+    
+    @State private var isFeedbackVisible = true
 
     let store: InterviewPracticeStore
     private let totalQuestions = 6
@@ -45,11 +50,24 @@ struct InterviewPracticeView: View {
         )
         .onAppear {
             store.send(.viewAppeared)
+            memoStore.text = ""
         }
         .onChange(of: store.state.phase) { _, newPhase in
-            if newPhase == .completed {
-                router.push(.answerAnalysisLoading)
-            }
+            guard newPhase == .completed else { return }
+            let record = PracticeRecord(
+                memo: memoStore.text,
+                questions: store.state.session.answers.enumerated().map { index, answer in
+                    QuestionRecord(order: index, questionContent: answer.question.content,
+                                   isFollowUp: answer.question.isFollowUp, transcript: answer.transcript,
+                                   sentences: answer.sentences,
+                                   feedbackItems: answer.feedbackItems,
+                                   overallFeedback: answer.overallFeedback)
+                }
+            )
+            modelContext.insert(record)
+            try? modelContext.save()
+            memoStore.text = ""
+            router.push(.answerAnalysisLoading(record.persistentModelID))
         }
     }
 }
@@ -90,7 +108,7 @@ extension InterviewPracticeView {
                 type: .default,
                 size: .medium
             ) {
-                router.push(.answerAnalysisLoading)
+                router.popToRoot()
             }
         }
     }
@@ -175,6 +193,7 @@ extension InterviewPracticeView {
                     : 288
                 )
                 .padding(.horizontal, 20)
+                .fixedSize(horizontal: false, vertical: true)
 
             bottomControls
                 .padding(.bottom, 112)
@@ -243,8 +262,7 @@ extension InterviewPracticeView {
                     ScrollView {
                         LazyVStack(
                             alignment: .leading,
-                            spacing: 0,
-                            pinnedViews: [.sectionHeaders]
+                            spacing: 0
                         ) {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,

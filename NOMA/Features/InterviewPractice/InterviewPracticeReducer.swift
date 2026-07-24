@@ -8,7 +8,7 @@
 import Foundation
 
 final class InterviewPracticeReducer {
-    
+
     // MARK: - Properties
     
     private let audioRecorder: AudioRecording
@@ -17,7 +17,7 @@ final class InterviewPracticeReducer {
     private let interviewFeedbackGenerating: InterviewFeedbackGenerating
     private let followUpQuestionGenerating: FollowUpQuestionGenerating
     private let maximumRecordingDuration: Duration = .seconds(180)
-
+    
     // MARK: - Initializer
     
     init(
@@ -58,7 +58,7 @@ final class InterviewPracticeReducer {
         case .readyCountdownFinished:
             state.phase = .askingQuestion
             return speakCurrentQuestionEffect(session: state.session)
-
+            
         case .questionSpeechFinished, .retryCurrentAnswer:
             state.phase = .recording
             state.elapsedRecordingDuration = .zero
@@ -73,21 +73,21 @@ final class InterviewPracticeReducer {
                 state.isFeedbackVisible = false
             }
             return startRecordingEffect()
-
+            
         case .transcriptUpdated(let text, let isFinal):
             guard isFinal else {
                 state.volatileTranscript = text
                 state.liveTranscript = state.finalizedTranscript + text
                 return .none
             }
-
+            
             state.finalizedTranscript += text
             state.volatileTranscript = ""
             state.liveTranscript = state.finalizedTranscript
-
+            
             let newSentences = AnswerSentence.splitIntoSentences(text)
             guard !newSentences.isEmpty else { return .none }
-
+            
             let startIndex = state.answerSentences.count
             state.answerSentences.append(
                 contentsOf: newSentences.map { AnswerSentence(text: $0, feedbackStatus: .pending) }
@@ -96,14 +96,14 @@ final class InterviewPracticeReducer {
                 sentences: newSentences,
                 startIndex: startIndex
             )
-
+            
         case .sentenceFeedbackArrived(let index, let originalText, let feedback):
             guard state.answerSentences.indices.contains(index),
                   state.answerSentences[index].text == originalText else { return .none }
-
+            
             state.answerSentences[index].feedbackStatus = feedback.map { .corrected($0) } ?? .none
             return .none
-
+            
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .generatingFeedback
             state.overallFeedbackText = nil
@@ -113,31 +113,52 @@ final class InterviewPracticeReducer {
                 transcript: state.finalizedTranscript,
                 sentences: state.answerSentences
             )
-
+            
         case .followUpQuestionGenerated(let question):
             state.session.pendingFollowUpQuestion = question
             return .none
-
+            
         case .overallFeedbackGenerated(let text):
             state.overallFeedbackText = text
             state.phase = .reviewing
             return .none
-
+            
         case .moveToNextQuestion:
+            if let answered = state.session.currentQuestion {
+                let items: [FeedbackItem] = state.answerSentences.enumerated().compactMap { index, sentence in
+                    guard case .corrected(let feedback) = sentence.feedbackStatus else { return nil }
+                    return FeedbackItem(sentenceIndex: index, revisedSentence: feedback.revisedSentence,
+                                        explanation: feedback.explanation, corrections: feedback.corrections)
+                }
+                state.session.answers.append(
+                    PracticeAnswer(
+                        question: answered,
+                        transcript: state.finalizedTranscript,
+                        sentences: state.answerSentences.map(\.text),
+                        feedbackItems: items,
+                        overallFeedback: state.overallFeedbackText ?? ""
+                    )
+                )
+            }
+            
             if let pending = state.session.pendingFollowUpQuestion {
                 let insertIndex = state.session.currentQuestionIndex + 1
-                pending.questionID = "q\(insertIndex + 1)"
-                state.session.questions.insert(pending, at: insertIndex)
+                let followUp = InterviewQuestion(
+                    questionID: "q\(insertIndex + 1)",
+                    content: pending.content,
+                    isFollowUp: pending.isFollowUp
+                )
+                state.session.questions.insert(followUp, at: insertIndex)
                 state.session.pendingFollowUpQuestion = nil
             }
-
+            
             state.liveTranscript = ""
             state.finalizedTranscript = ""
             state.volatileTranscript = ""
             state.answerSentences = []
             state.overallFeedbackText = nil
             state.session.currentQuestionIndex += 1
-
+            
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
             ? .askingQuestion
             : .completed
@@ -149,25 +170,25 @@ final class InterviewPracticeReducer {
             }
             
             return state.phase == .askingQuestion
-                ? speakCurrentQuestionEffect(session: state.session)
-                : .none
-
+            ? speakCurrentQuestionEffect(session: state.session)
+            : .none
+            
         case .correctedSentencePlaybackRequested(let text):
             return .run { [questionSpeaker] _ in
                 try? await questionSpeaker.speak(text)
             }
-
+            
         case .captionsChanged(let enabled):
             state.captionsEnabled = enabled
             return .none
-
+            
         case .exitRequested:
             state.isExitConfirmationPresented = true
             return .none
-
+            
         case .exitConfirmed, .exitCancelled:
             return .none
-
+            
         case .viewDisappeared:
             questionSpeaker.stopSpeaking()
             return .none
@@ -187,7 +208,7 @@ extension InterviewPracticeReducer {
             await send(.questionSpeechFinished)
         }
     }
-
+    
     private func generateSentenceFeedbackEffect(
         sentences: [String],
         startIndex: Int
@@ -195,7 +216,7 @@ extension InterviewPracticeReducer {
         .run { [interviewFeedbackGenerating] send in
             for (offset, sentenceText) in sentences.enumerated() {
                 let feedback = (try? await interviewFeedbackGenerating.generateFeedback(sentence: sentenceText)) ?? nil
-
+                
                 await send(.sentenceFeedbackArrived(
                     index: startIndex + offset,
                     originalText: sentenceText,
@@ -204,7 +225,7 @@ extension InterviewPracticeReducer {
             }
         }
     }
-
+    
     private func generateAnswerReviewEffect(
         currentQuestion: InterviewQuestion?,
         transcript: String,
@@ -212,7 +233,7 @@ extension InterviewPracticeReducer {
     ) -> Effect<InterviewPracticeAction> {
         .run { [audioRecorder, interviewFeedbackGenerating, followUpQuestionGenerating] send in
             _ = try? await audioRecorder.stopRecording()
-
+            
             let items: [FeedbackItem] = sentences.enumerated().compactMap { index, sentence in
                 guard case .corrected(let feedback) = sentence.feedbackStatus else { return nil }
                 return FeedbackItem(
@@ -222,37 +243,37 @@ extension InterviewPracticeReducer {
                     corrections: feedback.corrections
                 )
             }
-
+            
             let followUpQuestion = await Self.makeFollowUpQuestion(
                 currentQuestion: currentQuestion,
                 transcript: transcript,
                 followUpQuestionGenerating: followUpQuestionGenerating
             )
             await send(.followUpQuestionGenerated(followUpQuestion))
-
+            
             let overallFeedback = (try? await interviewFeedbackGenerating.generateOverallFeedback(items: items)) ?? ""
             await send(.overallFeedbackGenerated(overallFeedback))
         }
     }
-
+    
     private static func makeFollowUpQuestion(
         currentQuestion: InterviewQuestion?,
         transcript: String,
         followUpQuestionGenerating: FollowUpQuestionGenerating
     ) async -> InterviewQuestion? {
         guard let currentQuestion, !currentQuestion.isFollowUp else { return nil }
-
+        
         return try? await followUpQuestionGenerating.generateFollowUp(
             question: currentQuestion,
             transcript: transcript
         )
     }
-
+    
     private func startRecordingEffect() -> Effect<InterviewPracticeAction> {
         .run { [audioRecorder, speechTranscribing] send in
             do {
                 try? await Task.sleep(for: .seconds(1))
-
+                
                 let bufferStream = try audioRecorder.startRecording()
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
                 for try await update in transcriptStream {

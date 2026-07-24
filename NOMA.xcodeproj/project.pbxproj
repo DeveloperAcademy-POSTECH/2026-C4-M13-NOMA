@@ -15,6 +15,9 @@
 		C31DF2FD3003BC6700831981 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C31DF2FC3003BC6700831981 /* .swiftlint.yml */; };
 		C33D204E300FA693002ADE8C /* FeedbackReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D204D300FA691002ADE8C /* FeedbackReason.swift */; };
 		C33D2050300FC9F1002ADE8C /* OverallFeedbackOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D204F300FC9EA002ADE8C /* OverallFeedbackOutput.swift */; };
+		C3ACFBBB301213E7009DC825 /* PracticeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACFBBA301213E6009DC825 /* PracticeRecord.swift */; };
+		C3ACFBBD301213F2009DC825 /* QuestionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACFBBC301213F0009DC825 /* QuestionRecord.swift */; };
+		C3ACFBC030121E95009DC825 /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACFBBF30121E8D009DC825 /* MemoStore.swift */; };
 		C3C31EB7300F0B9000C5ADAE /* FeedbackInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EB6300F0B8F00C5ADAE /* FeedbackInstructions.swift */; };
 		C3C31EBA300F0B9C00C5ADAE /* FoundationModelsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EB8300F0B9900C5ADAE /* FoundationModelsOutput.swift */; };
 		C3C31EBD300F0BA800C5ADAE /* OverallFeedbackInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EBB300F0BA300C5ADAE /* OverallFeedbackInstructions.swift */; };
@@ -22,7 +25,6 @@
 		C3C31EC1300F0D1600C5ADAE /* FoundationModelsGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EC0300F0D1500C5ADAE /* FoundationModelsGenerationError.swift */; };
 		C3C31EC5300F0F1B00C5ADAE /* foundationModelsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C31EC4300F0F1500C5ADAE /* foundationModelsError.swift */; };
 		C3FA6764300D0E9700D48BF7 /* FoundationModelsFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */; };
-		C3FA6768300D0EBA00D48BF7 /* AnswerAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */; };
 		C3FA676A300D0F0500D48BF7 /* PracticeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */; };
 		C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */; };
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
@@ -98,6 +100,9 @@
 		C31DF2FC3003BC6700831981 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C33D204D300FA691002ADE8C /* FeedbackReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReason.swift; sourceTree = "<group>"; };
 		C33D204F300FC9EA002ADE8C /* OverallFeedbackOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallFeedbackOutput.swift; sourceTree = "<group>"; };
+		C3ACFBBA301213E6009DC825 /* PracticeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeRecord.swift; sourceTree = "<group>"; };
+		C3ACFBBC301213F0009DC825 /* QuestionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRecord.swift; sourceTree = "<group>"; };
+		C3ACFBBF30121E8D009DC825 /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 		C3C31EB6300F0B8F00C5ADAE /* FeedbackInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInstructions.swift; sourceTree = "<group>"; };
 		C3C31EB8300F0B9900C5ADAE /* FoundationModelsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsOutput.swift; sourceTree = "<group>"; };
 		C3C31EBB300F0BA300C5ADAE /* OverallFeedbackInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallFeedbackInstructions.swift; sourceTree = "<group>"; };
@@ -105,7 +110,6 @@
 		C3C31EC0300F0D1500C5ADAE /* FoundationModelsGenerationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsGenerationError.swift; sourceTree = "<group>"; };
 		C3C31EC4300F0F1500C5ADAE /* foundationModelsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foundationModelsError.swift; sourceTree = "<group>"; };
 		C3FA6763300D0E9600D48BF7 /* FoundationModelsFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsFeedbackService.swift; sourceTree = "<group>"; };
-		C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerAnalysis.swift; sourceTree = "<group>"; };
 		C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAnswer.swift; sourceTree = "<group>"; };
 		C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSession.swift; sourceTree = "<group>"; };
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				EC4D4FB530071E5F00FB5735 /* Enums */,
+				C3ACFBBC301213F0009DC825 /* QuestionRecord.swift */,
+				C3ACFBBA301213E6009DC825 /* PracticeRecord.swift */,
 				A1DF1C0C300E136100A7576E /* SendableEngine.swift */,
 				C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */,
 				C3FA6769300D0F0300D48BF7 /* PracticeAnswer.swift */,
@@ -273,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				F14EC931300F88B400EE5C85 /* PracticePhase.swift */,
-				C3FA6767300D0EB900D48BF7 /* AnswerAnalysis.swift */,
 				ECC33242300FD5CD006FD6EB /* BaseInterviewQuestion.swift */,
 			);
 			path = Enums;
@@ -369,6 +374,7 @@
 		EC4D4FD53007302000FB5735 /* InterviewPractice */ = {
 			isa = PBXGroup;
 			children = (
+				C3ACFBBF30121E8D009DC825 /* MemoStore.swift */,
 				F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */,
 				F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */,
 				F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */,
@@ -645,6 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3ACFBBD301213F2009DC825 /* QuestionRecord.swift in Sources */,
 				ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */,
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
@@ -658,6 +665,7 @@
 				F14EC92C300F6DB400EE5C85 /* InterviewPracticeReducer.swift in Sources */,
 				F14EC92D300F6DB400EE5C85 /* InterviewPracticeState.swift in Sources */,
 				F14EC92E300F6DB400EE5C85 /* InterviewPracticeStore.swift in Sources */,
+				C3ACFBBB301213E7009DC825 /* PracticeRecord.swift in Sources */,
 				F14EC92F300F6DB400EE5C85 /* InterviewPracticeAction.swift in Sources */,
 				C3C31EC5300F0F1B00C5ADAE /* foundationModelsError.swift in Sources */,
 				F14EC932300F88B400EE5C85 /* PracticePhase.swift in Sources */,
@@ -690,8 +698,8 @@
 				C3C31EB7300F0B9000C5ADAE /* FeedbackInstructions.swift in Sources */,
 				C3FA6764300D0E9700D48BF7 /* FoundationModelsFeedbackService.swift in Sources */,
 				C3C31EBD300F0BA800C5ADAE /* OverallFeedbackInstructions.swift in Sources */,
-				C3FA6768300D0EBA00D48BF7 /* AnswerAnalysis.swift in Sources */,
 				C3C31EC1300F0D1600C5ADAE /* FoundationModelsGenerationError.swift in Sources */,
+				C3ACFBC030121E95009DC825 /* MemoStore.swift in Sources */,
 				EC4D4FC5300729A000FB5735 /* SpeechTranscribing.swift in Sources */,
 				ECC8570E3007BDF8007EC965 /* CapsuleButton.swift in Sources */,
 				A1FA6EDC300CA99700B987B0 /* SpeechTranscriptionService.swift in Sources */,

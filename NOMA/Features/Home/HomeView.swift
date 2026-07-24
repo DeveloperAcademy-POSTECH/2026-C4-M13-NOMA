@@ -5,16 +5,18 @@
 //  Created by 이은지 on 7/19/26.
 //
 
+import SwiftData
 import SwiftUI
 
 struct HomeView: View {
     
     // MARK: - Properties
-
+    
     @Environment(AppRouter.self) private var router
-
+    @Query(sort: \PracticeRecord.createdAt, order: .reverse) private var records: [PracticeRecord]
+    
     // MARK: - Body
-
+    
     var body: some View {
         VStack(spacing: 0) {
             greetingHeadlineView
@@ -26,30 +28,28 @@ struct HomeView: View {
             learningHistoryTitle
                 .padding(.bottom, 40)
             
-            // FIXME: - 임시 구현
             HStack(spacing: 20) {
-                LearningHistoryCardView()
-                
-                LearningHistoryCardView()
-                
-                LearningHistoryCardView()
+                if records.isEmpty {
+                    Text("아직 학습 기록이 없습니다.")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 102)
+                } else {
+                    ForEach(Array(records.prefix(3).enumerated()), id: \.element.persistentModelID) { index, record in
+                        LearningHistoryCardView(record: record, order: records.count - index)
+                    }
+                }
             }
             .padding(.bottom, 16)
-            
-            PushButton(
-                title: "더보기",
-                type: .borderless,
-                size: .small
-            ) {
+            PushButton(title: "더보기", type: .borderless, size: .small) {
                 router.push(.learningHistory)
             }
         }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
+
 
 // MARK: - SubViews
 

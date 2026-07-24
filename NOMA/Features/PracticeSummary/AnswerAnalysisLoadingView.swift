@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/20/26.
 //
 
+import SwiftData
 import SwiftUI
 
 struct AnswerAnalysisLoadingView: View {
@@ -12,6 +13,8 @@ struct AnswerAnalysisLoadingView: View {
     // MARK: - Properties
     @State private var isShowingExitAlert = false
     @Environment(AppRouter.self) private var router
+    
+    let recordID: PersistentIdentifier
     
     // MARK: - Body
     
@@ -26,7 +29,7 @@ struct AnswerAnalysisLoadingView: View {
         .task {
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
-            router.push(.practiceSummary)
+            router.push(.practiceSummary(recordID))
         }
         .alert(
             "정말 나가시겠습니까?",
