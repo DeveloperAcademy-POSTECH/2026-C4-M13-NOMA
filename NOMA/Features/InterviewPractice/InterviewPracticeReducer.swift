@@ -147,6 +147,9 @@ extension InterviewPracticeReducer {
 
     func moveToNextQuestion(state: inout InterviewPracticeState) -> Effect<InterviewPracticeAction> {
         let shouldStopSentencePracticeRecording = state.recordingSentencePracticeIndex != nil
+
+        appendCurrentAnswerToSession(state: &state)
+
         resetSentencePracticeState(state: &state)
         insertPendingFollowUpQuestionIfNeeded(state: &state)
         resetAnswerState(state: &state)
@@ -165,6 +168,30 @@ extension InterviewPracticeReducer {
         return speakCurrentQuestionEffect(
             session: state.session,
             stoppingCurrentRecording: shouldStopSentencePracticeRecording
+        )
+    }
+
+    private func appendCurrentAnswerToSession(state: inout InterviewPracticeState) {
+        guard let answeredQuestion = state.session.currentQuestion else { return }
+
+        let items: [FeedbackItem] = state.answerSentences.enumerated().compactMap { index, sentence in
+            guard case .corrected(let feedback) = sentence.feedbackStatus else { return nil }
+            return FeedbackItem(
+                sentenceIndex: index,
+                revisedSentence: feedback.revisedSentence,
+                explanation: feedback.explanation,
+                corrections: feedback.corrections
+            )
+        }
+
+        state.session.answers.append(
+            PracticeAnswer(
+                question: answeredQuestion,
+                transcript: state.finalizedTranscript,
+                sentences: state.answerSentences.map(\.text),
+                feedbackItems: items,
+                overallFeedback: state.overallFeedbackText ?? ""
+            )
         )
     }
 
