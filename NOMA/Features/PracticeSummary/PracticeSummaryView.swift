@@ -16,6 +16,7 @@ struct PracticeSummaryView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.openWindow) private var openWindow
     @Environment(MemoStore.self) private var memoStore
+    
     let recordID: PersistentIdentifier
     private var record: PracticeRecord? { modelContext.model(for: recordID) as? PracticeRecord }
 
@@ -53,10 +54,6 @@ extension PracticeSummaryView {
 
                 if let record {
                     ForEach(record.questions.sorted { $0.order < $1.order }) { question in
-                        Text("Q\(question.order + 1). \(question.questionContent)")
-                            .font(.title2).fontWeight(.semibold)
-                            .padding(.bottom, 20)
-
                         QuestionAnswerSectionView(
                             question: "Q\(question.order + 1). \(question.questionContent)",
                             sentences: question.answerSentences(),
@@ -115,12 +112,24 @@ extension QuestionRecord {
         guard !feedbackItems.isEmpty else {
             return sentences.map { AnswerSentence(text: $0) }
         }
+        
         let byIndex = Dictionary(feedbackItems.map { ($0.sentenceIndex, $0) }, uniquingKeysWith: { first, _ in first })
-        return sentences.enumerated().map { index, text in
+        
+        return sentences.enumerated().map {
+            index,
+            text in
             guard let item = byIndex[index] else { return AnswerSentence(text: text) }
-            return AnswerSentence(text: text, feedbackStatus: .corrected(
-                SentenceFeedback(revisedSentence: item.revisedSentence,
-                                 explanation: item.explanation, corrections: item.corrections)))
+            
+            return AnswerSentence(
+                text: text,
+                feedbackStatus: .corrected(
+                    SentenceFeedback(
+                        revisedSentence: item.revisedSentence,
+                        explanation: item.explanation,
+                        corrections: item.corrections
+                    )
+                )
+            )
         }
     }
 }

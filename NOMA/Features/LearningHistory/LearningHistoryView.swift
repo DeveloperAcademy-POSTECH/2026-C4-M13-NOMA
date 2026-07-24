@@ -57,8 +57,18 @@ extension LearningHistoryView {
             columns: columns,
             spacing: 24
         ) {
-            ForEach(Array(records.enumerated()), id: \.element.persistentModelID) { index, record in
-                LearningHistoryCardView(record: record, order: records.count - index)
+            ForEach(
+                Array(
+                    records.enumerated()
+                ),
+                id: \.element.persistentModelID
+            ) {
+                index,
+                record in
+                LearningHistoryCardView(
+                    record: record,
+                    order: records.count - index
+                )
             }
         }
     }
