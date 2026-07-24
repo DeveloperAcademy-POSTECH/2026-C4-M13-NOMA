@@ -13,6 +13,7 @@ struct LearningHistoryCardView: View {
     // MARK: - Properties
     @State private var isHovering: Bool = false
     @Environment(AppRouter.self) private var router
+    
     let record: PracticeRecord
     let order: Int 
     
@@ -50,7 +51,6 @@ struct LearningHistoryCardView: View {
 extension LearningHistoryCardView {
     private var summaryHeaderView: some View {
         HStack {
-            // FIXME: - 데이터 주입
             Text("\(order)번째 학습")
                 .font(.title3)
                 .fontWeight(.semibold)
