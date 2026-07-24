@@ -184,7 +184,8 @@ final class InterviewPracticeReducer {
 
         case .exitCancelled:
             state.isExitConfirmationPresented = false
-            
+            return .none
+
         case .viewDisappeared:
             questionSpeaker.stopSpeaking()
             return .none
