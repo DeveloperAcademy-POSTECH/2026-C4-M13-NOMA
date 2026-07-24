@@ -79,6 +79,7 @@ extension InterviewPracticeReducer {
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .generatingFeedback
             state.overallFeedbackText = nil
+            state.isFeedbackVisible = true
             return generateAnswerReviewEffect(
                 currentQuestion: state.session.currentQuestion,
                 transcript: state.finalizedTranscript,
