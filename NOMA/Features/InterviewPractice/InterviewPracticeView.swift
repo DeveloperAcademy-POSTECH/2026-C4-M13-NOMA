@@ -283,7 +283,7 @@ extension InterviewPracticeView {
             return nil
             
         case .askingQuestion:
-            return "Question playing"
+            return "QuestionPlaying"
             
         case .recording:
             return "UserSpeaking"
@@ -339,8 +339,18 @@ extension InterviewPracticeView {
                             QuestionAnswerSectionView(
                                 question: currentQuestionTitle,
                                 sentences: displayedAnswerSentences,
+                                sentencePracticeRecords: store.state.sentencePracticeRecords,
+                                isSentencePracticeEnabled: store.state.isSentencePracticeEnabled,
+                                recordingSentencePracticeIndex: store.state.recordingSentencePracticeIndex,
+                                playingSentencePracticeIndex: store.state.playingSentencePracticeIndex,
                                 onListenTapped: { correctedText in
                                     store.send(.correctedSentencePlaybackRequested(correctedText))
+                                },
+                                onSentencePracticeRecordingTapped: { index in
+                                    store.send(.sentencePracticeRecordingButtonTapped(index: index))
+                                },
+                                onSentencePracticePlaybackTapped: { index in
+                                    store.send(.sentencePracticePlaybackButtonTapped(index: index))
                                 }
                             )
                             .padding(.horizontal, 20)
