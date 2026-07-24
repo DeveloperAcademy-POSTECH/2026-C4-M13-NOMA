@@ -22,6 +22,6 @@ struct InterviewPracticeState {
     var overallFeedbackText: String?
 
     var canFinishAnswer: Bool {
-        phase == .recording && elapsedRecordingDuration > .seconds(1)
+        phase == .recording && elapsedRecordingDuration >= .seconds(1)
     }
 }

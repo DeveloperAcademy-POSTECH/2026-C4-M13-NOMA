@@ -61,19 +61,13 @@ final class InterviewPracticeReducer {
             
         case .questionSpeechFinished, .retryCurrentAnswer:
             state.phase = .recording
-            state.elapsedRecordingDuration = .zero
-            state.liveTranscript = ""
-            state.finalizedTranscript = ""
-            state.volatileTranscript = ""
-            state.answerSentences = []
-            state.overallFeedbackText = nil
-            if state.isFeedbackVisibleDefault {
-                state.isFeedbackVisible = true
-            } else {
-                state.isFeedbackVisible = false
-            }
+            resetAnswerState(&state)
             return startRecordingEffect()
-            
+
+        case .recordingStarted:
+            state.elapsedRecordingDuration = .zero
+            return .none
+          
         case .transcriptUpdated(let text, let isFinal):
             guard isFinal else {
                 state.volatileTranscript = text
@@ -151,12 +145,9 @@ final class InterviewPracticeReducer {
                 state.session.questions.insert(followUp, at: insertIndex)
                 state.session.pendingFollowUpQuestion = nil
             }
-            
-            state.liveTranscript = ""
-            state.finalizedTranscript = ""
-            state.volatileTranscript = ""
-            state.answerSentences = []
-            state.overallFeedbackText = nil
+
+            resetAnswerState(&state)
+          
             state.session.currentQuestionIndex += 1
             
             state.phase = state.session.currentQuestionIndex < state.session.questions.count
@@ -185,18 +176,21 @@ final class InterviewPracticeReducer {
         case .exitRequested:
             state.isExitConfirmationPresented = true
             return .none
-            
-        case .exitConfirmed, .exitCancelled:
-            return .none
+
+        case .exitConfirmed:
+            state.isExitConfirmationPresented = false
+            questionSpeaker.stopSpeaking()
+            return forceStopRecordingEffect()
+
+        case .exitCancelled:
+            state.isExitConfirmationPresented = false
             
         case .viewDisappeared:
             questionSpeaker.stopSpeaking()
             return .none
         }
     }
-    // swiftlint:disable cyclomatic_complexity function_body_length
 }
-
 
 // MARK: - Functions
 
@@ -268,13 +262,29 @@ extension InterviewPracticeReducer {
             transcript: transcript
         )
     }
-    
+
+    private func resetAnswerState(_ state: inout InterviewPracticeState) {
+        state.liveTranscript = ""
+        state.finalizedTranscript = ""
+        state.volatileTranscript = ""
+        state.answerSentences = []
+        state.overallFeedbackText = nil
+        state.elapsedRecordingDuration = .zero
+    }
+
+    private func forceStopRecordingEffect() -> Effect<InterviewPracticeAction> {
+        .run { [audioRecorder] _ in
+            _ = try? await audioRecorder.stopRecording()
+        }
+    }
+  
     private func startRecordingEffect() -> Effect<InterviewPracticeAction> {
         .run { [audioRecorder, speechTranscribing] send in
             do {
                 try? await Task.sleep(for: .seconds(1))
                 
                 let bufferStream = try audioRecorder.startRecording()
+                await send(.recordingStarted)
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
                 for try await update in transcriptStream {
                     await send(.transcriptUpdated(

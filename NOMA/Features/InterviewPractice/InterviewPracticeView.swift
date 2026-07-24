@@ -69,12 +69,84 @@ struct InterviewPracticeView: View {
             memoStore.text = ""
             router.push(.answerAnalysisLoading(record.persistentModelID))
         }
+        .overlay {
+            if store.state.isExitConfirmationPresented {
+                exitConfirmationDialog
+            }
+        }
     }
 }
 
 // MARK: - SubViews
 
 extension InterviewPracticeView {
+    private var exitConfirmationDialog: some View {
+        ZStack {
+            Color.black.opacity(0.25)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    store.send(.exitCancelled)
+                }
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("정말 나가시겠습니까?")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+
+                Text("지금 화면을 벗어나시면 지금까지 진행된 면접 내용과 설정 정보는 저장되지 않습니다. 그래도 종료하시겠습니까?")
+                
+                    .font(.subheadline)
+                    .fontWeight(.regular)
+                    .foregroundStyle(.primary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 8) {
+                    exitDialogButton(
+                        title: "나가기",
+                        titleColor: Color(nsColor: .labelColor),
+                        background: Color(nsColor: .secondarySystemFill)
+                    ) {
+                        store.send(.exitConfirmed)
+                        router.popToRoot()
+                    }
+
+                    exitDialogButton(
+                        title: "취소",
+                        titleColor: .white,
+                        background: .accentsBlue
+                    ) {
+                        store.send(.exitCancelled)
+                    }
+                }
+                .padding(.top, 8)
+            }
+            .padding(20)
+            .frame(width: 260, height: 154)
+            .background(Color(nsColor: .windowBackgroundColor))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .black.opacity(0.2), radius: 20, y: 8)
+        }
+    }
+
+    private func exitDialogButton(
+        title: String,
+        titleColor: Color,
+        background: Color,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(titleColor)
+                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity, minHeight: 32, maxHeight: 32)
+                .background(background)
+                .cornerRadius(100)
+        }
+        .buttonStyle(.plain)
+    }
+
     private var currentQuestionNumber: Int {
         store.state.session.currentQuestionIndex + 1
     }
@@ -108,7 +180,7 @@ extension InterviewPracticeView {
                 type: .default,
                 size: .medium
             ) {
-                router.popToRoot()
+                store.send(.exitRequested)
             }
         }
     }
@@ -303,10 +375,12 @@ extension InterviewPracticeView {
         .background(Color(nsColor: .controlBackgroundColor))
     }
 
-    private var isAwaitingQuestion: Bool {
-        store.state.phase == .ready
-            || store.state.phase == .askingQuestion
-            || store.state.phase == .generatingFeedback
+    private var isAwaitingAnswerCompletion: Bool {
+        store.state.phase != .reviewing
+    }
+
+    private var isLastQuestion: Bool {
+        currentQuestionNumber >= totalQuestions
     }
 
     private var feedbackBottomButtons: some View {
@@ -319,17 +393,17 @@ extension InterviewPracticeView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
 
             CapsuleButton(
-                title: "다음 질문",
+                title: isLastQuestion ? "학습 종료" : "다음 질문",
                 capsuleButtonType: .primary
             ) {
                 store.send(.moveToNextQuestion)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 42)
-            .disabled(isAwaitingQuestion)
+            .disabled(isAwaitingAnswerCompletion)
         }
         .padding(.horizontal, 20)
         .padding(.top, 20)

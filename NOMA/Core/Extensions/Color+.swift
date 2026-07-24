@@ -15,4 +15,6 @@ extension Color {
             blue: Double(hexCode & 0xFF) / 255
         )
     }
+
+    static let accentsBlue = Color(red: 0, green: 0.53, blue: 1)
 }

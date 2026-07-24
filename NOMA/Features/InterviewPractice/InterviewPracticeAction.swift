@@ -13,6 +13,7 @@ enum InterviewPracticeAction {
     case toggleFeedbackVisibility
     case readyCountdownFinished                         // ready 안내 문구가 3초간 노출된 뒤 질문 시작 시점이 됐을 때
     case questionSpeechFinished                         // TTS가 질문을 다 끝냈을 때
+    case recordingStarted                               // 실제 마이크 녹음이 시작됐을 때 (경과 시간 타이머와 답변 완료 버튼 활성화 기준 시점)
     case transcriptUpdated(text: String, isFinal: Bool) // 실시간 STT 결과가 갱신됐을 때 (isFinal이면 확정 문장으로 누적)
     case finishAnswering                                // 사용자가 "답변 완료" 버튼을 눌렀을 때
     case recordingTimeLimitReached                      // 3분 타이머가 다 됐을 때 (버튼 안 눌러도 강제 종료)
