@@ -65,6 +65,9 @@
 		ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573E300C0001007EC965 /* AudioRecordingError.swift */; };
 		ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */; };
 		ECC85744300E16C4007EC965 /* AVSpeechSynthesizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC85743300E16C4007EC965 /* AVSpeechSynthesizerService.swift */; };
+		ECC8574530114E7007EC965 /* AudioPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8574630114E7007EC965 /* AudioPlaying.swift */; };
+		ECC8574730114E7007EC965 /* AudioPlayingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8574830114E7007EC965 /* AudioPlayingError.swift */; };
+		ECC8574930114E7007EC965 /* AVAudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8574A30114E7007EC965 /* AVAudioPlayerService.swift */; };
 		ECE05935300D1C6100C0201E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05934300D1C6100C0201E /* HomeView.swift */; };
 		ECE05937300D1F5E00C0201E /* LearningHistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */; };
 		ECE05939300D2F7D00C0201E /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE05938300D2F7D00C0201E /* PermissionView.swift */; };
@@ -148,6 +151,9 @@
 		ECC8573E300C0001007EC965 /* AudioRecordingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingError.swift; sourceTree = "<group>"; };
 		ECC8573F300C0001007EC965 /* AVAudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioRecordingService.swift; sourceTree = "<group>"; };
 		ECC85743300E16C4007EC965 /* AVSpeechSynthesizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSpeechSynthesizerService.swift; sourceTree = "<group>"; };
+		ECC8574630114E7007EC965 /* AudioPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaying.swift; sourceTree = "<group>"; };
+		ECC8574830114E7007EC965 /* AudioPlayingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayingError.swift; sourceTree = "<group>"; };
+		ECC8574A30114E7007EC965 /* AVAudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayerService.swift; sourceTree = "<group>"; };
 		ECE05934300D1C6100C0201E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ECE05936300D1F5E00C0201E /* LearningHistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningHistoryCardView.swift; sourceTree = "<group>"; };
 		ECE05938300D2F7D00C0201E /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
@@ -253,6 +259,7 @@
 				ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,
+				ECC8574B30114E7007EC965 /* AudioPlaying */,
 				EC4D4FBC30071ED600FB5735 /* SpeechTranscribing */,
 				EC4D4FBB30071EC900FB5735 /* InterviewFeedbackGenerating */,
 				EC4D4FB930071EA900FB5735 /* FollowUpQuestionGenerating */,
@@ -482,6 +489,16 @@
 			path = PushButton;
 			sourceTree = "<group>";
 		};
+		ECC8574B30114E7007EC965 /* AudioPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				ECC8574630114E7007EC965 /* AudioPlaying.swift */,
+				ECC8574830114E7007EC965 /* AudioPlayingError.swift */,
+				ECC8574A30114E7007EC965 /* AVAudioPlayerService.swift */,
+			);
+			path = AudioPlaying;
+			sourceTree = "<group>";
+		};
 		ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +664,7 @@
 			files = (
 				ECC3322F300E10B6006FD6EB /* QuestionAnswerSectionView.swift in Sources */,
 				ECC8572A300B43E3007EC965 /* AudioRecording.swift in Sources */,
+				ECC8574530114E7007EC965 /* AudioPlaying.swift in Sources */,
 				ECE05947300DBFB900C0201E /* SystemSettingsURL.swift in Sources */,
 				ECC33247300FF4FD006FD6EB /* AnswerSentence.swift in Sources */,
 				ECC3322B300E029C006FD6EB /* CorrectionFeedbackCardView.swift in Sources */,
@@ -680,6 +698,7 @@
 				ECC8573C300B531A007EC965 /* FollowUpQuestionGenerating.swift in Sources */,
 				ECC33227300DF637006FD6EB /* PracticeSummaryView.swift in Sources */,
 				ECC85741300C0001007EC965 /* AudioRecordingError.swift in Sources */,
+				ECC8574730114E7007EC965 /* AudioPlayingError.swift in Sources */,
 				ECC3323D300FB78E006FD6EB /* AppRouter.swift in Sources */,
 				ECC33243300FD5CD006FD6EB /* BaseInterviewQuestion.swift in Sources */,
 				ECE05942300DAA0F00C0201E /* LearningHistoryView.swift in Sources */,
@@ -701,6 +720,7 @@
 				ECC85720300A6D55007EC965 /* PushButtonType.swift in Sources */,
 				ECC33229300DFAD2006FD6EB /* OverallFeedbackCardView.swift in Sources */,
 				ECC85742300C0001007EC965 /* AVAudioRecordingService.swift in Sources */,
+				ECC8574930114E7007EC965 /* AVAudioPlayerService.swift in Sources */,
 				EC4D4FEB300730C700FB5735 /* ModifiersFile.swift in Sources */,
 				ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */,
 				C33D2050300FC9F1002ADE8C /* OverallFeedbackOutput.swift in Sources */,
