@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202E39F2674044848C7C3849 /* FollowUpQuestionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */; };
 		A1821BB73000DE7D00EE80A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1821BB63000DE7D00EE80A5 /* .gitignore */; };
 		A1DF1C0D300E136200A7576E /* SendableEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DF1C0C300E136100A7576E /* SendableEngine.swift */; };
 		A1DF1C0F300E14E600A7576E /* AudioError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DF1C0E300E14DF00A7576E /* AudioError.swift */; };
@@ -83,7 +84,6 @@
 		ECF0CBB4300CFB7300FFCCA1 /* FoundationModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */; };
 		F14EC910300EF84E00EE5C85 /* InterviewPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */; };
 		F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */; };
-		202E39F2674044848C7C3849 /* FollowUpQuestionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */; };
 		F14EC920300EF84E00EE5C85 /* MemoWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */; };
 		F14EC92C300F6DB400EE5C85 /* InterviewPracticeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */; };
 		F14EC934300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */; };
@@ -94,6 +94,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionOutput.swift; sourceTree = "<group>"; };
 		A1821BB63000DE7D00EE80A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A1DF1C0C300E136100A7576E /* SendableEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendableEngine.swift; sourceTree = "<group>"; };
 		A1DF1C0E300E14DF00A7576E /* AudioError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioError.swift; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		ECF649222FFF661100DA36B7 /* NOMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NOMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14EC90D300EF84E00EE5C85 /* InterviewPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeView.swift; sourceTree = "<group>"; };
 		F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionGeneratingService.swift; sourceTree = "<group>"; };
-		6CEB4EFD42B247208F73E45A /* FollowUpQuestionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpQuestionOutput.swift; sourceTree = "<group>"; };
 		F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWindowView.swift; sourceTree = "<group>"; };
 		F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeAction.swift; sourceTree = "<group>"; };
 		F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeReducer.swift; sourceTree = "<group>"; };
