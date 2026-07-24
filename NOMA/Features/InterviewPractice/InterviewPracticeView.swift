@@ -15,8 +15,6 @@ struct InterviewPracticeView: View {
     
     @Environment(AppRouter.self) private var router
     @Environment(\.openWindow) private var openWindow
-    
-    @State private var isFeedbackVisible = true
 
     let store: InterviewPracticeStore
     private let totalQuestions = 6
@@ -34,7 +32,7 @@ struct InterviewPracticeView: View {
             HStack(spacing: 0) {
                 interviewerPane
 
-                if isFeedbackVisible {
+                if store.state.isFeedbackVisible {
                     Divider()
 
                     feedbackPanel
@@ -114,7 +112,7 @@ extension InterviewPracticeView {
                 size: .medium
             ) {
                 withAnimation(.easeInOut(duration: 0.2)) {
-                    isFeedbackVisible.toggle()
+                    store.send(.toggleFeedbackVisibility)
                 }
             }
             .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")

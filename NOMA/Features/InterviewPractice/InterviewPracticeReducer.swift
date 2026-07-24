@@ -36,6 +36,7 @@ final class InterviewPracticeReducer {
     
     // MARK: - Functions
     
+    // swiftlint:disable cyclomatic_complexity function_body_length
     func reduce(
         state: inout InterviewPracticeState,
         action: InterviewPracticeAction
@@ -48,6 +49,11 @@ final class InterviewPracticeReducer {
                 try? await Task.sleep(for: .seconds(5))
                 await send(.readyCountdownFinished)
             }
+            
+        case .toggleFeedbackVisibility:
+            state.isFeedbackVisibleDefault.toggle()
+            state.isFeedbackVisible.toggle()
+            return .none
 
         case .readyCountdownFinished:
             state.phase = .askingQuestion
@@ -61,6 +67,11 @@ final class InterviewPracticeReducer {
             state.volatileTranscript = ""
             state.answerSentences = []
             state.overallFeedbackText = nil
+            if state.isFeedbackVisibleDefault {
+                state.isFeedbackVisible = true
+            } else {
+                state.isFeedbackVisible = false
+            }
             return startRecordingEffect()
 
         case .transcriptUpdated(let text, let isFinal):
@@ -96,6 +107,7 @@ final class InterviewPracticeReducer {
         case .finishAnswering, .recordingTimeLimitReached:
             state.phase = .generatingFeedback
             state.overallFeedbackText = nil
+            state.isFeedbackVisible = true
             return generateAnswerReviewEffect(
                 currentQuestion: state.session.currentQuestion,
                 transcript: state.finalizedTranscript,
@@ -130,6 +142,12 @@ final class InterviewPracticeReducer {
             ? .askingQuestion
             : .completed
 
+            if state.isFeedbackVisibleDefault {
+                state.isFeedbackVisible = true
+            } else {
+                state.isFeedbackVisible = false
+            }
+            
             return state.phase == .askingQuestion
                 ? speakCurrentQuestionEffect(session: state.session)
                 : .none
@@ -155,7 +173,9 @@ final class InterviewPracticeReducer {
             return .none
         }
     }
+    // swiftlint:disable cyclomatic_complexity function_body_length
 }
+
 
 // MARK: - Functions
 
