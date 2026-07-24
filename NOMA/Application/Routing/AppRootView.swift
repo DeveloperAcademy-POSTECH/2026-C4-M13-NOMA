@@ -47,6 +47,7 @@ extension AppRootView {
             session: .makeInitial(),
             reducer: InterviewPracticeReducer(
                 audioRecorder: AVAudioRecordingService(),
+                audioPlayer: AVAudioPlayerService(),
                 questionSpeaker: AVSpeechSynthesizerService(),
                 speechTranscribing: SpeechTranscriptionService(),
                 interviewFeedbackGenerating: FoundationModelsFeedbackService(),
