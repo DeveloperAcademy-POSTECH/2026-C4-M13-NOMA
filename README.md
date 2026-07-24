@@ -1,6 +1,9 @@
 
+# ⭐️ Challenge Response
+**한국에서 취업을 준비하는 외국인**에게 **격식체 발화 유도, 피드백 및 반복 학습 유도**를 통해 **면접에 필요한 언어구사 능력을 얻도록** 도와주는 앱
 
-## ⚒️ Tech Stack
+
+# ⚒️ Tech Stack
 | Category | Tools & Technologies |
 | :--- | :--- |
 | **Minimum Deployment Target** | macOS 26.4 |
@@ -13,11 +16,13 @@
 | **On-Device AI** | Apple Foundation Models (FoundationModels) |
 | **Speech-to-Text** | Speech (SpeechAnalyzer / SpeechTranscriber) |
 | **Audio (TTS / Recording / Playback)** | AVFoundation (AVSpeechSynthesizer, AVAudioEngine, AVAudioPlayer) |
+| **Accesibility** | Voice Over |
 | **Animation** | Lottie |
 | **Package Manager** | Swift Package Manager (SPM) |
 | **Code Quality** | SwiftLint |
 
-## 🧑‍💻 Team Members
+
+# 🧑‍💻 Team Members
 
 | <img src="https://avatars.githubusercontent.com/u/219521041?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/132147530?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/203075104?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/85334258?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/139556438?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/181551329?v=4" width="100"> |
 | :--: | :--: | :--: | :--: | :--: | :--: |
