@@ -2,7 +2,7 @@
 //  InterviewPracticeReducer+ActionReducing.swift
 //  NOMA
 //
-//  Created by Codex on 7/24/26.
+//  Created by 정승민 on 7/24/26.
 //
 
 import Foundation
@@ -31,6 +31,10 @@ extension InterviewPracticeReducer {
             resetAnswerState(state: &state)
             resetSentencePracticeState(state: &state)
             return startRecordingEffect()
+
+        case .recordingStarted:
+            state.elapsedRecordingDuration = .zero
+            return .none
 
         case .retryCurrentAnswer:
             let shouldStopSentencePracticeRecording = state.recordingSentencePracticeIndex != nil
@@ -168,6 +172,11 @@ extension InterviewPracticeReducer {
         action: InterviewPracticeAction
     ) -> Effect<InterviewPracticeAction>? {
         switch action {
+        case .toggleFeedbackVisibility:
+            state.isFeedbackVisibleDefault.toggle()
+            state.isFeedbackVisible.toggle()
+            return .none
+
         case .correctedSentencePlaybackRequested(let text):
             return .run { [questionSpeaker] _ in
                 try? await questionSpeaker.speak(text)

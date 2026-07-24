@@ -2,7 +2,7 @@
 //  AudioPlaying.swift
 //  NOMA
 //
-//  Created by Codex on 7/23/26.
+//  Created by 정승민 on 7/23/26.
 //
 
 import Foundation

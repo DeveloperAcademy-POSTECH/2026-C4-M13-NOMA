@@ -86,11 +86,11 @@
 		F14EC91E300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC91D300F089F00EE5C85 /* FollowUpQuestionGeneratingService.swift */; };
 		F14EC920300EF84E00EE5C85 /* MemoWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */; };
 		F14EC92C300F6DB400EE5C85 /* InterviewPracticeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */; };
-		F14EC934300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */; };
 		F14EC92D300F6DB400EE5C85 /* InterviewPracticeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */; };
 		F14EC92E300F6DB400EE5C85 /* InterviewPracticeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */; };
 		F14EC92F300F6DB400EE5C85 /* InterviewPracticeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */; };
 		F14EC932300F88B400EE5C85 /* PracticePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC931300F88B400EE5C85 /* PracticePhase.swift */; };
+		F14EC934300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */; };
 		F14EC93630127E3B00EE5C85 /* UserSpeaking.json in Resources */ = {isa = PBXBuildFile; fileRef = F14EC93530127E3B00EE5C85 /* UserSpeaking.json */; };
 		F14EC93730127E3B00EE5C85 /* QuestionPlaying.json in Resources */ = {isa = PBXBuildFile; fileRef = F14EC93430127E3B00EE5C85 /* QuestionPlaying.json */; };
 /* End PBXBuildFile section */
@@ -176,10 +176,10 @@
 		F14EC921300EF84E00EE5C85 /* MemoWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWindowView.swift; sourceTree = "<group>"; };
 		F14EC928300F6DB400EE5C85 /* InterviewPracticeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeAction.swift; sourceTree = "<group>"; };
 		F14EC929300F6DB400EE5C85 /* InterviewPracticeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeReducer.swift; sourceTree = "<group>"; };
-		F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterviewPracticeReducer+ActionReducing.swift"; sourceTree = "<group>"; };
 		F14EC92A300F6DB400EE5C85 /* InterviewPracticeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeState.swift; sourceTree = "<group>"; };
 		F14EC92B300F6DB400EE5C85 /* InterviewPracticeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPracticeStore.swift; sourceTree = "<group>"; };
 		F14EC931300F88B400EE5C85 /* PracticePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePhase.swift; sourceTree = "<group>"; };
+		F14EC933300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterviewPracticeReducer+ActionReducing.swift"; sourceTree = "<group>"; };
 		F14EC93430127E3B00EE5C85 /* QuestionPlaying.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = QuestionPlaying.json; sourceTree = "<group>"; };
 		F14EC93530127E3B00EE5C85 /* UserSpeaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserSpeaking.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -888,7 +888,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -933,7 +933,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AT9KX3ZBW6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
