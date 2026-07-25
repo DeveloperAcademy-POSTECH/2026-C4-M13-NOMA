@@ -18,7 +18,6 @@ struct InterviewPracticeView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.modelContext) private var modelContext
     @Environment(MemoStore.self) private var memoStore
-    
     @State private var isFeedbackVisible = true
 
     let store: InterviewPracticeStore
@@ -89,24 +88,6 @@ struct InterviewPracticeView: View {
 // MARK: - Subviews
 
 extension InterviewPracticeView {
-    private var isExitAlertPresented: Binding<Bool> {
-        Binding(
-            get: { store.state.isExitConfirmationPresented },
-            set: { isPresented in
-                guard !isPresented else { return }
-                store.send(.exitCancelled)
-            }
-        )
-    }
-
-    private var currentQuestionNumber: Int {
-        store.state.session.currentQuestionIndex + 1
-    }
-
-    private var displayedQuestionNumber: Int {
-        store.state.phase == .ready ? 0 : currentQuestionNumber
-    }
-
     private var header: some View {
         HStack(spacing: 8) {
             Text("문제 \(displayedQuestionNumber)/\(totalQuestions)")
@@ -164,35 +145,6 @@ extension InterviewPracticeView {
             }
         }
     }
-    
-    private var questionPromptText: String {
-        store.state.phase == .ready
-            ? BaseInterviewQuestion.readyPromptText
-            : store.state.session.currentQuestion?.content ?? ""
-    }
-
-    private var currentQuestionTitle: String {
-        guard let content = store.state.session.currentQuestion?.content else { return "" }
-        return "Q\(currentQuestionNumber). \(content)"
-    }
-
-    private var displayedAnswerSentences: [AnswerSentence] {
-        var sentences = store.state.answerSentences
-
-        sentences.append(
-            contentsOf: AnswerSentence.splitIntoSentences(store.state.volatileTranscript)
-                .map { AnswerSentence(text: $0) }
-        )
-
-        return sentences
-    }
-
-    private var elapsedTimeText: String {
-        let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        return String(format: "%02d:%02d", minutes, seconds)
-    }
 
     private var interviewerPane: some View {
         VStack(spacing: 0) {
@@ -231,22 +183,6 @@ extension InterviewPracticeView {
             maxHeight: .infinity
         )
         .background(Color(nsColor: .windowBackgroundColor))
-    }
-    
-    private var currentLottieAnimationName: String? {
-        switch store.state.phase {
-        case .ready:
-            return nil
-            
-        case .askingQuestion:
-            return "QuestionPlaying"
-            
-        case .recording:
-            return "UserSpeaking"
-            
-        default:
-            return "Standby"
-        }
     }
 
     private var bottomControls: some View {
@@ -340,15 +276,7 @@ extension InterviewPracticeView {
         .frame(width: 650)
         .background(Color(nsColor: .controlBackgroundColor))
     }
-
-    private var isAwaitingAnswerCompletion: Bool {
-        store.state.phase != .reviewing
-    }
-
-    private var isLastQuestion: Bool {
-        currentQuestionNumber >= totalQuestions
-    }
-
+    
     private var feedbackBottomButtons: some View {
         HStack(spacing: 12) {
             CapsuleButton(
@@ -374,5 +302,84 @@ extension InterviewPracticeView {
         .padding(.horizontal, 20)
         .padding(.top, 20)
         .padding(.bottom, 50)
+    }
+}
+
+// MARK: - Derived State
+
+extension InterviewPracticeView {
+    private var currentQuestionNumber: Int {
+        store.state.session.currentQuestionIndex + 1
+    }
+
+    private var displayedQuestionNumber: Int {
+        store.state.phase == .ready ? 0 : currentQuestionNumber
+    }
+
+    private var questionPromptText: String {
+        store.state.phase == .ready
+            ? BaseInterviewQuestion.readyPromptText
+            : store.state.session.currentQuestion?.content ?? ""
+    }
+
+    private var currentQuestionTitle: String {
+        guard let content = store.state.session.currentQuestion?.content else { return "" }
+        return "Q\(currentQuestionNumber). \(content)"
+    }
+
+    private var displayedAnswerSentences: [AnswerSentence] {
+        var sentences = store.state.answerSentences
+
+        sentences.append(
+            contentsOf: AnswerSentence.splitIntoSentences(store.state.volatileTranscript)
+                .map { AnswerSentence(text: $0) }
+        )
+
+        return sentences
+    }
+
+    private var elapsedTimeText: String {
+        let totalSeconds = Int(store.state.elapsedRecordingDuration.components.seconds)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    private var currentLottieAnimationName: String? {
+        switch store.state.phase {
+        case .ready:
+            return nil
+            
+        case .askingQuestion:
+            return "QuestionPlaying"
+            
+        case .recording:
+            return "UserSpeaking"
+            
+        default:
+            return "Standby"
+        }
+    }
+
+    private var isAwaitingAnswerCompletion: Bool {
+        store.state.phase != .reviewing
+    }
+
+    private var isLastQuestion: Bool {
+        currentQuestionNumber >= totalQuestions
+    }
+}
+
+// MARK: - Bindings
+
+extension InterviewPracticeView {
+    private var isExitAlertPresented: Binding<Bool> {
+        Binding(
+            get: { store.state.isExitConfirmationPresented },
+            set: { isPresented in
+                guard !isPresented else { return }
+                store.send(.exitCancelled)
+            }
+        )
     }
 }
