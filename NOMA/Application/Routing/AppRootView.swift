@@ -5,6 +5,7 @@
 //  Created by 이은지 on 7/21/26.
 //
 
+import FoundationModels
 import SwiftUI
 
 struct AppRootView: View {
@@ -24,6 +25,9 @@ struct AppRootView: View {
                     case .onboarding:
                         OnboardingView()
                         
+                    case .home:
+                        HomeView()
+                        
                     case .permission:
                         PermissionView()
                         
@@ -40,10 +44,13 @@ struct AppRootView: View {
                         LearningHistoryView()
                     }
                 }
-                .navigationBarBackButtonHidden(true)
         }
         .task {
-            router.push(.onboarding)
+            if SystemLanguageModel.default.availability.isEnabled {
+                router.push(.home)
+            } else {
+                router.push(.onboarding)
+            }
         }
         .environment(router)
     }
