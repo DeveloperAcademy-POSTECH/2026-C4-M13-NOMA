@@ -187,14 +187,25 @@ extension InterviewPracticeView {
 
     private var interviewerPaneView: some View {
         VStack(spacing: 0) {
-            Spacer()
-
             interviewerLottieView
+                .padding(.bottom, 28)
             
             questionPromptView
+                .padding(.bottom, 46)
+            
+            elapsedTimeView
+                .padding(.bottom, 18)
 
-            bottomControlsView
-                .padding(.bottom, 112)
+            finishAnsweringButton
+                .padding(.bottom, 18)
+
+            if !store.state.isFeedbackVisible {
+                feedbackBottomButtons
+                    .frame(
+                        width: 400,
+                        height: 42
+                    )
+            }
         }
         .frame(
             maxWidth: .infinity,
@@ -212,7 +223,6 @@ extension InterviewPracticeView {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 385, height: 385)
                 .id(currentLottieAnimationName)
-                .padding(.bottom, 72)
                 .accessibilityHidden(true)
         }
     }
@@ -232,29 +242,29 @@ extension InterviewPracticeView {
             .padding(.horizontal, 20)
             .fixedSize(horizontal: false, vertical: true)
     }
+    
+    private var elapsedTimeView: some View {
+        Text(elapsedTimeText)
+            .font(.body)
+            .fontWeight(.thin)
+            .foregroundStyle(.secondary)
+            .accessibilityLabel("답변 시간")
+            .accessibilityValue(elapsedTimeText)
+    }
 
-    private var bottomControlsView: some View {
-        VStack(spacing: 18) {
-            Text(elapsedTimeText)
-                .font(.body)
-                .fontWeight(.thin)
-                .foregroundStyle(.secondary)
-                .accessibilityLabel("답변 시간")
-                .accessibilityValue(elapsedTimeText)
-
-            CapsuleButton(
-                title: "답변 완료",
-                capsuleButtonType: .primary
-            ) {
-                store.send(.finishAnswering)
-            }
-            .frame(
-                width: 120,
-                height: 42
-            )
-            .disabled(!store.state.canFinishAnswer)
-            .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
+    private var finishAnsweringButton: some View {
+        CapsuleButton(
+            title: "답변 완료",
+            capsuleButtonType: .primary
+        ) {
+            store.send(.finishAnswering)
         }
+        .frame(
+            width: 120,
+            height: 42
+        )
+        .disabled(!store.state.canFinishAnswer)
+        .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
     }
     
     private var feedbackPanelView: some View {
