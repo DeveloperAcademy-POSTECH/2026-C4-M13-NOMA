@@ -442,7 +442,7 @@ extension InterviewPracticeView {
     private var isFeedbackVisible: Binding<Bool> {
         Binding(
             get: { store.state.isFeedbackVisible },
-            set: { _ in store.send(.toggleFeedbackVisibility) }
+            set: { newValue in store.send(.feedbackVisibilityChanged(newValue)) }
         )
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 enum InterviewPracticeAction {
     case viewAppeared                                   // InterviewPracticeView가 화면에 나타났을 때
     case viewDisappeared                                // 화면이 사라질 때
-    case toggleFeedbackVisibility                        // 피드백 패널 표시 여부를 토글했을 때
+    case feedbackVisibilityChanged(Bool)                 // 피드백 패널 표시 여부 토글을 조작했을 때
     case readyCountdownFinished                         // ready 안내 문구가 3초간 노출된 뒤 질문 시작 시점이 됐을 때
     case questionSpeechFinished                         // TTS가 질문을 다 끝냈을 때
     case recordingStarted                               // 실제 마이크 녹음이 시작됐을 때 (경과 시간 타이머와 답변 완료 버튼 활성화 기준 시점)

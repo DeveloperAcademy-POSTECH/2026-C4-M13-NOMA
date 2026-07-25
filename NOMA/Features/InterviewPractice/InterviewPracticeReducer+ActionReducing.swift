@@ -173,9 +173,9 @@ extension InterviewPracticeReducer {
         action: InterviewPracticeAction
     ) -> Effect<InterviewPracticeAction>? {
         switch action {
-        case .toggleFeedbackVisibility:
-            state.isFeedbackVisibleDefault.toggle()
-            state.isFeedbackVisible.toggle()
+        case .feedbackVisibilityChanged(let isVisible):
+            state.isFeedbackVisibleDefault = isVisible
+            state.isFeedbackVisible = isVisible
             return .none
 
         case .correctedSentencePlaybackRequested(let text):
