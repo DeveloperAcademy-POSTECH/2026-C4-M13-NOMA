@@ -199,9 +199,3 @@ extension InterviewPracticeReducer {
         }
     }
 }
-
-private extension Duration {
-    var timeInterval: TimeInterval {
-        Double(components.seconds) + Double(components.attoseconds) / 1_000_000_000_000_000_000
-    }
-}
