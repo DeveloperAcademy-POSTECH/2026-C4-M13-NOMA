@@ -18,8 +18,7 @@ struct InterviewPracticeView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.modelContext) private var modelContext
     @Environment(MemoStore.self) private var memoStore
-    @State private var isFeedbackVisible = true
-
+    
     let store: InterviewPracticeStore
     private let totalQuestions = 6
 
@@ -126,12 +125,12 @@ extension InterviewPracticeView {
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(.primary)
                 
-                Toggle("", isOn: $isFeedbackVisible)
+                Toggle("", isOn: isFeedbackVisible)
                     .labelsHidden()
                     .toggleStyle(.switch)
                     .tint(.accentColor)
             }
-            .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
+            .accessibilityLabel(store.state.isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
             
             Divider()
                 .frame(height: 20)
@@ -380,6 +379,13 @@ extension InterviewPracticeView {
                 guard !isPresented else { return }
                 store.send(.exitCancelled)
             }
+        )
+    }
+
+    private var isFeedbackVisible: Binding<Bool> {
+        Binding(
+            get: { store.state.isFeedbackVisible },
+            set: { _ in store.send(.toggleFeedbackVisibility) }
         )
     }
 }
