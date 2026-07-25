@@ -11,7 +11,7 @@ import SwiftUI
 import Lottie
 
 struct InterviewPracticeView: View {
-
+    
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
@@ -21,23 +21,23 @@ struct InterviewPracticeView: View {
     
     let store: InterviewPracticeStore
     private let totalQuestions = 6
-
+    
     // MARK: - Body
-
+    
     var body: some View {
         VStack(spacing: 0) {
             header
                 .padding(.horizontal, 30)
                 .frame(height: 78)
-
+            
             Divider()
-
+            
             HStack(spacing: 0) {
                 interviewerPane
-
+                
                 if store.state.isFeedbackVisible {
                     Divider()
-
+                    
                     feedbackPanel
                 }
             }
@@ -52,20 +52,7 @@ struct InterviewPracticeView: View {
         }
         .onChange(of: store.state.phase) { _, newPhase in
             guard newPhase == .completed else { return }
-            let record = PracticeRecord(
-                memo: memoStore.text,
-                questions: store.state.session.answers.enumerated().map { index, answer in
-                    QuestionRecord(order: index, questionContent: answer.question.content,
-                                   isFollowUp: answer.question.isFollowUp, transcript: answer.transcript,
-                                   sentences: answer.sentences,
-                                   feedbackItems: answer.feedbackItems,
-                                   overallFeedback: answer.overallFeedback)
-                }
-            )
-            modelContext.insert(record)
-            try? modelContext.save()
-            memoStore.text = ""
-            router.push(.answerAnalysisLoading(record.persistentModelID))
+            saveCompletedSession()
         }
         .alert(
             "정말 나가시겠습니까?",
@@ -81,6 +68,29 @@ struct InterviewPracticeView: View {
         } message: {
             Text("지금 화면을 벗어나시면 지금까지 진행된 면접 내용과 설정 정보는 저장되지 않습니다. 그래도 종료하시겠습니까?")
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func saveCompletedSession() {
+        let record = PracticeRecord(
+            memo: memoStore.text,
+            questions: store.state.session.answers.enumerated().map { index, answer in
+                QuestionRecord(
+                    order: index,
+                    questionContent: answer.question.content,
+                    isFollowUp: answer.question.isFollowUp,
+                    transcript: answer.transcript,
+                    sentences: answer.sentences,
+                    feedbackItems: answer.feedbackItems,
+                    overallFeedback: answer.overallFeedback
+                )
+            }
+        )
+        modelContext.insert(record)
+        try? modelContext.save()
+        memoStore.text = ""
+        router.push(.answerAnalysisLoading(record.persistentModelID))
     }
 }
 
