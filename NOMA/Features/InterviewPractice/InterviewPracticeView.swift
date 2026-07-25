@@ -95,7 +95,6 @@ extension InterviewPracticeView {
                     .foregroundStyle(.primary)
 
                 Text("지금 화면을 벗어나시면 지금까지 진행된 면접 내용과 설정 정보는 저장되지 않습니다. 그래도 종료하시겠습니까?")
-                
                     .font(.subheadline)
                     .fontWeight(.regular)
                     .foregroundStyle(.primary)
@@ -174,21 +173,13 @@ extension InterviewPracticeView {
             Spacer()
 
             layoutToggleButtons
-
-            PushButton(
-                title: "학습 종료",
-                type: .default,
-                size: .medium
-            ) {
-                store.send(.exitRequested)
-            }
         }
     }
     
     private var layoutToggleButtons: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 16) {
             PushButton(
-                title: "􀧵",
+                title: "􀧵 메모",
                 type: .neutral,
                 size: .medium
             ) {
@@ -196,16 +187,28 @@ extension InterviewPracticeView {
             }
             .accessibilityLabel("메모 열기")
             
-            PushButton(
-                title: "􀏛",
-                type: .neutral,
-                size: .medium
-            ) {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    store.send(.toggleFeedbackVisibility)
-                }
+            HStack(spacing: 8) {
+                Text("피드백 창")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.primary)
+                
+                Toggle("", isOn: $isFeedbackVisible)
+                    .labelsHidden()
+                    .toggleStyle(.switch)
+                    .tint(.accentColor)
             }
             .accessibilityLabel(isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
+            
+            Divider()
+                .frame(height: 20)
+            
+            PushButton(
+                title: "학습 종료",
+                type: .borderless,
+                size: .medium
+            ) {
+                store.send(.exitRequested)
+            }
         }
     }
     
