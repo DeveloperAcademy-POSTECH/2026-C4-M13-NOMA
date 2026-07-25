@@ -34,13 +34,16 @@ struct InterviewPracticeView: View {
             
             HStack(spacing: 0) {
                 interviewerPaneView
-                
+
                 if store.state.isFeedbackVisible {
                     Divider()
-                    
+                        .transition(.opacity)
+
                     feedbackPanelView
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
                 }
             }
+            .animation(.easeInOut(duration: 0.25), value: store.state.isFeedbackVisible)
         }
         .onAppear {
             store.send(.viewAppeared)
