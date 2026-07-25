@@ -42,6 +42,10 @@ struct AppRootView: View {
                     }
                 }
         }
+        .frame(
+            minWidth: 1000,
+            minHeight: 800
+        )
         .task {
             appleIntelligenceStatus.refresh()
             if !appleIntelligenceStatus.isEnabled {
