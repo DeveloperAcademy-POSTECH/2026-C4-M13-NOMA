@@ -13,13 +13,24 @@ struct HomeView: View {
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
-    @Query(sort: \PracticeRecord.createdAt, order: .reverse) private var records: [PracticeRecord]
+    @Query private var recentRecords: [PracticeRecord]
+    
+    // MARK: - Initializer
+    
+    init() {
+        var descriptor = FetchDescriptor<PracticeRecord>(
+            sortBy: [SortDescriptor(\.createdAt, order: .reverse)]
+        )
+        
+        descriptor.fetchLimit = 3
+        _recentRecords = Query(descriptor)
+    }
     
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 0) {
-            greetingHeadlineView
+            greetingView
                 .padding(.bottom, 30)
             
             startLearningButton
@@ -28,33 +39,23 @@ struct HomeView: View {
             learningHistoryTitle
                 .padding(.bottom, 40)
             
-            HStack(spacing: 20) {
-                if records.isEmpty {
-                    Text("아직 학습 기록이 없습니다.")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 102)
-                } else {
-                    ForEach(Array(records.prefix(3).enumerated()), id: \.element.persistentModelID) { index, record in
-                        LearningHistoryCardView(record: record, order: records.count - index)
-                    }
-                }
-            }
-            .padding(.bottom, 16)
-            PushButton(title: "더보기", type: .borderless, size: .small) {
-                router.push(.learningHistory)
+            if recentRecords.isEmpty {
+                learningHistoryEmptyView
+            } else {
+                learningHistoryContentView
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
     }
 }
 
-
-// MARK: - SubViews
+// MARK: - Subviews
 
 extension HomeView {
-    private var greetingHeadlineView: some View {
+    private var greetingView: some View {
         Text("안녕하십니까.\n오늘도 격식체 연습을 시작해보시겠습니까?")
             .font(.title)
             .fontWeight(.bold)
@@ -82,4 +83,43 @@ extension HomeView {
             .foregroundStyle(.primary)
     }
     
+    private var learningHistoryEmptyView: some View {
+        VStack(spacing: 8) {
+            Text("진행한 학습 내역이 없습니다.")
+                .font(.title2)
+                .foregroundStyle(.primary)
+            
+            Text("첫 번째 격식체 연습을 진행해 보십시오.")
+                .font(.title3)
+                .foregroundStyle(.primary)
+        }
+    }
+    
+    private var learningHistoryContentView: some View {
+        VStack(spacing: 16) {
+            learningHistoryCardListView
+            
+            PushButton(
+                title: "더보기",
+                type: .borderless,
+                size: .small
+            ) {
+                router.push(.learningHistory)
+            }
+        }
+    }
+    
+    private var learningHistoryCardListView: some View {
+        HStack(spacing: 20) {
+            ForEach(
+                Array(recentRecords.enumerated()),
+                id: \.element.persistentModelID
+            ) { index, record in
+                LearningHistoryCardView(
+                    record: record,
+                    order: index + 1
+                )
+            }
+        }
+    }
 }

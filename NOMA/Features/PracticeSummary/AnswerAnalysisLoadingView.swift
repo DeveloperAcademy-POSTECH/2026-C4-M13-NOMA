@@ -11,6 +11,7 @@ import SwiftUI
 struct AnswerAnalysisLoadingView: View {
     
     // MARK: - Properties
+    
     @State private var isShowingExitAlert = false
     @Environment(AppRouter.self) private var router
     

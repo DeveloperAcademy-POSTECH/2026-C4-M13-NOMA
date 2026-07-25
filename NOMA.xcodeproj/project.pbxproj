@@ -29,6 +29,7 @@
 		C3FA676D300D0F6800D48BF7 /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */; };
 		EC3A8F9C3013988000E4796E /* QuestionPlaying.json in Resources */ = {isa = PBXBuildFile; fileRef = EC3A8F9A3013988000E4796E /* QuestionPlaying.json */; };
 		EC3A8F9D3013988000E4796E /* UserSpeaking.json in Resources */ = {isa = PBXBuildFile; fileRef = EC3A8F9B3013988000E4796E /* UserSpeaking.json */; };
+		EC3A8F9F3014A73100E4796E /* Duration+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A8F9E3014A73100E4796E /* Duration+.swift */; };
 		EC4D4FAE30071BF100FB5735 /* NOMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FA930071BF100FB5735 /* NOMAApp.swift */; };
 		EC4D4FAF30071BF100FB5735 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4D4FAC30071BF100FB5735 /* ContentView.swift */; };
 		EC4D4FB030071BF100FB5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4D4FAB30071BF100FB5735 /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		C3FA676C300D0F6700D48BF7 /* PracticeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSession.swift; sourceTree = "<group>"; };
 		EC3A8F9A3013988000E4796E /* QuestionPlaying.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = QuestionPlaying.json; sourceTree = "<group>"; };
 		EC3A8F9B3013988000E4796E /* UserSpeaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserSpeaking.json; sourceTree = "<group>"; };
+		EC3A8F9E3014A73100E4796E /* Duration+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+.swift"; sourceTree = "<group>"; };
 		EC4D4FA930071BF100FB5735 /* NOMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOMAApp.swift; sourceTree = "<group>"; };
 		EC4D4FAB30071BF100FB5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4D4FAC30071BF100FB5735 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -262,8 +264,8 @@
 		EC4D4FB230071C1300FB5735 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C3C31EC3300F0F0100C5ADAE /* FoundationModels */,
 				ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */,
+				C3C31EC3300F0F0100C5ADAE /* FoundationModels */,
 				ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,
@@ -482,6 +484,7 @@
 			children = (
 				ECC85717300A6228007EC965 /* Color+.swift */,
 				ECF0CBB3300CFB7300FFCCA1 /* FoundationModels+.swift */,
+				EC3A8F9E3014A73100E4796E /* Duration+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				F14EC92C300F6DB400EE5C85 /* InterviewPracticeReducer.swift in Sources */,
 				F14EC934300F8C5400EE5C85 /* InterviewPracticeReducer+ActionReducing.swift in Sources */,
 				F14EC92D300F6DB400EE5C85 /* InterviewPracticeState.swift in Sources */,
+				EC3A8F9F3014A73100E4796E /* Duration+.swift in Sources */,
 				F14EC92E300F6DB400EE5C85 /* InterviewPracticeStore.swift in Sources */,
 				C3ACFBBB301213E7009DC825 /* PracticeRecord.swift in Sources */,
 				F14EC92F300F6DB400EE5C85 /* InterviewPracticeAction.swift in Sources */,

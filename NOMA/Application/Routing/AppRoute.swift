@@ -10,7 +10,6 @@ import SwiftData
 
 enum AppRoute: Hashable {
     case onboarding
-    case home
     case permission
     case interviewPractice
     case answerAnalysisLoading(PersistentIdentifier)

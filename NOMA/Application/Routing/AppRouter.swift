@@ -22,6 +22,7 @@ final class AppRouter {
 
     func pop() {
         guard !path.isEmpty else { return }
+        
         path.removeLast()
     }
 

@@ -173,9 +173,9 @@ extension InterviewPracticeReducer {
         action: InterviewPracticeAction
     ) -> Effect<InterviewPracticeAction>? {
         switch action {
-        case .toggleFeedbackVisibility:
-            state.isFeedbackVisibleDefault.toggle()
-            state.isFeedbackVisible.toggle()
+        case .feedbackVisibilityChanged(let isVisible):
+            state.isFeedbackVisibleDefault = isVisible
+            state.isFeedbackVisible = isVisible
             return .none
 
         case .correctedSentencePlaybackRequested(let text):
@@ -192,16 +192,11 @@ extension InterviewPracticeReducer {
             return .none
 
         case .exitConfirmed, .exitCancelled:
+            state.isExitConfirmationPresented = false
             return .none
 
         default:
             return nil
         }
-    }
-}
-
-private extension Duration {
-    var timeInterval: TimeInterval {
-        Double(components.seconds) + Double(components.attoseconds) / 1_000_000_000_000_000_000
     }
 }

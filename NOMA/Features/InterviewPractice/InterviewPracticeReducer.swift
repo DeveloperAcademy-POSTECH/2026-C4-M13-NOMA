@@ -246,8 +246,6 @@ extension InterviewPracticeReducer {
                     _ = try? await audioRecorder.stopRecording()
                 }
 
-                try? await Task.sleep(for: .seconds(1))
-
                 let bufferStream = try audioRecorder.startRecording()
                 await send(.recordingStarted)
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
@@ -383,14 +381,14 @@ extension InterviewPracticeReducer {
     ) -> Effect<InterviewPracticeAction> {
         guard state.playingSentencePracticeIndex == index else { return .none }
 
-        let currentTime = audioPlayer.currentTime
-        guard audioPlayer.duration > 0, currentTime < audioPlayer.duration else {
+        guard audioPlayer.isPlaying else {
             audioPlayer.stop()
             return .run { send in
                 await send(.sentencePracticePlaybackFinished(index: index))
             }
         }
 
+        let currentTime = audioPlayer.currentTime
         return .run { send in
             await send(.sentencePracticePlaybackProgressUpdated(
                 index: index,
@@ -413,13 +411,5 @@ extension InterviewPracticeReducer {
         state.sentencePracticeRecords = [:]
         state.recordingSentencePracticeIndex = nil
         state.playingSentencePracticeIndex = nil
-    }
-}
-
-// MARK: - Duration
-
-private extension Duration {
-    var timeInterval: TimeInterval {
-        Double(components.seconds) + Double(components.attoseconds) / 1_000_000_000_000_000_000
     }
 }

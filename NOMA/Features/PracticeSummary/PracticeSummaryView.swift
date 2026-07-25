@@ -50,19 +50,30 @@ extension PracticeSummaryView {
             VStack(alignment: .leading, spacing: 0) {
                 practiceSummaryInfoSection
                     .padding(.vertical, 34)
-                Divider().padding(.bottom, 30)
+                
+                Divider()
+                    .padding(.bottom, 30)
+                
+                Text("스크립트")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+                    .padding(.bottom, 20)
 
                 if let record {
-                    ForEach(record.questions.sorted { $0.order < $1.order }) { question in
+                    ForEach(record.questionRecords.sorted { $0.order < $1.order }) { question in
                         QuestionAnswerSectionView(
                             question: "Q\(question.order + 1). \(question.questionContent)",
                             sentences: question.answerSentences(),
                             onListenTapped: { _ in }
                         )
-                        .padding(.bottom, 20)
 
-                        OverallFeedbackCardView(feedbackText: question.overallFeedback)
-                            .padding(.bottom, 30)
+                        if !question.overallFeedback.isEmpty {
+                            OverallFeedbackCardView(feedbackText: question.overallFeedback)
+                        }
+
+                        Divider()
+                            .padding(.vertical, 30)
                     }
                 }
             }
@@ -89,7 +100,7 @@ extension PracticeSummaryView {
                 .foregroundStyle(.secondary)
                 .padding(.trailing, 42)
 
-            Text("\(record?.questions.count ?? 0)문항")
+            Text("\(record?.questionRecords.count ?? 0)문항")
                 .font(.body)
                 .foregroundStyle(.secondary)
             
@@ -115,9 +126,7 @@ extension QuestionRecord {
         
         let byIndex = Dictionary(feedbackItems.map { ($0.sentenceIndex, $0) }, uniquingKeysWith: { first, _ in first })
         
-        return sentences.enumerated().map {
-            index,
-            text in
+        return sentences.enumerated().map { index, text in
             guard let item = byIndex[index] else { return AnswerSentence(text: text) }
             
             return AnswerSentence(

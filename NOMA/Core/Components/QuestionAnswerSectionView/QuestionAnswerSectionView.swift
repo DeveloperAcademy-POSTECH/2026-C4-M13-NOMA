@@ -30,7 +30,7 @@ struct QuestionAnswerSectionView: View {
                     sentences[index],
                     index: index
                 )
-                    .padding(.bottom, 16)
+                .padding(.bottom, 16)
             }
         } header: {
             questionTitle
@@ -50,7 +50,7 @@ extension QuestionAnswerSectionView {
 
             Spacer()
         }
-        .padding(.vertical, 16)
+        .padding(.bottom, 16)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("질문, \(question)")
         .accessibilityAddTraits(.isHeader)
