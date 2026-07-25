@@ -13,7 +13,7 @@ struct HomeView: View {
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
-    @Query private var records: [PracticeRecord]
+    @Query private var recentRecords: [PracticeRecord]
     
     // MARK: - Initializer
     
@@ -23,14 +23,14 @@ struct HomeView: View {
         )
         
         descriptor.fetchLimit = 3
-        _records = Query(descriptor)
+        _recentRecords = Query(descriptor)
     }
     
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 0) {
-            greetingHeadlineView
+            greetingView
                 .padding(.bottom, 30)
             
             startLearningButton
@@ -39,10 +39,10 @@ struct HomeView: View {
             learningHistoryTitle
                 .padding(.bottom, 40)
             
-            if records.isEmpty {
+            if recentRecords.isEmpty {
                 learningHistoryEmptyView
             } else {
-                learningHistoryView
+                learningHistoryListView
             }
         }
         .frame(
@@ -52,10 +52,10 @@ struct HomeView: View {
     }
 }
 
-// MARK: - SubViews
+// MARK: - Subviews
 
 extension HomeView {
-    private var greetingHeadlineView: some View {
+    private var greetingView: some View {
         Text("안녕하십니까.\n오늘도 격식체 연습을 시작해보시겠습니까?")
             .font(.title)
             .fontWeight(.bold)
@@ -95,10 +95,10 @@ extension HomeView {
         }
     }
     
-    private var learningHistoryView: some View {
+    private var learningHistoryListView: some View {
         VStack {
             ForEach(
-                Array(records.enumerated()),
+                Array(recentRecords.enumerated()),
                 id: \.element.persistentModelID
             ) { index, record in
                 LearningHistoryCardView(
