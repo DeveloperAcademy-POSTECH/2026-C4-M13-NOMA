@@ -78,7 +78,7 @@ extension CorrectionFeedbackCardView {
             ) {
                 onListenTapped()
             }
-            .disabled(isSentencePracticeRecording)
+            .disabled(isSentencePracticeRecording || isSentencePracticePlaying)
             .accessibilityLabel("교정 문장 듣기")
         }
     }
@@ -92,25 +92,25 @@ extension CorrectionFeedbackCardView {
             ) {
                 onSentencePracticeRecordingTapped()
             }
-            .frame(width: 128, height: 24)
             .padding(.trailing, 8)
             .disabled(!isRecordingButtonEnabled)
             .accessibilityLabel(recordingAccessibilityLabel)
 
-            Button {
-                onSentencePracticePlaybackTapped()
-            } label: {
-                Image(systemName: playbackIconName)
-                    .font(.title3)
-                    .foregroundStyle(playbackButtonColor)
-                    .frame(width: 24, height: 24)
-            }
-            .buttonStyle(.plain)
-            .disabled(!isPlaybackButtonEnabled)
-            .accessibilityLabel(playbackAccessibilityLabel)
-            .padding(.horizontal, 16)
+            if hasRecordedAudio {
+                Button {
+                    onSentencePracticePlaybackTapped()
+                } label: {
+                    Image(systemName: playbackIconName)
+                        .font(.title3)
+                        .foregroundStyle(playbackButtonColor)
+                        .frame(width: 46, height: 24)
+                }
+                .buttonStyle(.plain)
+                .disabled(!isPlaybackButtonEnabled)
+                .accessibilityLabel(playbackAccessibilityLabel)
 
-            playbackProgressBar
+                playbackProgressBar
+            }
         }
     }
 
@@ -154,7 +154,11 @@ extension CorrectionFeedbackCardView {
     private var isPlaybackButtonEnabled: Bool {
         isSentencePracticeEnabled
             && !isSentencePracticeRecording
-            && (sentencePracticeState?.hasRecordedAudio ?? false)
+            && hasRecordedAudio
+    }
+
+    private var hasRecordedAudio: Bool {
+        sentencePracticeState?.hasRecordedAudio ?? false
     }
 
     private var playbackProgress: CGFloat {
