@@ -32,6 +32,10 @@ struct OnboardingView: View {
                 .padding(.bottom, 13)
             
             settingsHintView
+            
+            if let feedbackMessage = appleIntelligenceStatus.feedbackMessage {
+                feedbackMessageView(feedbackMessage)
+            }
         }
         .frame(
             maxWidth: .infinity,
@@ -53,6 +57,14 @@ struct OnboardingView: View {
         guard let url = SystemSettingsURL.appleIntelligenceAndSiri else { return }
         
         NSWorkspace.shared.open(url)
+    }
+    
+    private func feedbackMessageView(_ message: String) -> some View {
+        Text(message)
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
+            .padding(.top, 8)
     }
 }
 
