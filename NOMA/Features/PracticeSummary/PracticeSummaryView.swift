@@ -68,8 +68,10 @@ extension PracticeSummaryView {
                             onListenTapped: { _ in }
                         )
 
-                        OverallFeedbackCardView(feedbackText: question.overallFeedback)
-                        
+                        if !question.overallFeedback.isEmpty {
+                            OverallFeedbackCardView(feedbackText: question.overallFeedback)
+                        }
+
                         Divider()
                             .padding(.vertical, 30)
                     }
