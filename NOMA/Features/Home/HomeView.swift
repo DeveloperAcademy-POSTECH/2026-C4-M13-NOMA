@@ -42,7 +42,7 @@ struct HomeView: View {
             if recentRecords.isEmpty {
                 learningHistoryEmptyView
             } else {
-                learningHistoryListView
+                learningHistoryContentView
             }
         }
         .frame(
@@ -95,8 +95,22 @@ extension HomeView {
         }
     }
     
-    private var learningHistoryListView: some View {
-        VStack {
+    private var learningHistoryContentView: some View {
+        VStack(spacing: 16) {
+            learningHistoryCardListView
+            
+            PushButton(
+                title: "더보기",
+                type: .borderless,
+                size: .small
+            ) {
+                router.push(.learningHistory)
+            }
+        }
+    }
+    
+    private var learningHistoryCardListView: some View {
+        HStack(spacing: 20) {
             ForEach(
                 Array(recentRecords.enumerated()),
                 id: \.element.persistentModelID
@@ -105,14 +119,6 @@ extension HomeView {
                     record: record,
                     order: index + 1
                 )
-            }
-            
-            PushButton(
-                title: "더보기",
-                type: .borderless,
-                size: .small
-            ) {
-                router.push(.learningHistory)
             }
         }
     }
