@@ -10,21 +10,21 @@ import SwiftUI
 struct PermissionView: View {
 
     // MARK: - Properties
-
-    @State private var microphonePermissionStatus = MicrophonePermissionStatus()
+    
     @Environment(AppRouter.self) private var router
     @Environment(\.controlActiveState) private var controlActiveState
-
+    @State private var microphonePermissionStatus = MicrophonePermissionStatus()
+    
     // MARK: - Body
 
     var body: some View {
         VStack(spacing: 16) {
-            titleView
+            headlineView
 
-            subtitleView
+            descriptionView
                 .padding(.bottom, 44)
 
-            microphonePermissionCard
+            microphonePermissionCardView
                 .padding(.bottom, 44)
 
             actionButtons
@@ -46,39 +46,35 @@ struct PermissionView: View {
     }
 }
 
-// MARK: - SubViews
+// MARK: - Subviews
 
 extension PermissionView {
-    private var titleView: some View {
+    private var headlineView: some View {
         Text("마이크 접근 권한")
-            .font(
-                .system(
-                    size: 22,
-                    weight: .bold
-                )
-            )
+            .font(.title)
+            .fontWeight(.bold)
             .foregroundStyle(.primary)
     }
     
-    private var subtitleView: some View {
+    private var descriptionView: some View {
         Text("원활한 학습을 위해 마이크 접근 권한 허용이 필요합니다.\n권한을 허용하지 않으실 경우, 격식체 학습 기능을 이용하실 수 없습니다.")
             .font(.title2)
             .foregroundStyle(.primary)
             .multilineTextAlignment(.center)
     }
     
-    private var microphonePermissionCard: some View {
+    private var microphonePermissionCardView: some View {
         VStack(spacing: 0) {
             microphoneIconView
                 .padding(.bottom, 8)
             
-            microphoneNameText
+            microphoneNameView
                 .padding(.bottom, 20)
             
-            microphoneDescriptionText
+            microphoneDescriptionView
                 .padding(.bottom, 20)
             
-            permissionStatusText
+            microphonePermissionStatusView
         }
         .padding(30)
         .background(
@@ -96,20 +92,20 @@ extension PermissionView {
             .foregroundStyle(.primary)
     }
     
-    private var microphoneNameText: some View {
+    private var microphoneNameView: some View {
         Text("마이크")
             .font(.title2)
             .foregroundStyle(.primary)
     }
     
-    private var microphoneDescriptionText: some View {
+    private var microphoneDescriptionView: some View {
         Text("음성 답변을 기록하고 발화를 분석하기 위해\n권한 허용이 필요합니다.")
             .font(.body)
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.center)
     }
     
-    private var permissionStatusText: some View {
+    private var microphonePermissionStatusView: some View {
         Text(
             microphonePermissionStatus.isGranted
             ? "권한 허용됨"
@@ -123,20 +119,6 @@ extension PermissionView {
         )
         .padding(.vertical, 6)
         .padding(.horizontal, 8)
-        .background(
-            RoundedRectangle(
-                cornerRadius: 4,
-                style: .continuous
-            )
-            .fill(
-                (
-                    microphonePermissionStatus.isGranted
-                    ? Color(nsColor: .systemGreen)
-                    : Color(nsColor: .systemRed)
-                )
-                .opacity(0.1)
-            )
-        )
     }
     
     private var actionButtons: some View {
