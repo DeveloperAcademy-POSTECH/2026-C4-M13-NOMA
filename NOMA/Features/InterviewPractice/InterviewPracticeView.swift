@@ -27,8 +27,8 @@ struct InterviewPracticeView: View {
     var body: some View {
         VStack(spacing: 0) {
             headerView
-                .padding(.horizontal, 30)
                 .frame(height: 78)
+                .padding(.horizontal, 30)
             
             Divider()
             
@@ -188,28 +188,31 @@ extension InterviewPracticeView {
     private var interviewerPaneView: some View {
         VStack(spacing: 0) {
             interviewerLottieView
-                .padding(.bottom, 28)
+                .padding(.top, 70)
             
             questionPromptView
-                .padding(.bottom, 46)
-            
+                .padding(.top, store.state.phase == .ready ? 300 : 0)
+
             elapsedTimeView
                 .padding(.bottom, 18)
 
             finishAnsweringButton
-                .padding(.bottom, 18)
+                .padding(.bottom, store.state.phase == .ready ? 112 : 18)
 
-            if !store.state.isFeedbackVisible {
+            if store.state.phase != .ready, !store.state.isFeedbackVisible {
                 feedbackBottomButtons
                     .frame(
                         width: 400,
                         height: 42
                     )
             }
+
+            Spacer(minLength: 0)
         }
         .frame(
             maxWidth: .infinity,
-            maxHeight: .infinity
+            maxHeight: .infinity,
+            alignment: .top
         )
         .background(Color(nsColor: .windowBackgroundColor))
     }
@@ -294,6 +297,9 @@ extension InterviewPracticeView {
             }
 
             feedbackBottomButtons
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 50)
         }
         .frame(width: 650)
         .background(Color(nsColor: .controlBackgroundColor))
@@ -359,9 +365,6 @@ extension InterviewPracticeView {
             .frame(height: 42)
             .disabled(isAwaitingAnswerCompletion)
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 20)
-        .padding(.bottom, 50)
     }
 }
 
