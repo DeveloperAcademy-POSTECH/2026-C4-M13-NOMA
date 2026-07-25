@@ -246,8 +246,6 @@ extension InterviewPracticeReducer {
                     _ = try? await audioRecorder.stopRecording()
                 }
 
-                try? await Task.sleep(for: .seconds(1))
-
                 let bufferStream = try audioRecorder.startRecording()
                 await send(.recordingStarted)
                 let transcriptStream = try await speechTranscribing.transcribe(bufferStream: bufferStream)
