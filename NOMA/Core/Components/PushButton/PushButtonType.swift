@@ -11,7 +11,8 @@ enum PushButtonType {
     case neutral
     case `default`
     case borderless
-    
+    case recording
+
     func titleColor(for status: PushButtonStatus) -> Color {
         switch (self, status) {
         case (.neutral, .normal), (.neutral, .hover): return Color(nsColor: .labelColor)
@@ -20,9 +21,11 @@ enum PushButtonType {
         case (.default, .disabled): return .blue.opacity(0.35)
         case (.borderless, .normal), (.borderless, .hover): return .accentColor
         case (.borderless, .disabled): return .accentColor.opacity(0.35)
+        case (.recording, .normal), (.recording, .hover): return .red
+        case (.recording, .disabled): return .red.opacity(0.35)
         }
     }
-    
+
     func backgroundColor(for status: PushButtonStatus) -> Color {
         switch (self, status) {
         case (.neutral, .normal): return .black.opacity(0.05)
@@ -31,12 +34,13 @@ enum PushButtonType {
         case (.default, .normal), (.default, .hover), (.default, .disabled): return .blue.opacity(0.1)
         case (.borderless, .normal): return .clear
         case (.borderless, .hover), (.borderless, .disabled): return Color(nsColor: .tertiaryLabelColor).opacity(0.12)
+        case (.recording, .normal), (.recording, .hover), (.recording, .disabled): return .red.opacity(0.1)
         }
     }
-    
+
     func overlayColor(for status: PushButtonStatus) -> Color? {
         switch (self, status) {
-        case (.default, .hover): return .black.opacity(0.08)
+        case (.default, .hover), (.recording, .hover): return .black.opacity(0.08)
         default: return nil
         }
     }
