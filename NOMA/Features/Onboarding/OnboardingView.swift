@@ -32,10 +32,9 @@ struct OnboardingView: View {
                 .padding(.bottom, 13)
             
             settingsHintView
+                .padding(.bottom, 8)
             
-            if let feedbackMessage = appleIntelligenceStatus.feedbackMessage {
-                feedbackMessageView(feedbackMessage)
-            }
+            feedbackMessageView
         }
         .frame(
             maxWidth: .infinity,
@@ -57,14 +56,6 @@ struct OnboardingView: View {
         guard let url = SystemSettingsURL.appleIntelligenceAndSiri else { return }
         
         NSWorkspace.shared.open(url)
-    }
-    
-    private func feedbackMessageView(_ message: String) -> some View {
-        Text(message)
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
-            .padding(.top, 8)
     }
 }
 
@@ -129,5 +120,14 @@ extension OnboardingView {
     private var boldPrefix: Text {
         Text("[시스템 설정 > Apple Intelligence 및 Siri]")
             .fontWeight(.semibold)
+    }
+    
+    private var feedbackMessageView: some View {
+        Text(appleIntelligenceStatus.feedbackMessage ?? " ")
+            .font(.footnote)
+            .foregroundStyle(
+                appleIntelligenceStatus.feedbackMessage == nil ? .clear : .secondary
+            )
+            .multilineTextAlignment(.center)
     }
 }
