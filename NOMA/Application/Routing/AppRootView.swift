@@ -17,29 +17,39 @@ struct AppRootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            // FIXME: - RootView Home 화면으로 변경 예정
-            OnboardingView()
+            HomeView()
                 .navigationBarBackButtonHidden(true)
                 .navigationDestination(for: AppRoute.self) { route in
-                    Group {
-                        switch route {
-                        case .onboarding: OnboardingView()
-                        case .home: HomeView()
-                        case .permission: PermissionView()
-                        case .interviewPractice: InterviewPracticeView(store: AppRootView.makeInterviewPracticeStore())
-                        case .answerAnalysisLoading(let id): AnswerAnalysisLoadingView(recordID: id)
-                        case .practiceSummary(let id): PracticeSummaryView(recordID: id)
-                        case .learningHistory: LearningHistoryView()
-                        }
+                    switch route {
+                    case .onboarding:
+                        OnboardingView()
+                        
+                    case .permission:
+                        PermissionView()
+                        
+                    case .interviewPractice:
+                        InterviewPracticeView(store: AppRootView.makeInterviewPracticeStore())
+                        
+                    case .answerAnalysisLoading(let id):
+                        AnswerAnalysisLoadingView(recordID: id)
+                        
+                    case .practiceSummary(let id):
+                        PracticeSummaryView(recordID: id)
+                        
+                    case .learningHistory:
+                        LearningHistoryView()
                     }
-                    .navigationBarBackButtonHidden(true)
                 }
+                .navigationBarBackButtonHidden(true)
+        }
+        .task {
+            router.push(.onboarding)
         }
         .environment(router)
     }
 }
 
-// MARK: - Factory
+// MARK: - Factory Method
 
 extension AppRootView {
     private static func makeInterviewPracticeStore() -> InterviewPracticeStore {

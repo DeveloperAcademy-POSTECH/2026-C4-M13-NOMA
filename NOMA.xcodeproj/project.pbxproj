@@ -264,8 +264,8 @@
 		EC4D4FB230071C1300FB5735 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C3C31EC3300F0F0100C5ADAE /* FoundationModels */,
 				ECF0CBB5300CFC9E00FFCCA1 /* AppleIntelligenceStatus */,
+				C3C31EC3300F0F0100C5ADAE /* FoundationModels */,
 				ECE0593D300D3B9E00C0201E /* MicrophonePermissionStatus */,
 				EC4D4FBD30071EDE00FB5735 /* QuestionSpeaking */,
 				EC4D4FB830071EA400FB5735 /* AudioRecording */,

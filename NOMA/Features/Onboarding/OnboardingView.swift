@@ -109,7 +109,7 @@ extension OnboardingView {
                 title: "시작하기",
                 capsuleButtonType: .primary
             ) {
-                router.push(.home)
+                router.popToRoot()
             }
             .frame(
                 width: 200,
