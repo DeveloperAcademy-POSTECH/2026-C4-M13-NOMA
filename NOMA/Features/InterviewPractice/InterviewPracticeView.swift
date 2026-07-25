@@ -266,7 +266,14 @@ extension InterviewPracticeView {
             width: 120,
             height: 42
         )
-        .disabled(!store.state.canFinishAnswer)
+        .opacity(isGeneratingFeedback ? 0 : 1)
+        .overlay {
+            if isGeneratingFeedback {
+                SpinningRingLoader()
+                    .frame(width: 20, height: 20)
+            }
+        }
+        .disabled(!store.state.canFinishAnswer || isGeneratingFeedback)
         .accessibilityHint("현재 답변을 완료하고 피드백 확인으로 이동합니다.")
     }
     
@@ -435,6 +442,10 @@ extension InterviewPracticeView {
 
     private var isAwaitingAnswerCompletion: Bool {
         store.state.phase != .reviewing
+    }
+
+    private var isGeneratingFeedback: Bool {
+        store.state.phase == .generatingFeedback
     }
 
     private var isLastQuestion: Bool {

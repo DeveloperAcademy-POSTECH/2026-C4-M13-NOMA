@@ -383,8 +383,6 @@ extension InterviewPracticeReducer {
     ) -> Effect<InterviewPracticeAction> {
         guard state.playingSentencePracticeIndex == index else { return .none }
 
-        // currentTime은 재생이 자연스럽게 끝나면 0으로 리셋돼서 duration과 비교하면 종료를 못 잡는다.
-        // AVAudioPlayer가 직접 관리하는 isPlaying으로 종료 여부를 판단한다.
         guard audioPlayer.isPlaying else {
             audioPlayer.stop()
             return .run { send in
