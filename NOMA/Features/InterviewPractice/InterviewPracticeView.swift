@@ -26,7 +26,7 @@ struct InterviewPracticeView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            header
+            headerView
                 .padding(.horizontal, 30)
                 .frame(height: 78)
             
@@ -42,10 +42,6 @@ struct InterviewPracticeView: View {
                 }
             }
         }
-        .frame(
-            minWidth: 800,
-            minHeight: 560
-        )
         .onAppear {
             store.send(.viewAppeared)
             memoStore.text = ""
@@ -92,17 +88,40 @@ struct InterviewPracticeView: View {
         memoStore.text = ""
         router.push(.answerAnalysisLoading(record.persistentModelID))
     }
+    
+    private func handleListenTapped(_ correctedText: String) {
+        store.send(.correctedSentencePlaybackRequested(correctedText))
+    }
+
+    private func handleSentencePracticeRecordingTapped(_ index: Int) {
+        store.send(.sentencePracticeRecordingButtonTapped(index: index))
+    }
+
+    private func handleSentencePracticePlaybackTapped(_ index: Int) {
+        store.send(.sentencePracticePlaybackButtonTapped(index: index))
+    }
 }
 
 // MARK: - Subviews
 
 extension InterviewPracticeView {
-    private var header: some View {
-        HStack(spacing: 8) {
+    private var headerView: some View {
+        HStack(spacing: 0) {
+            questionProgressView
+
+            Spacer()
+
+            headerActionButtons
+        }
+    }
+
+    private var questionProgressView: some View {
+        HStack(spacing: 16) {
             Text("문제 \(displayedQuestionNumber)/\(totalQuestions)")
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
+                .accessibilityHidden(true)
 
             ProgressView(
                 value: Double(displayedQuestionNumber),
@@ -112,46 +131,54 @@ extension InterviewPracticeView {
             .frame(width: 400)
             .accessibilityLabel("문제 진행률")
             .accessibilityValue("\(displayedQuestionNumber) / \(totalQuestions)")
-
-            Spacer()
-
-            layoutToggleButtons
         }
     }
-    
-    private var layoutToggleButtons: some View {
+
+    private var headerActionButtons: some View {
         HStack(spacing: 16) {
-            PushButton(
-                title: "􀧵 메모",
-                type: .neutral,
-                size: .medium
-            ) {
-                openWindow(id: "memo")
-            }
-            .accessibilityLabel("메모 열기")
-            
-            HStack(spacing: 8) {
-                Text("피드백 창")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(.primary)
-                
-                Toggle("", isOn: isFeedbackVisible)
-                    .labelsHidden()
-                    .toggleStyle(.switch)
-                    .tint(.accentColor)
-            }
-            .accessibilityLabel(store.state.isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
-            
+            memoButton
+
+            feedbackVisibilityToggle
+
             Divider()
                 .frame(height: 20)
-            
-            PushButton(
-                title: "학습 종료",
-                type: .borderless,
-                size: .medium
-            ) {
-                store.send(.exitRequested)
-            }
+
+            exitButton
+        }
+    }
+
+    private var memoButton: some View {
+        PushButton(
+            title: "􀧵 메모",
+            type: .neutral,
+            size: .medium
+        ) {
+            openWindow(id: "memo")
+        }
+        .accessibilityLabel("메모 열기")
+    }
+
+    private var feedbackVisibilityToggle: some View {
+        HStack(spacing: 8) {
+            Text("피드백 창")
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(.primary)
+
+            Toggle("", isOn: isFeedbackVisible)
+                .labelsHidden()
+                .toggleStyle(.switch)
+                .tint(.accentColor)
+        }
+        .accessibilityLabel(store.state.isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
+    }
+
+    private var exitButton: some View {
+        PushButton(
+            title: "학습 종료",
+            type: .borderless,
+            size: .medium
+        ) {
+            store.send(.exitRequested)
         }
     }
 
@@ -231,43 +258,7 @@ extension InterviewPracticeView {
                 .padding(.vertical, 16)
 
             if store.state.phase != .ready {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(
-                            alignment: .leading,
-                            spacing: 0
-                        ) {
-                            QuestionAnswerSectionView(
-                                question: currentQuestionTitle,
-                                sentences: displayedAnswerSentences,
-                                sentencePracticeRecords: store.state.sentencePracticeRecords,
-                                isSentencePracticeEnabled: store.state.isSentencePracticeEnabled,
-                                recordingSentencePracticeIndex: store.state.recordingSentencePracticeIndex,
-                                playingSentencePracticeIndex: store.state.playingSentencePracticeIndex,
-                                onListenTapped: { correctedText in
-                                    store.send(.correctedSentencePlaybackRequested(correctedText))
-                                },
-                                onSentencePracticeRecordingTapped: { index in
-                                    store.send(.sentencePracticeRecordingButtonTapped(index: index))
-                                },
-                                onSentencePracticePlaybackTapped: { index in
-                                    store.send(.sentencePracticePlaybackButtonTapped(index: index))
-                                }
-                            )
-                            .padding(.horizontal, 20)
-                        }
-                        .padding(.bottom, 20)
-
-                        Color.clear
-                            .frame(height: 1)
-                            .id("transcriptBottom")
-                    }
-                    .onChange(of: store.state.liveTranscript) {
-                        withAnimation(.easeOut(duration: 0.15)) {
-                            proxy.scrollTo("transcriptBottom", anchor: .bottom)
-                        }
-                    }
-                }
+                answerFeedbackScrollView
 
                 if let overallFeedbackText = store.state.overallFeedbackText, !overallFeedbackText.isEmpty {
                     Divider()
@@ -284,6 +275,44 @@ extension InterviewPracticeView {
         }
         .frame(width: 650)
         .background(Color(nsColor: .controlBackgroundColor))
+    }
+
+    private var answerFeedbackScrollView: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                answerSentencesSection
+                    .padding(.bottom, 20)
+
+                Color.clear
+                    .frame(height: 1)
+                    .id("transcriptBottom")
+            }
+            .onChange(of: store.state.liveTranscript) {
+                withAnimation(.easeOut(duration: 0.15)) {
+                    proxy.scrollTo("transcriptBottom", anchor: .bottom)
+                }
+            }
+        }
+    }
+
+    private var answerSentencesSection: some View {
+        LazyVStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
+            QuestionAnswerSectionView(
+                question: currentQuestionTitle,
+                sentences: displayedAnswerSentences,
+                sentencePracticeRecords: store.state.sentencePracticeRecords,
+                isSentencePracticeEnabled: store.state.isSentencePracticeEnabled,
+                recordingSentencePracticeIndex: store.state.recordingSentencePracticeIndex,
+                playingSentencePracticeIndex: store.state.playingSentencePracticeIndex,
+                onListenTapped: handleListenTapped,
+                onSentencePracticeRecordingTapped: handleSentencePracticeRecordingTapped,
+                onSentencePracticePlaybackTapped: handleSentencePracticePlaybackTapped
+            )
+            .padding(.horizontal, 20)
+        }
     }
     
     private var feedbackBottomButtons: some View {
