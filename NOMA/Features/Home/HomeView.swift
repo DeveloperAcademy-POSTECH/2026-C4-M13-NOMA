@@ -28,28 +28,18 @@ struct HomeView: View {
             learningHistoryTitle
                 .padding(.bottom, 40)
             
-            HStack(spacing: 20) {
-                if records.isEmpty {
-                    Text("아직 학습 기록이 없습니다.")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 102)
-                } else {
-                    ForEach(Array(records.prefix(3).enumerated()), id: \.element.persistentModelID) { index, record in
-                        LearningHistoryCardView(record: record, order: records.count - index)
-                    }
-                }
-            }
-            .padding(.bottom, 16)
-            PushButton(title: "더보기", type: .borderless, size: .small) {
-                router.push(.learningHistory)
+            if records.isEmpty {
+                learningHistoryEmptyView
+            } else {
+                learningHistoryView
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
     }
 }
-
 
 // MARK: - SubViews
 
@@ -82,4 +72,37 @@ extension HomeView {
             .foregroundStyle(.primary)
     }
     
+    private var learningHistoryEmptyView: some View {
+        VStack(spacing: 8) {
+            Text("진행한 학습 내역이 없습니다.")
+                .font(.title2)
+                .foregroundStyle(.primary)
+            
+            Text("첫 번째 격식체 연습을 진행해 보십시오.")
+                .font(.title3)
+                .foregroundStyle(.primary)
+        }
+    }
+    
+    private var learningHistoryView: some View {
+        VStack {
+            ForEach(
+                Array(records.prefix(3).enumerated()),
+                id: \.element.persistentModelID
+            ) { index, record in
+                LearningHistoryCardView(
+                    record: record,
+                    order: records.count - index
+                )
+            }
+            
+            PushButton(
+                title: "더보기",
+                type: .borderless,
+                size: .small
+            ) {
+                router.push(.learningHistory)
+            }
+        }
+    }
 }
