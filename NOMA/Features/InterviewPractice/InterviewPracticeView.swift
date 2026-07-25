@@ -33,12 +33,12 @@ struct InterviewPracticeView: View {
             Divider()
             
             HStack(spacing: 0) {
-                interviewerPane
+                interviewerPaneView
                 
                 if store.state.isFeedbackVisible {
                     Divider()
                     
-                    feedbackPanel
+                    feedbackPanelView
                 }
             }
         }
@@ -182,36 +182,15 @@ extension InterviewPracticeView {
         }
     }
 
-    private var interviewerPane: some View {
+    private var interviewerPaneView: some View {
         VStack(spacing: 0) {
             Spacer()
 
-            if let currentLottieAnimationName {
-                LottieView(animation: .named(currentLottieAnimationName))
-                    .resizable()
-                    .looping()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 385, height: 385)
-                    .id(currentLottieAnimationName)
-                    .padding(.bottom, 72)
-                    .accessibilityHidden(true)
-            }
+            interviewerLottieView
             
-            Text(questionPromptText)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundStyle(.primary)
-                .multilineTextAlignment(.center)
-                .padding(
-                    .bottom,
-                    currentLottieAnimationName != nil
-                    ? 106
-                    : 288
-                )
-                .padding(.horizontal, 20)
-                .fixedSize(horizontal: false, vertical: true)
+            questionPromptView
 
-            bottomControls
+            bottomControlsView
                 .padding(.bottom, 112)
         }
         .frame(
@@ -220,8 +199,38 @@ extension InterviewPracticeView {
         )
         .background(Color(nsColor: .windowBackgroundColor))
     }
+    
+    @ViewBuilder
+    private var interviewerLottieView: some View {
+        if let currentLottieAnimationName {
+            LottieView(animation: .named(currentLottieAnimationName))
+                .resizable()
+                .looping()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 385, height: 385)
+                .id(currentLottieAnimationName)
+                .padding(.bottom, 72)
+                .accessibilityHidden(true)
+        }
+    }
+    
+    private var questionPromptView: some View {
+        Text(questionPromptText)
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundStyle(.primary)
+            .multilineTextAlignment(.center)
+            .padding(
+                .bottom,
+                currentLottieAnimationName != nil
+                ? 106
+                : 288
+            )
+            .padding(.horizontal, 20)
+            .fixedSize(horizontal: false, vertical: true)
+    }
 
-    private var bottomControls: some View {
+    private var bottomControlsView: some View {
         VStack(spacing: 18) {
             Text(elapsedTimeText)
                 .font(.body)
@@ -245,7 +254,7 @@ extension InterviewPracticeView {
         }
     }
     
-    private var feedbackPanel: some View {
+    private var feedbackPanelView: some View {
         VStack(
             alignment: .leading,
             spacing: 0
@@ -280,7 +289,7 @@ extension InterviewPracticeView {
     private var answerFeedbackScrollView: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                answerSentencesSection
+                answerSentencesSectionView
                     .padding(.bottom, 20)
 
                 Color.clear
@@ -295,7 +304,7 @@ extension InterviewPracticeView {
         }
     }
 
-    private var answerSentencesSection: some View {
+    private var answerSentencesSectionView: some View {
         LazyVStack(
             alignment: .leading,
             spacing: 0
