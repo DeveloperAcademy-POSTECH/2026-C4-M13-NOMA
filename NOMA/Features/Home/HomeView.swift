@@ -13,7 +13,18 @@ struct HomeView: View {
     // MARK: - Properties
     
     @Environment(AppRouter.self) private var router
-    @Query(sort: \PracticeRecord.createdAt, order: .reverse) private var records: [PracticeRecord]
+    @Query private var records: [PracticeRecord]
+    
+    // MARK: - Initializer
+    
+    init() {
+        var descriptor = FetchDescriptor<PracticeRecord>(
+            sortBy: [SortDescriptor(\.createdAt, order: .reverse)]
+        )
+        
+        descriptor.fetchLimit = 3
+        _records = Query(descriptor)
+    }
     
     // MARK: - Body
     
@@ -87,12 +98,12 @@ extension HomeView {
     private var learningHistoryView: some View {
         VStack {
             ForEach(
-                Array(records.prefix(3).enumerated()),
+                Array(records.enumerated()),
                 id: \.element.persistentModelID
             ) { index, record in
                 LearningHistoryCardView(
                     record: record,
-                    order: records.count - index
+                    order: index + 1
                 )
             }
             
