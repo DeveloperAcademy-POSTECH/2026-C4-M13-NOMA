@@ -53,7 +53,7 @@ extension PracticeSummaryView {
                 Divider().padding(.bottom, 30)
 
                 if let record {
-                    ForEach(record.questions.sorted { $0.order < $1.order }) { question in
+                    ForEach(record.questionRecords.sorted { $0.order < $1.order }) { question in
                         QuestionAnswerSectionView(
                             question: "Q\(question.order + 1). \(question.questionContent)",
                             sentences: question.answerSentences(),
@@ -89,7 +89,7 @@ extension PracticeSummaryView {
                 .foregroundStyle(.secondary)
                 .padding(.trailing, 42)
 
-            Text("\(record?.questions.count ?? 0)문항")
+            Text("\(record?.questionRecords.count ?? 0)문항")
                 .font(.body)
                 .foregroundStyle(.secondary)
             
