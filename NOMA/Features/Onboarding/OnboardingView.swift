@@ -18,15 +18,18 @@ struct OnboardingView: View {
     // MARK: - Body
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             iconBadgeView
+                .padding(.bottom, 22)
             
             headlineView
+                .padding(.bottom, 16)
             
             descriptionView
-                .padding(.bottom, 44)
+                .padding(.bottom, 60)
 
             actionButtons
+                .padding(.bottom, 13)
             
             settingsHintView
         }
@@ -59,24 +62,7 @@ extension OnboardingView {
     private var iconBadgeView: some View {
         Image(systemName: "apple.intelligence")
             .font(.system(size: 40))
-            .foregroundStyle(iconForegroundColor)
-            .frame(width: 90, height: 90)
-            .background(
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(iconBackgroundColor)
-            )
-    }
-
-    private var iconForegroundColor: Color {
-        appleIntelligenceStatus.isEnabled
-            ? .accentColor
-            : Color(nsColor: .labelColor)
-    }
-
-    private var iconBackgroundColor: Color {
-        appleIntelligenceStatus.isEnabled
-            ? .accentColorBackground
-            : Color(nsColor: .tertiarySystemFill)
+            .foregroundStyle(.primary)
     }
     
     private var headlineView: some View {
@@ -88,7 +74,7 @@ extension OnboardingView {
     }
     
     private var descriptionView: some View {
-        Text("학습하기 기능은 Apple Intelligence 기반의 음성 분석을 사용합니다.\n켜지 않으면 학습하기 기능을 사용할 수 없습니다.")
+        Text("학습하기 기능은 Apple Intelligence로 목소리를 분석합니다.\n켜지 않으면 사용할 수 없습니다.")
             .font(.title2)
             .foregroundStyle(.primary)
             .multilineTextAlignment(.center)
@@ -122,9 +108,14 @@ extension OnboardingView {
     }
     
     private var settingsHintView: some View {
-        Text("[시스템 설정 > Apple Intelligence 및 Siri]에서 켤 수 있습니다.")
+        Text("\(boldPrefix)에서 켤 수 있습니다.")
             .font(.title3)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(.primary)
             .multilineTextAlignment(.center)
+    }
+
+    private var boldPrefix: Text {
+        Text("[시스템 설정 > Apple Intelligence 및 Siri]")
+            .fontWeight(.semibold)
     }
 }
