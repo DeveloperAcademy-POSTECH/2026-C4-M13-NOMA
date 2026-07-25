@@ -71,14 +71,14 @@ extension CorrectionFeedbackCardView {
                 .foregroundStyle(.foreground)
                 .accessibilityLabel("교정 후 문장, \(correctedText)")
 
-            Button {
+            PushButton(
+                title: "􀊦 발음 듣기",
+                type: .default,
+                size: .small
+            ) {
                 onListenTapped()
-            } label: {
-                Image(systemName: "speaker.wave.2")
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
             }
-            .buttonStyle(.plain)
+            .disabled(isSentencePracticeRecording)
             .accessibilityLabel("교정 문장 듣기")
         }
     }
@@ -87,7 +87,7 @@ extension CorrectionFeedbackCardView {
         HStack(spacing: 0) {
             PushButton(
                 title: recordingButtonTitle,
-                type: .default,
+                type: isSentencePracticeRecording ? .recording : .default,
                 size: .small
             ) {
                 onSentencePracticeRecordingTapped()
