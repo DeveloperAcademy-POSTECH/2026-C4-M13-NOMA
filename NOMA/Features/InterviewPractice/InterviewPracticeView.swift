@@ -109,7 +109,7 @@ extension InterviewPracticeView {
                 total: Double(totalQuestions)
             )
             .progressViewStyle(.linear)
-            .frame(maxWidth: 300)
+            .frame(width: 400)
             .accessibilityLabel("문제 진행률")
             .accessibilityValue("\(displayedQuestionNumber) / \(totalQuestions)")
 
@@ -322,7 +322,16 @@ extension InterviewPracticeView {
     }
 
     private var displayedQuestionNumber: Int {
-        store.state.phase == .ready ? 0 : currentQuestionNumber
+        switch store.state.phase {
+        case .ready:
+            return 0
+
+        case .completed:
+            return totalQuestions
+
+        default:
+            return min(currentQuestionNumber, totalQuestions)
+        }
     }
 
     private var questionPromptText: String {
