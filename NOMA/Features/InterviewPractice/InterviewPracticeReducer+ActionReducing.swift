@@ -192,6 +192,7 @@ extension InterviewPracticeReducer {
             return .none
 
         case .exitConfirmed, .exitCancelled:
+            state.isExitConfirmationPresented = false
             return .none
 
         default:
