@@ -5,7 +5,6 @@
 //  Created by 이은지 on 7/21/26.
 //
 
-import FoundationModels
 import SwiftUI
 
 struct AppRootView: View {
@@ -13,6 +12,7 @@ struct AppRootView: View {
     // MARK: - Properties
     
     @State private var router = AppRouter()
+    @State private var appleIntelligenceStatus = AppleIntelligenceStatus()
 
     // MARK: - Body
     
@@ -25,14 +25,11 @@ struct AppRootView: View {
                     case .onboarding:
                         OnboardingView()
                         
-                    case .home:
-                        HomeView()
-                        
                     case .permission:
                         PermissionView()
                         
                     case .interviewPractice:
-                        InterviewPracticeView(store: AppRootView.makeInterviewPracticeStore())
+                        InterviewPracticeView(store: Self.makeInterviewPracticeStore())
                         
                     case .answerAnalysisLoading(let id):
                         AnswerAnalysisLoadingView(recordID: id)
@@ -46,12 +43,12 @@ struct AppRootView: View {
                 }
         }
         .task {
-            if SystemLanguageModel.default.availability.isEnabled {
-                router.push(.home)
-            } else {
+            appleIntelligenceStatus.refresh()
+            if !appleIntelligenceStatus.isEnabled {
                 router.push(.onboarding)
             }
         }
+        .environment(appleIntelligenceStatus)
         .environment(router)
     }
 }
