@@ -11,15 +11,15 @@ struct OnboardingView: View {
     
     // MARK: - Properties
 
-    @State private var appleIntelligenceStatus = AppleIntelligenceStatus()
     @Environment(AppRouter.self) private var router
     @Environment(\.controlActiveState) private var controlActiveState
-
+    @State private var appleIntelligenceStatus = AppleIntelligenceStatus()
+    
     // MARK: - Body
     
     var body: some View {
         VStack(spacing: 0) {
-            iconBadgeView
+            appleIntelligenceIconView
                 .padding(.bottom, 22)
             
             headlineView
@@ -31,7 +31,7 @@ struct OnboardingView: View {
             actionButtons
                 .padding(.bottom, 13)
             
-            settingsHintView
+            settingsHintMessageView
                 .padding(.bottom, 8)
             
             feedbackMessageView
@@ -62,7 +62,7 @@ struct OnboardingView: View {
 // MARK: - Subviews
 
 extension OnboardingView {
-    private var iconBadgeView: some View {
+    private var appleIntelligenceIconView: some View {
         Image(systemName: "apple.intelligence")
             .font(.system(size: 40))
             .foregroundStyle(.primary)
@@ -110,14 +110,14 @@ extension OnboardingView {
         }
     }
     
-    private var settingsHintView: some View {
-        Text("\(boldPrefix)에서 켤 수 있습니다.")
+    private var settingsHintMessageView: some View {
+        Text("\(settingsPathText)에서 켤 수 있습니다.")
             .font(.title3)
             .foregroundStyle(.primary)
             .multilineTextAlignment(.center)
     }
 
-    private var boldPrefix: Text {
+    private var settingsPathText: Text {
         Text("[시스템 설정 > Apple Intelligence 및 Siri]")
             .fontWeight(.semibold)
     }
