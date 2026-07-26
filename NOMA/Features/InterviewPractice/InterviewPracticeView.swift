@@ -172,7 +172,7 @@ extension InterviewPracticeView {
                 .toggleStyle(.switch)
                 .tint(.accentColor)
         }
-        .accessibilityLabel(store.state.isFeedbackVisible ? "피드백 숨기기" : "피드백 보이기")
+        .accessibilityLabel(store.state.isFeedbackVisibleDefault ? "피드백 숨기기" : "피드백 보이기")
     }
 
     private var exitButton: some View {
@@ -468,7 +468,7 @@ extension InterviewPracticeView {
 
     private var isFeedbackVisible: Binding<Bool> {
         Binding(
-            get: { store.state.isFeedbackVisible },
+            get: { store.state.isFeedbackVisibleDefault },
             set: { newValue in store.send(.feedbackVisibilityChanged(newValue)) }
         )
     }
