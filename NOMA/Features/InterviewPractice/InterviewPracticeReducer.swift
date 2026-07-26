@@ -153,6 +153,7 @@ extension InterviewPracticeReducer {
         resetSentencePracticeState(state: &state)
         insertPendingFollowUpQuestionIfNeeded(state: &state)
         resetAnswerState(state: &state)
+        state.isFeedbackVisible = state.isFeedbackVisibleDefault
         state.session.currentQuestionIndex += 1
 
         state.phase = state.session.currentQuestionIndex < state.session.questions.count
