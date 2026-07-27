@@ -1,6 +1,6 @@
 # <img width="90" alt="정중로고" src="https://github.com/user-attachments/assets/4194fe59-ca58-4b3e-a819-ef5bb435151d" />
 
-> AI와 함께 연습하는 한국어 격식체 말하기 macOS 서비스 <br>
+> **AI와 함께 연습하는 한국어 격식체 말하기 macOS 서비스** <br>
 > **한국에서 취업을 준비하는 외국인**이 **면접에 필요한 언어 능력**을 기를 수 있도록 **격식체 발화 유도 및 피드백**을 주는 앱
 
 <br>
