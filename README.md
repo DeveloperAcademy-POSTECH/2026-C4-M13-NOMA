@@ -4,13 +4,9 @@
 
 # 📷 Screenshot
 
-| **Apple Intelligence 권한 온보딩** | **홈 화면** |
-|:---:|:---:|
-| <img width="500" alt="Apple Intelligence 권한 온보딩" src="https://github.com/user-attachments/assets/28cd6174-752c-42a7-b390-bc2c2e8f8bb1" /> | <img width="500" alt="홈 화면" src="https://github.com/user-attachments/assets/5da93ac5-cd71-41c3-b7a4-8973687abff6" /> |
-
-| **음성 인식 화면** | **마이크 접근 권한** |
-|:---:|:---:|
-| <img width="500" alt="음성 인식 화면" src="https://github.com/user-attachments/assets/d28bdb1e-6a8b-4e54-888d-fb45a5b443b3" /> | <img width="500" alt="마이크 접근 권한" src="https://github.com/user-attachments/assets/82832bec-4b53-489e-9097-71cb5f18107c" /> |
+| **Apple Intelligence 권한 온보딩** | **홈** | **마이크 접근 권한** |
+|:---:|:---:|:---:|
+| <img width="400" alt="Apple Intelligence 권한 온보딩" src="https://github.com/user-attachments/assets/28cd6174-752c-42a7-b390-bc2c2e8f8bb1" /> | <img width="400" alt="홈 화면" src="https://github.com/user-attachments/assets/5da93ac5-cd71-41c3-b7a4-8973687abff6" /> |<img width="400" alt="마이크 접근 권한" src="https://github.com/user-attachments/assets/d28bdb1e-6a8b-4e54-888d-fb45a5b443b3" /> |
 
 | **학습하기** | **발음 듣기/따라 말하기** | **피드백 토글/메모** |
 |:---:|:---:|:---:|
